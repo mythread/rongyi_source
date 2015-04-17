@@ -1,0 +1,87 @@
+html,body {
+	height: 100%;
+	min-height: 900px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	font-family: Microsoft YaHei;
+	color: #2e3641;
+	margin-left: auto;
+	margin-right: auto;
+	min-width: 1190px;
+}
+
+.main-container {
+	height: 100%;
+	margin-bottom: -50px; 
+	min-height: 900px;
+}
+
+#header {
+	background-color: #F97E76;
+	color: white;
+	height: 70px;
+	padding: 10px;
+}
+
+#footer {
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	background: #D3DEE4;
+}
+
+#logincontainer {
+	width: 280px;
+	margin: 170px auto 170px auto;
+	border: 2px solid #d3dde4;
+	padding: 50px;
+}
+
+h1,h2 {
+	letter-spacing: 1px;
+	margin-left: 20px;
+	margin-bottom: 0;
+	margin-top: 0;
+	font-weight: normal;
+}
+
+.inputcontainer {
+	width: 260px;
+	border: 1px solid #fff;
+	padding: 10px;
+	overflow: auto;
+	margin-bottom: 8px;
+	border: 1px solid #d3dde4;
+}
+
+.inputcontainer input {
+	border: none;
+	outline: none;
+	width: 100%;
+}
+
+.loginsubmit {
+	width: 280px;
+	border: 0px;
+	background-color: #2E3641;
+	color: white;
+	font-size: 20px;
+	font-family: Microsoft YaHei;
+	padding: 8px 0;
+	margin-bottom: 15px;
+	margin-top: 15px;
+}
+
+.loginsubmit:hover {
+	cursor: pointer;
+	background: #999
+}
+
+.errorblock {
+	width: 280px;
+	color: #f97e76;
+}

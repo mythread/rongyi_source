@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.nasdaq.biz.mapper.HomePictureMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.nasdaq.biz.domain.HomePictureDO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="columns" >
+    id, gmtCreate, gmtModified, status, name, url, pic
+  </sql>
+  
+  <select id="list" resultMap="BaseResultMap">
+  	select <include refid="columns" /> from homePicture where status = 0 order by id desc 
+  </select>
+</mapper>

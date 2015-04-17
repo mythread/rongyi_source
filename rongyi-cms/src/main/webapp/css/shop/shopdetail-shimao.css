@@ -1,0 +1,39 @@
+#details {
+	font-size: 16px;
+}
+
+#view-content {
+	background: #B2E4FF;
+}
+
+#detail-title {
+	color: #027CC5;
+	font-size: 24px;
+}
+
+#view-content hr{
+	border-top: 2px solid #027CC5;
+}
+
+#detail-address {
+	color: #027CC5;
+	line-height: 60px;
+	height: 80px;
+	font-size: 24px;
+}
+
+#detail-address span {
+	color: white;
+	display: block;
+	border-radius: 30px;
+	height: 60px;
+	width: 60px;
+	background:#027CC5;
+	float: left;
+	padding: 0px;
+	text-align: center;
+}
+
+#detail-body-right,#detail-body-left {
+	margin-top: 20px;
+}

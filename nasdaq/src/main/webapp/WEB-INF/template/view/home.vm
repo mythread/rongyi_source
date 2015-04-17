@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>容易网，全渠道O2O技术营销解决方案提供商</title>
+		#parse("widget/common/meta.vm")
+		<meta name="description" content="容易网,最专业的零售O2O服务平台。逛商场：最全面的商场导购资讯，随愿随行。搜店铺：服饰鞋包美妆珠宝家居亲子运动娱乐餐饮店铺一网打尽。享优惠：商场互动品牌优惠折扣团购一站参与。合理定义商圈、地标、商户分类，为您提供上海万家品牌商户，更有用户评价和专业资讯帮助你做选择。">
+		<meta name="keywords" content="容易网,上海购物,购物优惠,逛街,上海购物攻略,上海购物网,导购服务,容易">
+		<script src="/static/js/bxslider-4-master/jquery.bxslider.min.js"></script>
+		<link href="/static/js/bxslider-4-master/jquery.bxslider.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="/static/js/flowplayer/skin/minimalist.css">
+        <script type="text/javascript" src="/static/js/flowplayer/flowplayer.min.js"></script>
+		<script src="/static/js/home.js"></script>
+		<link href="/static/css/home.css" rel="stylesheet" />
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+			<div id="focus-imgs-div">
+                <ul id="focus-imgs">
+				#if($homePicList && $homePicList.size() > 0)
+					#foreach($homePic in $!homePicList)
+						<li><a href="$!{homePic.url}" style="background-image: url('$!{homePic.pic}')" target="_blank"></a></li>
+					#end
+				#else	 
+                    <li><a href="/product/terminal.htm" style="background-image: url('/static/img/pic1.jpg')" target="_blank"></a></li>
+                    <li><a href="/product/app.htm" style="background-image: url('/static/img/pic2.jpg')" target="_blank"></a></li>
+				#end	
+                </ul>
+            </div>
+			
+			<div class="intro-blocks">
+    			<div class="intro-block intro-block-hd">
+                    <div class="intro-block-title">互动</div>
+					<div class="intro-block-text">多屏互动</div>
+					<div class="intro-block-text">提升消费者购物体验</div>
+                </div>
+    			<div class="intro-block intro-block-zh">
+    				<div class="intro-block-title">整合</div>
+					<div class="intro-block-text">线上线下整合</div>
+					<div class="intro-block-text">使营销效果更出众</div>
+                </div>
+    			<div class="intro-block intro-block-jz">
+    				<div class="intro-block-title">精准</div>
+					<div class="intro-block-text">内容精准推送</div>
+					<div class="intro-block-text">提升效益、节省成本</div>
+                </div>
+            </div>
+
+            <div id="silde-imgs">
+				<div class="title">
+    				<div class="title-left">
+                        <span class="title-cn"><a href="/case/list.htm" target="_blank">案例分享</a></span>
+        				<span class="title-en">CASE</span>
+                    </div>
+                    <div class="title-right"><a href="/case/list.htm" target="_blank">more</a></div>
+    			</div>
+    			<ul>
+					#foreach($case in $!caseList)
+					<li>
+						<a href="/case/${case.id}.htm" target="_blank"><img class="silde-img" src="${case.pic}" /></a>
+						<div class="silde-imgs-title"><a href="/case/${case.id}.htm" target="_blank">${case.mallName}</a></div>
+					</li>
+					#end
+                </ul>
+			</div>
+			
+            <div id="video-and-news">
+				
+                <div id="video-div">
+    				<div class="title">
+        				<div class="title-left">
+                            <span class="title-cn">多媒体</span>
+            				<span class="title-en">VIDEO</span>
+                        </div>
+        			</div>
+                    <div id="video" class="flowplayer" data-swf="/static/js/flowplayer/flowplayer.swf" data-embed="false">
+                        <video poster="/static/img/video-img.jpg">
+							<source type="video/mp4" src="/static/img/video.mp4">
+						</video>
+					</div>
+    			</div>
+				
+				<div id="news-div">
+    				<div class="title">
+        				<div class="title-left">
+                            <span class="title-cn"><a href="/about/newslist.htm" target="_blank">媒体报道</a></span>
+            				<span class="title-en">NEWS</span>
+                        </div>
+						<div class="title-right"><a href="/about/newslist.htm" target="_blank">more</a></div>
+        			</div>
+					<div id="news">
+						#foreach($article in $articleList)
+							#if($velocityCount <= 8)
+							<a href="/about/newsdetail/${article.id}.htm" class="news-line" target="_blank">$!{article.subject}
+								#if($velocityCount <= 2)
+								<img src="/static/img/icon-new.png">
+								#end
+							</a>
+							#end
+						#end
+					</div>
+    			</div>
+				
+			</div>
+			
+			<div id="partners">
+				<div class="title">
+    				<div class="title-left">
+                        <span class="title-cn"><a href="/partner/list.htm" target="_blank">合作伙伴</a></span>
+        				<span class="title-en">PARTNERS</span>
+                    </div>
+    			</div>
+                <div class="partners-title">购物中心/百货（包括集团合作）</div>
+				 #if($!partnerList && $!{partnerList.size()} > 0)
+					<div class="logo">
+                    	<ul>
+							#foreach($p in $!partnerList)
+                    		<li><img src="$!{p.mallLogo}" /></li>
+							#end
+                    	</ul>
+					</div>
+				#else
+					<div class="partners-market">
+						<img src="/static/img/parnters.png"/>
+					</div>
+				#end
+				<div class="partners-title">其他合作伙伴</div>
+				<div class="partners-zl">
+					<img src="/static/img/parnters-zl.png"/>
+                </div>
+			</div>
+
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

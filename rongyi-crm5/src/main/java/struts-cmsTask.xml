@@ -1,0 +1,35 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/mallcms" name="cmstask" extends="default">
+      	<action name="listCmsTask" class="listCmsTaskAction" method="list">
+    	  <result name="success" type="json"></result>
+        </action>
+
+      	<action name="listCmsTaskFull" class="listCmsTaskAction" method="listFull">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+      	<action name="editCmsTask" class="listCmsTaskAction" method="editCmsTask">
+      	  <result name="success">/jsp/mallcms/check.jsp</result>
+        </action>
+        
+    	<action name="taskListPage">
+    	  <result type="redirect">/jsp/mallcms/cmsTaskList.jsp</result>
+        </action>
+        
+        <!-- 简单文件下载 --> 
+
+	<action name="download" class="downloadAction" method="getInputStream">
+           <result type="stream">
+              <param name="contentType">application/octet-stream</param>
+              <param name="inputName">inputStream</param>
+              <param name="contentDisposition">attachment;filename="${icon}"</param>
+              <param name="bufferSize">4096</param>
+           </result>
+    </action>
+  </package>      
+    
+</struts>

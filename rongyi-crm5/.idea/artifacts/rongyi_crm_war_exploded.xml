@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="rongyi-crm:war exploded">
+    <output-path>$PROJECT_DIR$/target/rongyi-crm</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="rongyi-crm/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="rongyi-crm" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
+          <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.2" />
+          <element id="library" level="project" name="Maven: javax.transaction:javax.transaction-api:1.2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

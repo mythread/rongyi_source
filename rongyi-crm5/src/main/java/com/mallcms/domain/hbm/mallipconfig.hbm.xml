@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.mallcms.domain">
+ <class dynamic-insert="false" dynamic-update="true"
+  name="com.mallcms.domain.MallIpConfig" table="mallIpConfig">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="native"/>
+  </id>
+  <property name="gmtCreate" column="gmtCreate" type="java.util.Date" />   
+  <property name="gmtModified" column="gmtModified" type="java.util.Date" />  
+  <property name="ip" column="ip" type="java.lang.String" /> 
+  <property name="mallId" column="mall_id" type="java.lang.String" /> 
+  <property name="port" column="port" type="java.lang.Integer" /> 
+  <property name="domain" column="domain" type="java.lang.String" /> 
+ </class>
+</hibernate-mapping>

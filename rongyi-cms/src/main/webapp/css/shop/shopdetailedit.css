@@ -1,0 +1,368 @@
+.for-editor {
+	visibility: visible;
+}
+
+#sub-nav {
+	display: none;
+}
+
+/* 状态设置按钮（推荐、启用） */
+.status-radio {
+	float: right;
+}
+
+.status-radio p {
+	margin: 0px;
+	line-height: 16px;
+	text-align: center;
+	padding-right: 25px;
+	font-size: 16px;
+}
+
+/* 下面2个样式 - 用户鼠标悬浮后可编辑的交互功能 */
+.detail-editable-enable {
+	border: 2px solid orange;
+}
+.detail-editor-btn-enable {
+	visibility: visible;
+}
+
+/* 弹出层样式 */
+
+.layer-settings {
+	margin: 20px;
+}
+
+.layer-setting-line {
+	height: 32px;
+	width: 550px;
+	border: 1px solid #C1CFDA;
+	margin-top: 10px;
+}
+
+.layer-setting-title{
+	width: 120px;
+	float: left;
+	margin-right: 30px;
+	font-size: 16px;
+	margin-left: 20px;
+	height: 20px;
+	line-height: 20px;
+	margin-top: 6px;
+	border-right: 1px solid #C1CFDA;
+}
+
+.layer-setting-input {
+	float: left;
+	line-height: 32px;
+}
+
+.layer-setting-input-width {
+	width: 350px;
+	font-size: 14px;
+	border: 0px;
+	outline: none;
+	background: white;
+}
+
+.layer-buttons {
+	height: 40px;
+}
+
+.layer-buttons a {
+	float: right;
+	margin-right: 20px;
+}
+
+.layer-setting-check {
+	border: 1px solid #C1CFDA;
+	padding: 15px;
+	margin-top: 5px;
+}
+
+.layer-setting-check-item {
+	float: left;
+	width: 50%;
+	height: 30px;
+	line-height: 30px;
+}
+
+.layer-setting-check img {
+	float: right;
+	margin-right: 20px;
+}
+
+.layer-setting-line-brand {
+	height: 42px;
+	margin-top: 10px;
+	
+}
+
+.layer-setting-line-brand .layer-setting-line {
+	float: left;
+	margin-top: 0px;
+	width: 454px;
+}
+
+.layer-setting-line-brand .layer-setting-input-width {
+	width: 254px;
+}
+
+#get-brand-btn {
+	float: left;
+	line-height: 34px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.layer-setting-line-file {
+	height: 42px;
+	margin-top: 10px;
+}
+
+.layer-setting-line-file .layer-setting-line {
+	float: left;
+	margin-top: 0px;
+	width: 486px;
+}
+
+.layer-setting-line-file .layer-setting-input {
+	line-height: 40px;
+}
+
+.layer-setting-line-file .layer-setting-input-width {
+	width: 286px;
+}
+
+.layer-setting-line-file a {
+	float: left;
+	line-height: 34px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+
+.shops_description_line {
+	height: 100px;
+}
+
+.shops_description_line .layer-setting-title {
+	height: 88px;
+	line-height: 88px;
+}
+
+#description-textarea {
+	height: 200px;
+	width: 350px;
+	resize: none;
+}
+
+#description-textarea-div {
+	margin: 15px;
+	text-align: center;
+}
+
+#brand-create-new {
+	height: 30px;
+}
+
+#brand-create-new a {
+	float: right;
+}
+
+.brand-class ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.brand-class li {
+	margin-right: 3px;
+	margin-bottom: 3px;
+	margin-top: 5px;
+	float: left;
+}
+
+.brand-class li a {
+	color: white;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	background-color: #A5B2BA;
+}
+
+.brand-class li a.selected {
+	color: white;
+	background-color: #F97E76;
+}
+
+.subbrand-class ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.subbrand-class li {
+	margin-right: 3px;
+	margin-bottom: 3px;
+	float: left;
+}
+
+.subbrand-class li a {
+	color: #666;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.subbrand-class li a.selected {
+	color: white;
+	background-color: #999999;
+	border-radius: 4px;
+}
+
+#create-brand-sub-class label {
+	margin: 2px;
+}
+
+.create-brand-sub-class div {
+	float: left;
+	margin-right: 5px;
+}
+
+#brand-result {
+	height: 320px;
+	clear:both;
+	overflow-y: scroll;
+	border: 1px solid #999999;
+	margin-bottom: 10px;
+}
+
+.brand-div {
+	width: 82px;
+	height: 110px;
+	float: left;
+	cursor: pointer;
+	margin: 10px;
+}
+
+.brand-img {
+	text-align: center;
+}
+
+.brand-img img {
+	width: 78px;
+	height: 78px;
+}
+
+.brand-title {
+	text-align: center;
+}
+
+
+.img-upload-info {
+	margin-top: 5px;
+}
+
+.img-upload-info span {
+	color: red;
+}
+
+.upload-imgs {
+	height: 200px;
+	margin-top: 10px;
+}
+
+.upload-img-show {
+	float: left;
+	margin-left: 3px;
+	position: relative;
+}
+
+.upload-img-show .show_pic {
+	height: 200px;
+	width: 274px;
+}
+
+.upload-img-close-btn {
+	position: absolute;
+	right: 3px;
+	top: 3px;
+	cursor: pointer;
+}
+
+.brand-top {
+	height: 30px;
+	padding-top: 20px;
+	padding-left: 20px;
+}
+
+.brand-top .default-selecter {
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 16px;
+}
+
+#brand-search-box {
+	height: 40px;
+	background: #ECF0F3;
+	border-radius: 20px;
+	padding-left: 20px;
+	padding-right: 10px;
+	margin-bottom: 10px;
+}
+
+#brand-search-box div {
+	float: left;
+}
+
+#brand-search-box input {
+	width: 480px;
+	height: 40px;
+	outline: none;
+	background: #ECF0F3;
+	border: 0px;
+	font-size: 16px;
+}
+
+#create-brand-class{
+	height: 160px;
+	overflow-y: auto;
+}
+
+.shop-tag {
+	float: left;
+	line-height: 20px;
+	background: #D3DEE4;
+	height: 20px;
+	margin-left: 10px;
+	margin-top: 5px;
+	padding: 5px;
+	padding-left: 15px;
+	padding-right: 30px;
+	position: relative;
+	border-radius: 15px;
+}
+
+.shop-tag img {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	cursor: pointer;
+}
+
+.add-tag {
+	cursor: pointer;
+	padding-right: 15px;
+}
+
+.add-tag input {
+	border: 0px;
+	outline: none;
+	display: none;
+	background: #D3DEE4;
+	margin-top: 2px;
+	width: 40px;
+}

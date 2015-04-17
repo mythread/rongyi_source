@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.mina.mapper.BrandsMapper" >
+  
+  <resultMap id="BaseResultMap" type="com.rongyi.mina.bean.Brands">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="average_consumption" property="averageConsumption"
+			jdbcType="VARCHAR" />
+		<result column="aliases" property="aliases" jdbcType="VARCHAR" />
+		<result column="cname" property="cname" jdbcType="VARCHAR" />
+		<result column="ename" property="ename" jdbcType="VARCHAR" />
+		<result column="icon" property="icon" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="operator" property="operator" jdbcType="VARCHAR" />
+		<result column="tags" property="tags" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+		<result column="old_code" property="oldCode" jdbcType="INTEGER" />
+		<result column="old_id" property="oldId" jdbcType="INTEGER" />
+		<result column="syhch_status" property="syhchStatus" jdbcType="INTEGER" />
+		<result column="syhch_msg" property="syhchMsg" jdbcType="VARCHAR" />
+		<result column="pid" property="pid" jdbcType="INTEGER" />
+		<result column="record_type" property="recordType" jdbcType="INTEGER" />
+		<result column="task_id" property="taskId" jdbcType="INTEGER" />
+		<result column="cms_outerId" property="cmsOuterId" jdbcType="VARCHAR" />
+		<result column="mongo_id" property="mongoId" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="icon_url" property="iconUrl" jdbcType="VARCHAR" />
+		<result column="mall_id" property="mallId" jdbcType="VARCHAR" />
+		<result column="categoryIds" property="categoryIds" jdbcType="VARCHAR" />
+	</resultMap>
+  
+  <insert id="insert" parameterType="com.rongyi.mina.bean.Brands" useGeneratedKeys="true"  keyProperty="id">
+    insert into brands (status,address, average_consumption, 
+      aliases, cname, description, 
+      ename, icon, name, 
+      operator, tags, telephone, 
+      updated_at, old_code, old_id, 
+      syhch_status, syhch_msg, 
+      pid, record_type,task_id,cms_outerId,mongo_id,icon_url,mall_id,categoryIds)
+    values (0,#{address,jdbcType=VARCHAR}, #{averageConsumption,jdbcType=VARCHAR}, 
+      #{aliases,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{ename,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{oldCode,jdbcType=INTEGER}, #{oldId,jdbcType=INTEGER}, 
+      #{syhchStatus,jdbcType=INTEGER}, #{syhchMsg,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=INTEGER}, #{recordType,jdbcType=INTEGER}, #{taskId,jdbcType=INTEGER},
+      #{cmsOuterId,jdbcType=VARCHAR}, #{mongoId,jdbcType=VARCHAR},#{iconUrl,jdbcType=VARCHAR}, #{mallId,jdbcType=VARCHAR}, #{categoryIds, jdbcType=VARCHAR})
+  </insert>
+  
+  <select id = "selectByParam" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select * from brands
+    where cms_outerId=#{cmsOuterId,jdbcType=VARCHAR} and mall_id=#{mallId,jdbcType=VARCHAR} and status = 0
+  </select>
+  
+  	<update id="update" parameterType="com.rongyi.mina.bean.Brands">
+		update brands
+		<set>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="averageConsumption != null">
+				average_consumption = #{averageConsumption,jdbcType=VARCHAR},
+			</if>
+			<if test="aliases != null">
+				aliases = #{aliases,jdbcType=VARCHAR},
+			</if>
+			<if test="cname != null">
+				cname = #{cname,jdbcType=VARCHAR},
+			</if>
+			<if test="ename != null">
+				ename = #{ename,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null">
+				icon = #{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				operator = #{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="tags != null">
+				tags = #{tags,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedAt != null">
+				updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="oldCode != null">
+				old_code = #{oldCode,jdbcType=INTEGER},
+			</if>
+			<if test="oldId != null">
+				old_id = #{oldId,jdbcType=INTEGER},
+			</if>
+			<if test="syhchStatus != null">
+				syhch_status = #{syhchStatus,jdbcType=INTEGER},
+			</if>
+			<if test="syhchMsg != null">
+				syhch_msg = #{syhchMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=INTEGER},
+			</if>
+			<if test="recordType != null">
+				record_type = #{recordType,jdbcType=INTEGER},
+			</if>
+			<if test="mongoId != null">
+				mongo_id = #{mongoId,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="iconUrl != null">
+				icon_url = #{iconUrl,jdbcType=VARCHAR}
+			</if>
+			
+		</set>
+		where cms_outerId=#{cmsOuterId,jdbcType=VARCHAR} and mall_id=#{mallId,jdbcType=VARCHAR} and status = 0
+  </update>
+  </mapper>

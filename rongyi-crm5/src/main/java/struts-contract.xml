@@ -1,0 +1,44 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="contract" extends="default"> 
+     
+     	<action name="listContractFull" class="listContractAction" method="listContractFull">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="listContractPage">
+    	     <result type="redirect">/jsp/crm/listContract.jsp</result>
+        </action>
+		
+		<action name="editContract" class="editContractAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result name="success">/jsp/crm/editContract.jsp</result>
+        </action>
+		
+ 	 	<action name="saveContract" class="editContractAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editContract.jsp</result>
+            <result type="redirectAction">editContract.action?id=${id}&amp;saveFlag=${saveFlag}</result>
+        </action>
+
+        <action name="saveCloseContract" class="editContractAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editContract.jsp</result>          
+    	    <result type="redirect">/jsp/crm/listContract.jsp?accountId=${accountId}</result>
+        </action>
+                        
+		
+		<action name="deleteContract" class="listContractAction" method="delete">
+			<result name="input">/jsp/crm/listContract.jsp</result>
+			<result type="redirect">/jsp/crm/listContract.jsp</result>            	  
+		</action>
+		
+		<action name="downloadContract" class="editContractAction" method="download">
+        </action>   
+		
+   </package>      
+    
+</struts>

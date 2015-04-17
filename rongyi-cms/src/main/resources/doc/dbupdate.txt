@@ -1,0 +1,4 @@
+2014.4.21.lim
+alter table shops add `delete_status` tinyint(4) DEFAULT 0 COMMENT '删除状态 0不删除 1删除';
+2014.4.29.lim
+alter table photos add `delete_status` tinyint(4) DEFAULT 0 COMMENT '删除状态 0不删除 1删除';

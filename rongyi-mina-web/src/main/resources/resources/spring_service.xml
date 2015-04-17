@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/jee
+			http://www.springframework.org/schema/jee/spring-jee.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx.xsd">
+		
+		<context:component-scan base-package="com.rongyi.mina" />
+		
+		<bean id="springContextUtil" class="com.rongyi.mina.common.util.SpringContextUtil"></bean>
+		
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://192.168.1.88:3306/ry_crm?useUnicode=true&amp;characterEncoding=gbk&amp;zeroDateTimeBehavior=convertToNull"/>
+		<property name="username" value="root"/>
+		<property name="password" value="rongyi"/>		
+		<!--最大连接数-->
+		<property name="maxActive" value="100" />
+		<!-- 未使用过的连接保存最大数-->
+		<property name="maxIdle" value="30" />
+		<!-- 未使用过的连接保存最小数-->
+		<property name="minIdle" value="2" />
+		<property name="maxWait" value="1000" />
+		<property name="initialSize" value="2"/>
+	</bean>
+	
+	<!-- MyBatis sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:resources/mybatis/*.xml" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+     	<property name="basePackage" value="com.rongyi.mina.mapper" />     
+  	</bean>
+  	
+	<bean id="cmsTaskService" class="com.rongyi.mina.service.CmsTaskService"></bean>
+	 <bean id="operateMongoService" class="com.rongyi.mina.service.OperateMongoService"></bean> 
+	
+	<!-- Transaction manager for a single JDBC DataSource -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="minaServer" class="com.rongyi.mina.server.MinaServer" init-method="init"></bean>
+	<!-- 
+	<aop:config>
+
+		<aop:advisor pointcut-ref="entryPointMethod" advice-ref="txAdvice" />
+
+		<aop:aspect id="afterThrowing" ref="serviceExceptionCatcher">
+			<aop:after-throwing pointcut-ref="entryPointMethod"
+				method="log" throwing="exception" />
+		</aop:aspect>
+
+	</aop:config> -->	
+
+	<!--
+		Transaction advice definition, based on method name patterns. Defaults
+		to PROPAGATION_REQUIRED for all methods whose name starts with
+		"insert" or "update", and to PROPAGATION_REQUIRED with read-only hint
+		for all other methods.
+	-->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+		
+			<tx:method name="import*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="upload*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="insert*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="add*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="save*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="delete*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="update*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="modify*"
+				rollback-for="java.lang.Throwable" />
+				
+			<tx:method name="do*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="get*" read-only="true" />
+			
+		</tx:attributes>
+	</tx:advice>
+	  
+</beans>

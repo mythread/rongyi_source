@@ -1,0 +1,44 @@
+/**
+ * 联系我们 CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-23
+ */
+ 
+
+.contact {
+	margin-top: 50px;
+	padding-bottom: 52px;
+	border-bottom: 1px dashed #c1cfd9;
+}
+.contact-header {
+	font-size: 18px;
+	color: #ff4900;
+	margin-top: 36px;
+}
+.contact-text {
+	margin-top: 20px;
+	line-height: 25px;
+}
+
+.location-text {
+	line-height: 25px;
+}
+.location-header {
+	font-size: 18px;
+	margin-top: 50px;
+	background-image: url("../../img/icon-location.png");
+	background-repeat: no-repeat;
+	background-position: -10px -7px;
+	padding-left: 35px;
+}
+.location-first-line {
+	font-size: 14px;
+	margin-top: 36px;
+}
+.location-first-line span {
+	color: #ff4900;
+}
+
+.bottom {
+	height: 100px;
+}

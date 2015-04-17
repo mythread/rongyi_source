@@ -1,0 +1,33 @@
+/**
+ * 404
+ * author:叉叉哥 - 吴操
+ * date:2014-05-21
+ */
+
+ 
+#file-not-found {
+	height: 700px;
+	background-image: url("../img/404.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.content-center-right {
+	margin-left: 500px;
+}
+.content-center-right-top {
+	height: 240px;
+}
+
+.big-text {
+	font-size: 48px;
+	margin-bottom: 15px;
+}
+.medium-text {
+	font-size: 30px;
+	margin-bottom: 15px;
+}
+.small-text {
+	font-size: 14px;
+	line-height: 25px;
+}

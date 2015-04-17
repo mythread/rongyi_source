@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+			http://www.springframework.org/schema/jee 
+			http://www.springframework.org/schema/jee/spring-jee-4.0.xsd 
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+			http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+			http://www.springframework.org/schema/util 
+			http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+		
+	<context:component-scan base-package="com.rongyi.cms,base.page,mina.server">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	
+	<bean id="propertyPlaceholderConfigurer"  
+        class="base.config.PropertyConfigurer">  
+        <property name="locations">  
+            <list>  
+                <value>classpath:/config/config.properties</value>  
+                <value>classpath:/config/jdbc.properties</value>  
+            </list>  
+        </property>  
+    </bean>  
+	
+	<bean id="springContextUtil" class="base.context.SpringContextUtil"></bean>
+	
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<props>
+				<prop key="resource.loader">class</prop>
+				<prop key="class.resource.loader.class">org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+				</prop>
+				<prop key="velocimacro.library"></prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- SpringMVC上传文件时,需配置MultipartResolver处理器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 指定所上传文件的总大小不能超过10MB......注意maxUploadSize属性的限制不是针对单个文件,而是所有文件的容量之和 -->
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
+
+	<!-- SpringMVC在超出上传文件限制时,会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+	<!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的,而且此时还没有进入到Controller方法中 -->
+	<!-- <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+		<property name="exceptionMappings"> <props> 遇到MaxUploadSizeExceededException异常时,自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 
+		<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">/errorFileupload</prop> 
+		</props> </property> </bean> -->
+	<bean id="exceptionResolver" class="base.exception.SystemExceptionResolver">
+	</bean>
+
+	<!-- <bean id="minaServer" class="mina.server.MinaServer" init-method="init"></bean> -->
+</beans>

@@ -1,0 +1,85 @@
+/**
+ * 产品 - app 页面 CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-27
+ */
+ 
+/* 
+#top-img {
+	background-image: url("../../img/product-app.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 628px;
+}
+*/
+#top-img{ 
+	width:100%;
+	 height:628px; 
+	 margin:0 auto; 
+	 background:url(../../img/product-app.jpg) 50% 0px no-repeat;
+}
+
+#top-img_ban{ 
+	width:910px; 
+	height:470px; 
+	margin:0 auto;
+	background:url(../../img/product-app_main.png) 0 100% no-repeat; 
+}
+
+#top-img_ban a{ 
+	width:216px; 
+	height:48px; 
+	font-size:24px;
+	text-align:center; 
+	line-height:48px;
+	 color:#fff; 
+	 background:#ff4900; 
+	 border-radius:2px;
+	  display:inline-block; 
+	  margin:300px 0 0 617px;
+}
+
+
+.app-pic-one {
+	background-image: url("../../img/product-app1.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 466px;
+	margin-top: 50px;
+}
+.app-pic-two {
+	background-image: url("../../img/product-app2.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 456px;
+	margin-top: 60px;
+}
+.app-pic-three {
+	background-image: url("../../img/product-app3.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 631px;
+}
+
+.qrcode {
+	margin-top: 140px;
+	text-align: center;
+	margin-bottom: 115px;
+}
+.qrcode-header {
+	font-size: 30px;
+	margin-bottom: 24px;
+}
+.qrcode img {
+	height: 136px;
+	width: 136px;
+}
+#box {
+	display:none;
+	width: 100%;
+	height: 100%;
+	background:#2e3641;
+	position: fixed;
+	top: 0;
+	opacity:.50;filter:alpha(opacity=50);
+}

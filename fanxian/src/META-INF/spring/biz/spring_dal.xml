@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+
+	<bean id="fanxianSqlMapClient" parent="sqlMapClient">
+		<property name="configLocation" value="META-INF/ibatis/sql-map-fanxian.xml" />
+	</bean>
+	<bean id="fanxianSqlDaoBaseSupport" abstract="true">
+		<property name="sqlMapClient" ref="fanxianSqlMapClient" />
+	</bean>
+	
+ 	<bean id="userDao" 	class="com.fanxian.biz.user.dao.impl.UserDaoImpl"	parent="fanxianSqlDaoBaseSupport" />
+ 	<bean id="userAndProDao" 	class="com.fanxian.biz.userandpro.dao.impl.UserAndProDaoImpl"	parent="fanxianSqlDaoBaseSupport" />
+ </beans>

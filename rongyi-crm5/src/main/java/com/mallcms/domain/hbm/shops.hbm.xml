@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.mallcms.domain">
+ <class dynamic-insert="false" dynamic-update="true"
+  name="com.mallcms.domain.ShopsPojo" table="shops">
+  <id column="id" name="id" type="java.lang.String">
+  </id>
+  <property name="address" column="address" type="java.lang.String" />   
+  <property name="averageConsumption" column="average_consumption" type="java.lang.String" />  
+  <property name="brandId" column="brand_id" type="java.lang.String" /> 
+  <property name="commentCount" column="comment_count" type="java.lang.Integer" /> 
+  <property name="coordinate" column="coordinate" type="java.lang.String" /> 
+  <property name="description" column="description" type="java.lang.String" /> 
+  <property name="doorCoordinate" column="door_coordinate" type="java.lang.String" /> 
+  <property name="location" column="location" type="java.lang.String" /> 
+   <property name="name" column="name" type="java.lang.String" /> 
+   <property name="oldCode" column="old_code" type="java.lang.Integer" /> 
+   <property name="oldId" column="old_id" type="java.lang.Integer" /> 
+    <property name="rank" column="rank" type="java.lang.Integer" /> 
+     <property name="shopNumber" column="shop_number" type="java.lang.String" /> 
+     <property name="shopType" column="shop_type" type="java.lang.Integer" /> 
+     <property name="slug" column="slug" type="java.lang.String" /> 
+     <property name="subtitle" column="subtitle" type="java.lang.String" /> 
+     <property name="tags" column="tags" type="java.lang.String" /> 
+     <property name="telephone" column="telephone" type="java.lang.String" /> 
+      <property name="terminalPosition" column="terminal_position" type="java.lang.String" /> 
+       <property name="terminalShop" column="terminal_shop" type="java.lang.String" /> 
+        <property name="updatedAt" column="updated_at" type="java.util.Date" />
+        <property name="zoneId" column="zone_id" type="java.lang.String" />
+        <property name="onStatus" column="on_status" type="java.lang.Byte" />
+        <property name="synchStatus" column="synch_status" type="java.lang.Integer" /> 
+        <property name="synchMsg" column="synch_msg" type="java.lang.String" /> 
+        <property name="pid" column="pid" type="java.lang.String" /> 
+        <property name="recordType" column="record_type" type="java.lang.Integer" /> 
+        <property name="taskId" column="task_id" type="java.lang.Integer" /> 
+        <property name="cmsOuterId" column="cms_outerId" type="java.lang.String" /> 
+        <property name="mongoId" column="mongo_id" type="java.lang.String" />
+        <property name="openTime" column="open_time" type="java.lang.String" />
+        <property name="recommend" column="recommend" type="java.lang.Integer" />
+        <property name="mongoBrandId" column="mongo_brand_id" type="java.lang.String" />
+ </class>
+</hibernate-mapping>

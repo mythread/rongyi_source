@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>关于我们-公司简介</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/about/introduce.css" rel="stylesheet" type="text/css">
+		<link href="/static/css/about/common.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+			<div id="content-top"></div>
+
+			
+			<div class="content-center">
+
+				#parse("view/about/leftnav.vm")
+				
+                <div id="right-content">
+					
+					<img src="/static/img/introduce.jpg"/>
+                    <p>容易网（www.rongyi.com）由上海容易网电子商务有限公司运营，致力于打造中国领先的品牌零售导购平台，以最新商品资讯与优惠信息为核心，整合O2O搜索平台、线上线下媒介资源与移动互联网，为消费者带来更为丰富便捷的信息搜索和导购服务。容易网不仅是品牌的汇集地，更是时尚与潮流的风向标。</p>
+                    <p>容易网依托手机客户端APP容易逛、商场终端机（导购体验一体机）、容易网网站（商场导购资讯平台）和电子会员管理服务及线上社区五大平台系统，通过重塑O2O模式，促进线上与线下的融合互动，从而打造从线上到线下全新的价值链。容易网的手机APP可定位用户所在位置，根据用户的偏好推送用户需要的资讯、活动和优惠券，用户可通过APP搜索、扫描二维码、与终端机互动等多种方式获得更多优惠和便利；容易网的商场终端机拥有强大的互动功能，可与手机APP及容易网网站进行信息交互，实现线上线下的联动，为商户带来客流和消费，为用户提供便捷的信息获取与优惠获取渠道；容易网网站拥有海量的商场和商铺信息，方便用户随时查找、获取具体商场或店铺的路线等详细信息。三大实用平台的交融为商家和用户同时提供便利，让购物更容易。</p>
+                    <p>容易网创始团队汇集投资、管理运营、互联网技术、市场营销等各行业的资深人士，倾力呈现。我们希望通过网络、手机客户端商场终端机等服务平台与服务手段，为您提供信息量更大、更方便、更智能的导购服务平台，让您能够随时随地获取自己需要的品牌导购信息、商场购物信息、丰富的优惠活动信息。</p>
+                    <div class="separate-line"></div>
+                    <p class="big-text">我们能为您实现</p>
+                    <p>全新客流、优惠精准推送、提升消费频次、会员管理、更好的客户体检、节省物料成本、一站式导购。</p>
+					<img src="/static/img/introduce2.jpg"/>
+					<div class="separate-line"></div>
+					
+                    <div id="time-line">
+						<div id="time-line-header">
+							容易网大事记
+                        </div>
+						<div id="time-line-body">
+                            <div class="time-line-year">2013</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">3月/</div>
+								<div class="time-line-text">“容易逛”终端机进驻上海百联又一城，为百联又一城提供商场信息展示、品牌导航、路线导引、商场活动引流等功能模块。这是容易网自主研发的商场导视、导购系统的首次商业应用。</div>
+							</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">8月/</div>
+								<div class="time-line-text">容易网业务拓展至深圳。“容易逛”终端机进驻深圳南山京基百纳广场，为该商场提供商场信息展示、品牌导航、路线导引、商场活动引流等功能模块。这也是容易网所服务的首个深圳商场客户。</div>
+							</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">9月5日/</div>
+								<div class="time-line-text">“容易购”终端机进驻GXG（集杰男装）上海中山公园龙之梦店，为GXG实体门店提供基于智能电子屏的全系列商品陈列、商品选购/下单/交易服务。这是容易网自主研发的线下门店电子货架系统的首次商业应用。</div>
+							</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">10月/</div>
+								<div class="time-line-text">容易网深圳、北京分公司相继成立，从此，容易网业务快速延伸至深圳、北京以及周边城市，为当地百货商场与零售品牌提供技术和营销服务。</div>
+							</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">10月31日/</div>
+								<div class="time-line-text">容易网承接深圳万象城2013年“超级特卖汇”电子导购业务，“容易逛”终端机进驻特卖汇现场，为此次活动提供活动信息展示与点播、品牌铺位导航、优惠券下载等现场电子服务，活动历时10天。这也是容易逛产品首次应用于大型购物活动。</div>
+							</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">12月10日/</div>
+								<div class="time-line-text">由中国下一代教育基金会携手容易网（rongyi.com）发起的四川省三个 “留守儿童教育帮扶中心”建设启动仪式在四川省金堂县举行。由容易网捐助配备的100台电脑已经陆续购置、配备在四川、江西和广西的受助地区。</div>
+							</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">12月15日/</div>
+								<div class="time-line-text">著名的电视财经节目《波士堂》第2013-12-15期，容易网CEO陈从容出任金牌观察嘉宾，分享了关于创业、企业管理的精彩观点。</div>
+							</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">12月20日/</div>
+								<div class="time-line-text">2013中国·时尚指数全球发布暨时尚峰会于2013年12月20日在京举行。在本次峰会上首次推出时尚行业五力模型，活动邀请容易网（rongyi.com）作为专业技术服务商共同探讨时尚品牌在全媒体、全渠道时代的发展前景。容易网电子互动屏亮相峰会现场，为大会提供会议信息导视、赞助商广告展示、电子签名等技术服务。</div>
+							</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">12月30日/</div>
+								<div class="time-line-text">容易网创始人、分众传媒前首席营销官及首席运营官陈从容与《理财周刊》共同分享了零售业O2O的实战心得。容易网CEO陈从容认为，零售O2O的本质就是让线下庞大的消费人群，能享受到互联网革命带来的红利让购物变得丰富便利，同时保有线下实体店的体验性、品牌品质的保障和服务的安全感。</div>
+							</div>
+							<div class="time-line-year">2014</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">1月12日/</div>
+								<div class="time-line-text">由人民日报《环球时报》社与经济日报中国经济信息杂志社联合主办的“2013中国经济高峰论坛暨第十一届中国经济人物颁奖盛典”在北京钓鱼台国宾馆隆重举行，容易网的创始人陈从容女士荣获“年度中国经济新领军人物”奖。</div>
+							</div>
+							<div class="time-line-block">
+                                <div class="time-line-time">1月22日/</div>
+								<div class="time-line-text">容易网业务拓展至东莞，东莞百花时代广场首选“容易逛”终端机及服务体系，用智能互动的电子化方式优化商场信息展示、品牌导航、购物路线导引、优惠互动等服务，提高经营效率。</div>
+							</div>
+                        </div>
+					</div>
+					
+				</div>
+				
+				<div class="for-clear bottom">
+                </div>
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

@@ -1,0 +1,16 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="calendar" extends="default">
+    	<action name="calendarPage">
+    	  <result type="redirect">/jsp/crm/listCalendar.jsp</result>
+        </action>
+        
+      	<action name="getCalendarInfo" class="calendarAction" method="getCalendarInfo">
+    	  <result name="success" type="json"></result>
+        </action>    	
+  </package>      
+    
+</struts>

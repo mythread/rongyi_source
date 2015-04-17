@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.nasdaq.biz.mapper.CaseMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.nasdaq.biz.domain.CaseDO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="mallName" property="mallName" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="columns" >
+    id, gmtCreate, gmtModified, status, subject, mallName, pic,content
+  </sql>
+  
+   <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select  <include refid="columns" /> from ry_case where id = #{id,jdbcType=INTEGER} and status = 0;
+  </select>
+  
+   <select id="list" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select  <include refid="columns" /> from ry_case  where status = 0 order by id desc
+  	<if test="limitSize != null" >
+        limit 0 , #{limitSize,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  <select id="listPagination" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select  <include refid="columns" /> from ry_case  where status = 0 order by id desc
+  	 <include refid="PAGINATION.MYSQL_PAGINATION" />
+  </select>
+  
+  <select id="getTotalNum" resultType="java.lang.Integer" >
+    select  count(id) from ry_case where status = 0
+  </select>
+  
+   <select id="getPrevCase" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  
+    select  <include refid="columns" /> from ry_case where id = 
+    (select max(id) from ry_case where id  <![CDATA[ < #{id,jdbcType=INTEGER} and status = 0 ]]> )
+  </select>
+  
+   <select id="getNextCase" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select  <include refid="columns" /> from ry_case where id = 
+    (select min(id) from ry_case where id <![CDATA[ > #{id,jdbcType=INTEGER} and status = 0 ]]>)
+  </select> 
+</mapper>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.gcrm.domain">
+  <class dynamic-insert="true" dynamic-update="true"
+    name="com.gcrm.domain.Contact" table="contact">
+    <id column="id" name="id" type="java.lang.Integer">
+      <generator class="native" />
+    </id>
+    <many-to-one name="salutation" class="Salutation"
+      column="salutation" cascade="save-update" />
+    <many-to-one name="contact_default" class="Contact_default"
+      column="contact_default" cascade="save-update" />
+    <property name="last_name" column="last_name" type="string"
+      not-null="true" />
+    <property name="nick_name" column="nick_name" type="string"/>
+    <property name="office_phone" column="office_phone" type="string" />
+    <property name="person_phone" column="person_phone" type="string" />
+    <property name="title" column="title" type="string" />
+    <property name="mobile" column="mobile" type="string" />
+    <property name="department" column="department" type="string" />
+    <property name="fax" column="fax" type="string" />
+    <property name="skype_id" column="skype_id" type="string" />
+    <property name="qq" column="qq" type="string" />
+    <many-to-one name="account" class="Account" column="account" />
+    <property name="website" column="website" type="string" />
+    <property name="primary_street" column="primary_street"
+      type="string" />
+    <property name="primary_city" column="primary_city" type="string" />
+    <property name="primary_state" column="primary_state" type="string" />
+    <property name="primary_postal_code" column="primary_postal_code"
+      type="string" />
+    <property name="primary_country" column="primary_country"
+      type="string" />
+    <property name="other_street" column="other_street" type="string" />
+    <property name="other_city" column="other_city" type="string" />
+    <property name="other_state" column="other_state" type="string" />
+    <property name="other_postal_code" column="other_postal_code"
+      type="string" />
+    <property name="other_country" column="other_country" type="string" />
+    <property name="office_email" column="office_email" type="string" />
+    <property name="person_email" column="person_email" type="string" />
+    <many-to-one name="attachment" class="Attachment" column="attachment" cascade="all"/>
+    <property name="fileName" column="fileName" type="string"/> 
+    <property name="origo" column="origo" type="string" />
+    <property name="height" column="height" type="java.lang.Double" />
+    <property name="weight" column="weight" type="java.lang.Double" />
+    <property name="relationship" column="relationship" type="string" />
+    <property name="character" column="l_character" type="string" />
+    <property name="interest" column="l_interest" type="string" />
+    <property name="taboo" column="l_taboo" type="string" />
+    <many-to-one name="religious" class="Religious" column="religious" />
+    <property name="habit" column="l_habit" type="string" />
+    <property name="diet" column="l_diet" type="string" />
+    <property name="notes" column="l_notes" type="string" />
+    <many-to-one name="report_to" class="Contact" column="report_to" />
+    <property name="not_call" column="l_not_call" type="boolean" />
+    <many-to-one name="leadSource" class="LeadSource"
+      column="leadSource" />
+    <many-to-one name="campaign" class="Campaign" column="campaign" />
+    <many-to-one name="owner" class="User" column="owner" />
+    <many-to-one name="assigned_to" class="User" column="assigned_to" />
+    <many-to-one name="created_by" class="User" column="created_by" />
+    <many-to-one name="updated_by" class="User" column="updated_by" />
+    <property name="created_on" column="created_on" type="java.util.Date" />
+    <property name="updated_on" column="updated_on" type="java.util.Date" />
+    <set cascade="all" name="opportunities" table="contact_opportunity">
+      <key column="contact_id" />
+      <many-to-many class="com.gcrm.domain.Opportunity"
+        column="opportunity_id" />
+    </set>
+    <set cascade="all" name="leads" table="contact_lead">
+      <key column="contact_id" />
+      <many-to-many class="com.gcrm.domain.Lead" column="lead_id" />
+    </set>
+    <set cascade="all" name="targetLists" table="targetList_contact">
+      <key column="contact_id" />
+      <many-to-many class="com.gcrm.domain.TargetList"
+        column="targetList_id" />
+    </set>
+    <set cascade="all" name="cases" table="case_contact">
+      <key column="contact_id" />
+      <many-to-many class="com.gcrm.domain.CaseInstance"
+        column="case_id" />
+    </set>
+    <set cascade="all" name="calls" table="call_contact">
+      <key column="contact_id" />
+      <many-to-many class="com.gcrm.domain.Call" column="call_id" />
+    </set>
+    <set cascade="all" name="meetings" table="meeting_contact">
+      <key column="contact_id" />
+      <many-to-many class="com.gcrm.domain.Meeting" column="meeting_id" />
+    </set>
+    <set cascade="all" name="visits" table="visits_contact">
+      <key column="contact_id" />
+      <many-to-many class="com.gcrm.domain.Visit" column="visit_id" />
+    </set>
+    <set cascade="all" name="documents" table="contact_document">
+      <key column="contact_id" />
+      <many-to-many class="com.gcrm.domain.Document"
+        column="document_id" />
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.nasdaq.biz.mapper.PartnerMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.nasdaq.biz.domain.PartnerDO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="mallLogo" property="mallLogo" jdbcType="VARCHAR" />
+    <result column="mallName" property="mallName" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="columns" >
+    id, gmtCreate, gmtModified, status, mallLogo,mallName,memo
+  </sql>
+  
+   <select id="list" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select  <include refid="columns" /> from partner where status = 0 order by id desc
+  	<if test="limitSize != null" >
+        limit 0 , #{limitSize,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select  <include refid="columns" /> from partner where id = #{id,jdbcType=INTEGER} and status = 0
+  </select>
+  
+  <select id="listPagination" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select  <include refid="columns" /> from partner where status = 0 order by id desc
+  	 <include refid="PAGINATION.MYSQL_PAGINATION" />
+  </select>
+  
+   <select id="getTotalNum" resultType="java.lang.Integer" >
+    select  count(id) from partner where status = 0
+  </select>
+</mapper>

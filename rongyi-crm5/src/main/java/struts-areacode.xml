@@ -1,0 +1,23 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="areacode" extends="default">
+     	<action name="areaCodeActionProvince" class="areaCodeAction" method="province">
+     		<result name="success" type="json"></result>
+     	
+     	</action>
+     
+     	<action name="areaCodeActionCity" class="areaCodeAction" method="city">
+     		<result name="success" type="json"></result>
+     	</action>
+     	
+     	<action name="areaCodeActionArea" class="areaCodeAction" method="area">
+     		<result name="success" type="json"></result>
+     	</action>
+     
+     
+     </package>      
+    
+</struts>

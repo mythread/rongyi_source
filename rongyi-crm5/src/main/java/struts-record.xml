@@ -1,0 +1,53 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="record" extends="default"> 
+    	<action name="listRecordFull" class="listRecordAction" method="listFull">
+    		 <result name="input">/jsp/crm/listRecord.jsp</result>
+    	     <result name="success">/jsp/crm/listRecord.jsp</result>
+        </action>
+        <action name="listHomeRecord" class="listRecordAction" method="list">
+    		 <result name="input">/jsp/crm/listRecord.jsp</result>
+    	     <result name="success">/jsp/crm/listRecord.jsp</result>
+        </action>
+        
+        <action name="listRecordPage">
+    	     <result type="redirect">/jsp/crm/listRecord.jsp</result>
+        </action>
+        
+        <action name="editRecord" class="editRecordAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result name="success">/jsp/crm/editRecord.jsp</result>
+        </action>
+        
+        <action name="saveRecord" class="editRecordAction" method="save">
+        	<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editRecord.jsp</result>          
+    	    <result type="redirectAction">editRecord.action?id=${id}&amp;saveFlag=${saveFlag}</result>
+        </action>
+        
+        <action name="saveCloseRecord" class="editRecordAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editRecord.jsp</result>          
+    	  <result type="redirect">/jsp/crm/listRecord.jsp</result>
+        </action>
+        
+        <action name="dailyRecord" class="dailyRecordAction" method="dailyRecord">
+			<interceptor-ref name="prepareInterceptor" /> 
+          <result name="success">/jsp/crm/dailyRecord.jsp</result>        
+        </action>
+        <action name="create" class="dailyRecordAction" method="create">
+			<interceptor-ref name="prepareInterceptor" /> 
+          <result name="success">/jsp/crm/dailyRecord.jsp</result>        
+        </action>
+        <action name="save" class="dailyRecordAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/dailyRecord.jsp</result>          
+    	  <result type="redirectAction">/jsp/crm/create.action</result>
+        </action>
+        
+        
+    </package>      
+</struts>

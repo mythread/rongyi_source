@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.nasdaq.biz.mapper.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.nasdaq.biz.domain.ArticleDO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="articleStatus" property="articleStatus" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="readCount" property="readCount" jdbcType="INTEGER" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="publishDate" property="publishDate" jdbcType="TIMESTAMP" />
+    
+  </resultMap>
+  <sql id="columns" >
+    id, gmtCreate, gmtModified, status, articleStatus, type, subject,source,summary,content
+    ,readCount,author,publishDate
+  </sql>
+   
+  <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select  <include refid="columns" /> from article where id = #{id,jdbcType=INTEGER} and status = 0
+  </select>
+   
+  <select id="listPagination" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select  <include refid="columns" /> from article where status = 0 
+  	and articleStatus = 1 and type = #{type,jdbcType=VARCHAR} order by id desc
+  	 <include refid="PAGINATION.MYSQL_PAGINATION" />
+  </select>
+  
+  <select id="list" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select  <include refid="columns" /> from article where status = 0  
+  	and articleStatus = 1 and type = #{type,jdbcType=VARCHAR} order by id desc
+  	<if test="limitSize != null" >
+        limit 0 , #{limitSize,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  <select id="getTotalNum" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select  count(id) from article where status = 0 
+    and articleStatus = 1 and type = #{type,jdbcType=VARCHAR}
+  </select>
+  <update id="updateReadCount" parameterType="java.lang.Integer">
+  	update article set readCount = readCount + 1 where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="getPrevArticle" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select  <include refid="columns" /> from article where id = 
+    (select max(id) from article where id <![CDATA[ < #{id,jdbcType=INTEGER} and status = 0 ]]>)
+  </select>
+  
+   <select id="getNextArticle" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select  <include refid="columns" /> from article where id = 
+    (select min(id) from article where id <![CDATA[ > #{id,jdbcType=INTEGER} and status = 0 ]]>)
+  </select> 
+</mapper>

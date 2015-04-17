@@ -1,0 +1,116 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="report" extends="default,jasperreports-default">
+    	<action name="accountReportPage" class="accountReportAction" method="execute">
+    	  <result name="success">/jsp/crm/accountReport.jsp</result>
+        </action>
+    	
+    	<action name="accountReportPDF" class="accountReportAction" method="pdf">
+          <result name="success" type="jasper">                    
+            <param name="location">/reports/allAccount.jasper</param>                  
+             <param name="dataSource">list</param>                   
+             <param name="format">PDF</param>  
+             <param name="documentName">allAccount</param>                    
+             <param name="reportParameters">map</param>               
+          </result>
+        </action>
+        
+    	<action name="accountReportExcel" class="accountReportAction" method="excel">
+          <result name="success" type="jasper">                    
+            <param name="location">/reports/allAccount.jasper</param>                  
+             <param name="dataSource">list</param>                   
+             <param name="format">XLS</param> 
+             <param name="documentName">allAccount</param>                    
+             <param name="reportParameters">map</param>               
+          </result>
+        </action>    	
+        
+    	<action name="accountReportCSV" class="accountReportAction" method="csv">
+          <result name="success" type="jasper">                    
+            <param name="location">/reports/allAccount.jasper</param>                  
+             <param name="dataSource">list</param>                   
+             <param name="format">CSV</param>
+             <param name="documentName">allAccount</param>                    
+             <param name="reportParameters">map</param>               
+          </result>
+        </action>   
+        
+    	<action name="accountByIndustryReportPage" class="accountByIndustryReportAction" method="execute">
+    	  <result name="success">/jsp/crm/accountByIndustryReport.jsp</result>
+        </action>
+         
+    	<action name="accountByIndustryBar" class="accountByIndustryReportAction" method="bar">
+    	  <result name="success">/jsp/crm/accountByIndustryReport.jsp</result>
+        </action>    
+        
+    	<action name="contactAddressReportPage" class="contactAddressReportAction" method="execute">
+    	  <result name="success">/jsp/crm/contactAddressReport.jsp</result>
+        </action>
+    	
+    	<action name="contactAddressReportPDF" class="contactAddressReportAction" method="pdf">
+          <result name="success" type="jasper">                    
+            <param name="location">/reports/allContact.jasper</param>                  
+             <param name="dataSource">list</param>                   
+             <param name="format">PDF</param>   
+             <param name="documentName">allContactAdress</param>                    
+             <param name="reportParameters">map</param>               
+          </result>
+        </action>
+        
+    	<action name="contactAddressReportExcel" class="contactAddressReportAction" method="excel">
+          <result name="success" type="jasper">                    
+            <param name="location">/reports/allContact.jasper</param>                  
+             <param name="dataSource">list</param>                   
+             <param name="format">XLS</param> 
+             <param name="documentName">allContactAdress</param>                    
+             <param name="reportParameters">map</param>               
+          </result>
+        </action>    	
+        
+    	<action name="contactAddressReportCSV" class="contactAddressReportAction" method="csv">
+          <result name="success" type="jasper">                    
+            <param name="location">/reports/allContact.jasper</param>                  
+             <param name="dataSource">list</param>                   
+             <param name="format">CSV</param>
+             <param name="documentName">allContactAdress</param>                    
+             <param name="reportParameters">map</param>               
+          </result>
+        </action>      			    	
+
+    	<action name="leadBySourceReportPage" class="leadBySourceReportAction" method="execute">
+    	  <result name="success">/jsp/crm/leadBySourceReport.jsp</result>
+        </action>
+         
+    	<action name="leadBySourceBar" class="leadBySourceReportAction" method="bar">
+    	  <result name="success">/jsp/crm/leadBySourceReport.jsp</result>
+        </action> 
+            	
+    	<action name="leadByStatusReportPage" class="leadByStatusReportAction" method="execute">
+    	  <result name="success">/jsp/crm/leadByStatusReport.jsp</result>
+        </action>
+            	
+    	<action name="leadByStatusBar" class="leadByStatusReportAction" method="bar">
+    	  <result name="success">/jsp/crm/leadByStatusReport.jsp</result>
+        </action>  
+            	
+    	<action name="opportunityByStageReportPage" class="opportunityByStageReportAction" method="execute">
+    	  <result name="success">/jsp/crm/opportunityByStageReport.jsp</result>
+        </action>
+         
+    	<action name="opportunityByStageBar" class="opportunityByStageReportAction" method="bar">
+    	  <result name="success">/jsp/crm/opportunityByStageReport.jsp</result>
+        </action>       	
+
+    	<action name="opportunityByLeadReportPage" class="opportunityByLeadReportAction" method="execute">
+    	  <result name="success">/jsp/crm/opportunityByLeadReport.jsp</result>
+        </action>
+         
+    	<action name="opportunityByLeadBar" class="opportunityByLeadReportAction" method="bar">
+    	  <result name="success">/jsp/crm/opportunityByLeadReport.jsp</result>
+        </action>     		
+    </package>      
+    
+</struts>

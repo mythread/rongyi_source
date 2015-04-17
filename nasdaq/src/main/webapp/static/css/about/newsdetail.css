@@ -1,0 +1,21 @@
+/**
+ * 媒体报道 - 详情 CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-23
+ */
+ 
+ 
+.content-center {
+	margin-top: 80px;
+}
+
+#right-content {
+	float: left;
+	margin-left: 62px;
+	width: 676px;
+}
+
+.text-area {
+	margin-top: 52px;
+	margin-bottom: 80px;
+}

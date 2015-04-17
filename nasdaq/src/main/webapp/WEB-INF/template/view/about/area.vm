@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>关于我们-区域覆盖</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/about/area.css" rel="stylesheet" type="text/css">
+		<link href="/static/css/about/common.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+			<div id="content-top"></div>
+
+			
+			<div class="content-center">
+
+				#parse("view/about/leftnav.vm")
+				
+                <div id="right-content">
+					
+					<div class="title">
+        				<div class="title-left">
+                            <span class="title-cn">区域覆盖</span>
+            				<span class="title-en">DISTRICT</span>
+                        </div>
+        			</div>
+					
+					<div class="china-map">
+                    </div>
+					
+				</div>
+				
+				<div class="for-clear bottom">
+                </div>
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

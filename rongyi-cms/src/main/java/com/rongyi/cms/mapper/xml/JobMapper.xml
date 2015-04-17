@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.cms.mapper.JobMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.cms.bean.Job" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gmtcreate" property="gmtcreate" jdbcType="TIMESTAMP" />
+    <result column="gmtmodified" property="gmtmodified" jdbcType="TIMESTAMP" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="job_status" property="jobStatus" jdbcType="INTEGER" />
+    <result column="cms_id" property="cmsId" jdbcType="VARCHAR" />
+    <result column="action_type" property="actionType" jdbcType="INTEGER" />
+    <result column="operate_type" property="operateType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gmtcreate, gmtmodified, type, job_status, cms_id, action_type,operate_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from job
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="listUnHandleJob" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from job where job_status = 0
+  </select>
+  
+  <select id="getUnHandelJob" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List" /> from job where 
+  	cms_id = #{cmsId,jdbcType=VARCHAR} and type = #{type,jdbcType=INTEGER} and job_status = 0
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from job
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rongyi.cms.bean.Job" useGeneratedKeys="true"  keyProperty="id" >
+    insert into job (id, gmtcreate, gmtmodified, 
+      type, job_status, cms_id, 
+      action_type,operate_type)
+    values (#{id,jdbcType=INTEGER}, now(), now(), 
+      #{type,jdbcType=INTEGER}, #{jobStatus,jdbcType=INTEGER}, #{cmsId,jdbcType=VARCHAR}, 
+      #{actionType,jdbcType=INTEGER},#{operateType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongyi.cms.bean.Job" >
+    insert into job
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gmtcreate != null" >
+        gmtcreate,
+      </if>
+      <if test="gmtmodified != null" >
+        gmtmodified,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="jobStatus != null" >
+        job_status,
+      </if>
+      <if test="cmsId != null" >
+        cms_id,
+      </if>
+      <if test="actionType != null" >
+        action_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="gmtcreate != null" >
+        #{gmtcreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtmodified != null" >
+        #{gmtmodified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="jobStatus != null" >
+        #{jobStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cmsId != null" >
+        #{cmsId,jdbcType=VARCHAR},
+      </if>
+      <if test="actionType != null" >
+        #{actionType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongyi.cms.bean.Job" >
+    update job
+    <set >
+      <if test="gmtcreate != null" >
+        gmtcreate = #{gmtcreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtmodified != null" >
+        gmtmodified = #{gmtmodified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="jobStatus != null" >
+        job_status = #{jobStatus,jdbcType=INTEGER},
+      </if>
+      <if test="cmsId != null" >
+        cms_id = #{cmsId,jdbcType=VARCHAR},
+      </if>
+      <if test="actionType != null" >
+        action_type = #{actionType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongyi.cms.bean.Job" >
+    update job
+    set gmtcreate = #{gmtcreate,jdbcType=TIMESTAMP},
+      gmtmodified = #{gmtmodified,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=INTEGER},
+      job_status = #{jobStatus,jdbcType=INTEGER},
+      cms_id = #{cmsId,jdbcType=VARCHAR},
+      action_type = #{actionType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateJobTime" parameterType="java.lang.Integer">
+  	update job set  gmtmodified = now() where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateOperateType" parameterType="java.util.Map">
+  	update job set gmtmodified = now() , operate_type = #{operateType,jdbcType=INTEGER} where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <update id="batchUpdateJobStatus"  parameterType="java.util.List">
+  	update job set gmtmodified = now(), job_status = 1 where id in 
+  	<foreach collection="list" open="(" close=")" separator="," index="index" item="item">
+  		#{item}
+  	</foreach>
+	</update> 
+</mapper>

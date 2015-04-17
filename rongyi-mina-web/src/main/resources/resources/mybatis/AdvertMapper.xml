@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.mina.mapper.AdvertisementsMapper" >
+  <resultMap id="advertResult" type="com.rongyi.mina.bean.Advertisements" >
+    <id    property="id"            column="id"              jdbcType="INTEGER" />
+    <result property="name"           column="name"            jdbcType="VARCHAR" />
+    <result property="shopUrl"        column="shop_url"        jdbcType="VARCHAR" />
+    <result property="startTime"      column="start_time"       jdbcType="TIMESTAMP" />
+    <result property="endTime"        column="end_time"         jdbcType="TIMESTAMP" />
+    <result property="picture"        column="picture"          jdbcType="VARCHAR" />
+    <result property="updatedAt"      column="updated_at"       jdbcType="TIMESTAMP" />
+    <result property="createdAt"      column="created_at"       jdbcType="TIMESTAMP" />
+    <result property="adZoneId"       column="ad_zone_id"       jdbcType="VARCHAR" />
+    <result property="deleteStatus"   column="delete_status"     jdbcType="TINYINT" />
+    <result property="onStatus"       column="on_status"        jdbcType="TINYINT" />
+    <result property="synchStatus"       column="synch_status"  jdbcType="INTEGER" />
+    <result property="mongodbId"       column="mongodb_id"        jdbcType="VARCHAR" />
+    <result property="synchMsg"       column="synch_msg"        jdbcType="VARCHAR" />
+    <result property="pid"           column="pid"                   jdbcType="INTEGER" />
+    <result property="recordType"       column="record_type"        jdbcType="TINYINT" />
+    <result property="minPicture"       column="min_picture"        jdbcType="VARCHAR" />
+     <result property="taskId"       column="task_id"            jdbcType="INTEGER" />
+    <result property="cmsOuterId"       column="cms_outerId"            jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <insert id="insert" parameterType="com.rongyi.mina.bean.Advertisements" useGeneratedKeys="true"  keyProperty="id">
+    insert into advertisements (name, shop_url, 
+      start_time, end_time, picture, 
+      updated_at, created_at, ad_zone_id, 
+      delete_status, on_status, synch_status, 
+      mongodb_id, synch_msg, pid, 
+      record_type, min_picture,default_picture,picture_url,min_picture_url,task_id,cms_outerId)
+    values ( #{name,jdbcType=VARCHAR}, #{shopUrl,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{picture,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, #{adZoneId,jdbcType=VARCHAR}, 
+      #{deleteStatus,jdbcType=TINYINT}, #{onStatus,jdbcType=TINYINT}, #{synchStatus,jdbcType=INTEGER}, 
+      #{mongodbId,jdbcType=VARCHAR}, #{synchMsg,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, 
+      #{recordType,jdbcType=TINYINT}, #{minPicture,jdbcType=VARCHAR},#{defaultPicture,jdbcType=TINYINT},
+      #{pictureUrl,jdbcType=VARCHAR},#{minPictureUrl,jdbcType=VARCHAR},#{taskId,jdbcType=INTEGER}, #{cmsOuterId,jdbcType=VARCHAR})
+  </insert>  
+  </mapper>

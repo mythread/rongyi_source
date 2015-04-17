@@ -1,0 +1,13 @@
+/**
+ * 区域覆盖 CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-23
+ */
+
+ 
+.china-map {
+	height: 800px;
+	background-image: url("../../img/china-map.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}

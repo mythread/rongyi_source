@@ -1,0 +1,44 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package namespace="/jsp/mallcms" name="mallcms" extends="default">
+		<action name="showInitPage">
+			 <result type="redirect">/jsp/mallcms/cmsInitInfo.jsp</result>
+		</action>
+		<action name="initMallInfo" class="cmsInitInfoAction" method="initMallInfo">
+		</action>
+		<action name="initAdvertisementsInfo" class="cmsInitInfoAction" method="initAdvertisementsInfo">
+		</action>
+		<action name="initShopsInfo" class="cmsInitInfoAction" method="initShopsInfo">
+		</action>
+		<action name="initCategoriesInfo" class="cmsInitInfoAction" method="initCategoriesInfo">
+		</action>
+		<action name="initBrandsInfo" class="cmsInitInfoAction" method="initBrandsInfo">
+		</action>
+		<action name="initAdzonesInfo" class="cmsInitInfoAction" method="initAdzonesInfo">
+		</action>
+		<action name="initPhotosInfo" class="cmsInitInfoAction" method="initPhotosInfo">
+		</action>
+		
+		<action name="addConfig" class="cmsConfigAction" method="addConfig">
+			<result name="success" type="json"></result>
+		</action>
+		
+		<action name="listMallIp" class="cmsConfigAction" method="listMallIp">
+			<result name="success">/jsp/mallcms/listMallConfig.jsp</result>
+		</action>
+		
+		<action name="advertSynchPass" class="cmsSynchAction" method="advertSynchPass">
+		</action>
+		<action name="advertSynchFail" class="cmsSynchAction" method="advertSynchFail">
+		</action>
+		
+		<action name="shopsSynchPass" class="cmsSynchAction" method="shopsSynchPass">
+		</action>
+		<action name="shopsSynchFail" class="cmsSynchAction" method="shopsSynchFail">
+		</action>
+	</package>
+
+</struts>

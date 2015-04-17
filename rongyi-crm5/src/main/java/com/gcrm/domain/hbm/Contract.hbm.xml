@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.gcrm.domain">
+  <class dynamic-insert="true" dynamic-update="true"
+    name="com.gcrm.domain.Contract" table="contract">
+    <id column="id" name="id" type="java.lang.Integer">
+      <generator class="native" />
+    </id>
+    <property name="fileName" column="fileName" type="string" />
+    <property name="contractName" column="contractName" type="string" />
+     <property name="accountId"  column="accountId" type="java.lang.Integer" />
+     <property name="signedId"  column="signedId" type="java.lang.Integer" />
+     <property name="attachment"  column="attachment" type="java.lang.Integer" />
+     <property name="memo" column="memo" type="string" />
+    <many-to-one name="created_by" class="User" column="created_by" />
+    <many-to-one name="updated_by" class="User" column="updated_by" />
+    <property name="created_on" column="created_on" type="java.util.Date" />
+    <property name="updated_on" column="updated_on" type="java.util.Date" />
+   </class>
+</hibernate-mapping>

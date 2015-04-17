@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators
+    PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+    "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>    
+    <field name="contact.last_name">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+			<message>${getText("errors.required", {getText("entity.last_name.label")})}</message>
+        </field-validator>
+    </field>
+    <field name="contact.office_email">
+        <field-validator type="email">
+        	<param name="trim">true</param>
+			<message>${getText("errors.email", {getText("entity.email.label")})}</message>
+        </field-validator>       
+    </field>    
+    <field name="contact.office_phone">
+    	<field-validator type="stringlength">
+    	<param name="trim">true</param>    
+    	<param name="minLength">11</param>    
+    	<param name="maxLength">11</param>
+    	<message>请输入正确的手机号码</message>    
+   		</field-validator>        
+    </field>    
+</validators>

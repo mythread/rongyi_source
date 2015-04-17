@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>合作伙伴</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/partner.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+			#**<div id="content-top"></div>*#
+			<div class="content-center_banner"></div>
+			<div class="content-center">
+				
+                <div id="list-title">购物中心/百货（包括集团合作）</div>
+				
+                <ul id="partner-list">
+					#foreach($partner in $partnerList)
+					<li>
+                        <div class="logo"><img src="${partner.mallLogo}"/></div>
+                        <div class="partner-text">
+                            <div class="partner-name">${partner.mallName}</div>
+							<div class="partner-info">${partner.memo}</div>
+						</div>
+					</li>
+					#end
+				</ul>
+				
+				#parse("widget/common/pager.vm")
+				
+				<div class="partner-zl-title">战略合作伙伴</div>
+				<div class="partner-zl">
+					<img src="/static/img/parnters-zl.png"/>
+                </div>
+				
+            </div>
+			
+			<div class="content-center">
+				
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

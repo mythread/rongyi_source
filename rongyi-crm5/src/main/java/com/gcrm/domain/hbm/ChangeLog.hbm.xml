@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.gcrm.domain">
+ <class dynamic-insert="false" dynamic-update="true"
+  name="com.gcrm.domain.ChangeLog" table="changelog">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="native"/>
+  </id>
+  <property name="entityName" column="entity_name" index="entity_name_index" type="string" not-null="true"/>   
+  <property name="recordID" column="record_id" index="record_id_index" type="java.lang.Integer" not-null="true"/>  
+  <property name="columnName" column="column_name" type="string" />
+  <property name="oldValue" column="old_value" type="string" />
+  <property name="newValue" column="new_value" type="string" />        
+  <many-to-one name="updated_by"
+			class="User" column="updated_by" cascade="save-update"/>
+  <property name="updated_on" column="updated_on" type="java.util.Date" />
+ </class>
+</hibernate-mapping>

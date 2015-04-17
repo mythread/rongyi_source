@@ -1,0 +1,167 @@
+
+#right-content{
+	min-height: 850px;
+	height: auto;
+}
+
+
+#show {
+	padding: 20px;
+}
+
+#back-button {
+	float: right;
+	margin-top: 20px;
+}
+
+#ad-operation {
+	margin-top: 15px;
+	text-align: center;
+	height: 50px;
+}
+
+#create-ad {
+	float: left;
+}
+
+#ad-sync-select a span {
+	color: red;
+	padding-left: 4px;
+}
+
+
+#ad-operation input {
+	width: 180px;
+	float: right;
+}
+
+.ad-group {
+	height: 310px;
+	margin-top: 20px;
+}
+
+.ad {
+	width: 200px;
+	height: 300px;
+	border: 2px solid #D7DCE0;
+	float: left;
+	margin-right: 28px;
+	position: relative;
+	cursor: pointer;
+}
+
+.ad .main-img {
+	width: 200px;
+	height: 300px;
+	border: 0px;
+}
+
+.ad-title {
+	position: absolute;
+	background: white;
+	width: 200px;
+	height: 50px;
+	line-height: 25px;
+	text-align: center;
+	top: 250px;
+	font-size: 14px;
+}
+
+.ad-title div {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+.ad-setting {
+	position: absolute;
+	height: 300px;
+	width: 200px;
+	visibility: hidden;
+}
+
+.ad-status {
+	width: 155px;
+	color: white;
+	height: 35px;
+	line-height: 35px;
+	margin-bottom: 215px;
+	background: white;
+	font-size: 16px;
+	padding-left: 45px;
+}
+
+.ad-status div {
+	float: left;
+	margin-right: 10px;
+}
+
+.ad-status img {
+	margin-top: 8px;
+}
+
+.sync-success {
+	color: #59BBAC;
+}
+
+.sync-now {
+	color: orange;
+}
+
+.sync-fail {
+	color: #FF712D;
+}
+
+.ad-setting-btns {
+	background: white;
+	height: 50px;
+	text-align: center;
+}
+
+.ad-setting-btns div {
+	float: left;
+	margin-left: 25px;
+}
+
+.ad-setting-btns img {
+	height: 30px;
+}
+
+.ad-setting-btns div p {
+	margin: 0px;
+	font-size: 9px;
+}
+
+#pager {
+	margin-top: 20px;
+}
+
+#set-default-ad-btn {
+	float: left;
+	margin-left: 10px;
+}
+
+#active-second-nav {
+	top: 75px;
+}
+
+.sync-error-msg {
+	position: absolute;
+	width: 150px;
+	background: #ECF0F3;
+	border: 1px #F97E76 solid;
+	top:50px;
+	left: 25px;
+	visibility: hidden;
+}
+
+.triangle-up {
+	width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #F97E76;
+    margin-top: -6px;
+    margin-left: 70px;
+}

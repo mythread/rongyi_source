@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE tiles-definitions PUBLIC 
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd"> 
+<!-- Definitions for Tiles documentation   -->
+<tiles-definitions>
+	<definition name="base-layout" 
+		template="/WEB-INF/jsp/module/main_layout.jsp">
+		<put-attribute name="top" value="/WEB-INF/jsp/top/top.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/footer/footer.jsp" />
+	</definition>
+	
+	<definition name="ajax-layout" 
+		template="/WEB-INF/jsp/module/ajax_layout.jsp">
+		<put-attribute name="body" value="" />
+	</definition>	
+	
+	
+	<definition name="*/ajax/*" extends="ajax-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*/*" extends="base-layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+	</definition>
+
+</tiles-definitions>
+

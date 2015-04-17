@@ -1,0 +1,79 @@
+/**
+ * 合作伙伴 页面 CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-26
+ */
+
+/* 顶部 */
+#top-title {
+	margin-top: 80px;
+}
+
+#top-text-title {
+	font-size: 20px;
+	line-height: 30px;
+	margin-bottom: 10px;
+}
+
+#top-text-content {
+	font-size: 14px;
+	line-height: 25px;
+	padding: 20px;
+	margin: 50px auto;
+	width:920px;
+	height:116px;
+	background-image: url("../img/title_line.jpg");
+}
+
+#list-title {
+	font-size: 18px;
+}
+
+#partner-list li {
+	border-bottom: 1px dashed #CCCCCC;
+    height: auto;
+    margin: 30px auto;
+	overflow:auto;
+	padding-bottom:30px;
+}
+#partner-list li:last-child {
+	border-bottom:none;
+}
+
+.logo {
+	width: 82px;
+	height: 82px;
+	float: left;
+	padding-right: 20px;
+}
+
+.partner-text {
+	width: 854px;
+	float: left;
+	line-height: 25px;
+}
+
+.partner-name {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+.pager {
+	margin-top: 58px;
+}
+
+.partner-zl-title {
+	font-size: 18px;
+	margin-top: 58px;
+	border-top: 1px dashed #c1cfd9;
+	padding-top: 50px;
+	margin-bottom: 20px;
+}
+
+.partner-zl {
+	margin-bottom: 104px;
+}
+
+.partner-zl img {
+	max-width: 100%;
+}

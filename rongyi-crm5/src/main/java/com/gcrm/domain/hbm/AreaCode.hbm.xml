@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.gcrm.domain">
+  <class dynamic-insert="true" dynamic-update="true"
+    name="com.gcrm.domain.AreaCode" table="areacode">
+    <id column="area_code" name="areaCode" type="string" >
+      <generator class="assigned" />
+    </id>
+    <property name="areaName" column="area_name" type="string"/>
+    <property name="superiorAreaCode" column="superior_area_code" type="string"/>
+  </class>
+</hibernate-mapping>                                   

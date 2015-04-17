@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.cms.mapper.ShopsMapper">
+	<resultMap id="BaseResultMap" type="com.rongyi.cms.bean.Shops">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="average_consumption" property="averageConsumption"
+			jdbcType="VARCHAR" />
+		<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+		<result column="comment_count" property="commentCount"
+			jdbcType="INTEGER" />
+		<result column="coordinate" property="coordinate" jdbcType="VARCHAR" />
+		<result column="door_coordinate" property="doorCoordinate"
+			jdbcType="VARCHAR" />
+		<result column="location" property="location" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="old_code" property="oldCode" jdbcType="INTEGER" />
+		<result column="old_id" property="oldId" jdbcType="INTEGER" />
+		<result column="rank" property="rank" jdbcType="INTEGER" />
+		<result column="shop_number" property="shopNumber" jdbcType="VARCHAR" />
+		<result column="shop_type" property="shopType" jdbcType="INTEGER" />
+		<result column="slug" property="slug" jdbcType="VARCHAR" />
+		<result column="subtitle" property="subtitle" jdbcType="VARCHAR" />
+		<result column="tags" property="tags" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="terminal_position" property="terminalPosition"
+			jdbcType="VARCHAR" />
+		<result column="terminal_shop" property="terminalShop"
+			jdbcType="VARCHAR" />
+		<result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+		<result column="zone_id" property="zoneId" jdbcType="VARCHAR" />
+		<result column="on_status" property="onStatus" jdbcType="TINYINT" />
+		<result column="synch_status" property="synchStatus" jdbcType="INTEGER" />
+		<result column="synch_msg" property="synchMsg" jdbcType="VARCHAR" />
+		<result column="pid" property="pid" jdbcType="VARCHAR" />
+		<result column="record_type" property="recordType" jdbcType="INTEGER" />
+		<result column="open_time" property="openTime" jdbcType="VARCHAR" />
+		<result column="mongo_id" property="mongoId" jdbcType="VARCHAR" />
+		<result column="recommend" property="recommend" jdbcType="INTEGER" />
+		<result column="mongo_brand_id" property="mongoBrandId"
+			jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="LONGVARCHAR" />
+		<result column="delete_status" property="deleteStatus" jdbcType="TINYINT" />
+	</resultMap>
+	<resultMap id="ASBaseResultMap" type="com.rongyi.cms.bean.Shops">
+		<id column="sh_id" property="id" jdbcType="INTEGER" />
+		<result column="sh_address" property="address" jdbcType="VARCHAR" />
+		<result column="sh_average_consumption" property="averageConsumption"
+			jdbcType="VARCHAR" />
+		<result column="sh_brand_id" property="brandId" jdbcType="INTEGER" />
+		<result column="sh_comment_count" property="commentCount"
+			jdbcType="INTEGER" />
+		<result column="sh_coordinate" property="coordinate" jdbcType="VARCHAR" />
+		<result column="sh_door_coordinate" property="doorCoordinate"
+			jdbcType="VARCHAR" />
+		<result column="sh_location" property="location" jdbcType="VARCHAR" />
+		<result column="sh_name" property="name" jdbcType="VARCHAR" />
+		<result column="sh_old_code" property="oldCode" jdbcType="INTEGER" />
+		<result column="sh_old_id" property="oldId" jdbcType="INTEGER" />
+		<result column="sh_rank" property="rank" jdbcType="INTEGER" />
+		<result column="sh_shop_number" property="shopNumber" jdbcType="VARCHAR" />
+		<result column="sh_shop_type" property="shopType" jdbcType="INTEGER" />
+		<result column="sh_slug" property="slug" jdbcType="VARCHAR" />
+		<result column="sh_subtitle" property="subtitle" jdbcType="VARCHAR" />
+		<result column="sh_tags" property="tags" jdbcType="VARCHAR" />
+		<result column="sh_telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="sh_terminal_position" property="terminalPosition"
+			jdbcType="VARCHAR" />
+		<result column="sh_terminal_shop" property="terminalShop"
+			jdbcType="VARCHAR" />
+		<result column="sh_updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+		<result column="sh_zone_id" property="zoneId" jdbcType="VARCHAR" />
+		<result column="sh_on_status" property="onStatus" jdbcType="TINYINT" />
+		<result column="sh_synch_status" property="synchStatus" jdbcType="INTEGER" />
+		<result column="sh_synch_msg" property="synchMsg" jdbcType="VARCHAR" />
+		<result column="sh_pid" property="pid" jdbcType="VARCHAR" />
+		<result column="sh_record_type" property="recordType" jdbcType="INTEGER" />
+		<result column="sh_open_time" property="openTime" jdbcType="VARCHAR" />
+		<result column="sh_mongo_id" property="mongoId" jdbcType="VARCHAR" />
+		<result column="sh_recommend" property="recommend" jdbcType="INTEGER" />
+		<result column="sh_mongo_brand_id" property="mongoBrandId"
+			jdbcType="VARCHAR" />
+		<result column="sh_description" property="description" jdbcType="LONGVARCHAR" />
+		<result column="sh_delete_status" property="deleteStatus" jdbcType="TINYINT" />
+		<association property="brands" resultMap="com.rongyi.cms.mapper.BrandsMapper.ASBaseResultMap"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, address, average_consumption, brand_id, comment_count, coordinate,
+		door_coordinate,
+		location, name, old_code, old_id, rank, shop_number, shop_type, slug, subtitle,
+		tags,
+		telephone, terminal_position, terminal_shop, updated_at, zone_id, on_status,
+		synch_status,
+		synch_msg, pid, record_type, open_time, mongo_id, recommend, mongo_brand_id,description,delete_status
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from shops
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+  <select id="selectByPid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shops
+    where pid = #{pid,jdbcType=INTEGER} and delete_status=0
+  </select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from shops
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.rongyi.cms.bean.Shops" useGeneratedKeys="true"  keyProperty="id">
+		insert into shops (id, address, average_consumption,
+		brand_id, comment_count, coordinate,
+		door_coordinate, location, name,
+		old_code, old_id, rank,
+		shop_number, shop_type, slug,
+		subtitle, tags, telephone,
+		terminal_position, terminal_shop, updated_at,
+		zone_id, on_status, synch_status,
+		synch_msg, pid, record_type,
+		open_time, mongo_id, recommend,
+		mongo_brand_id, description,delete_status)
+		values (#{id,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR},
+		#{averageConsumption,jdbcType=VARCHAR},
+		#{brandId,jdbcType=INTEGER}, #{commentCount,jdbcType=INTEGER}, #{coordinate,jdbcType=VARCHAR},
+		#{doorCoordinate,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{oldCode,jdbcType=INTEGER}, #{oldId,jdbcType=INTEGER}, #{rank,jdbcType=INTEGER},
+		#{shopNumber,jdbcType=VARCHAR}, #{shopType,jdbcType=INTEGER},
+		#{slug,jdbcType=VARCHAR},
+		#{subtitle,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR},
+		#{terminalPosition,jdbcType=VARCHAR},
+		#{terminalShop,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP},
+		#{zoneId,jdbcType=VARCHAR}, #{onStatus,jdbcType=TINYINT},
+		#{synchStatus,jdbcType=INTEGER},
+		#{synchMsg,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, #{recordType,jdbcType=INTEGER},
+		#{openTime,jdbcType=VARCHAR}, #{mongoId,jdbcType=VARCHAR},
+		#{recommend,jdbcType=INTEGER},
+		#{mongoBrandId,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR},#{deleteStatus,jdbcType=TINYINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.rongyi.cms.bean.Shops">
+		insert into shops
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="averageConsumption != null">
+				average_consumption,
+			</if>
+			<if test="brandId != null">
+				brand_id,
+			</if>
+			<if test="commentCount != null">
+				comment_count,
+			</if>
+			<if test="coordinate != null">
+				coordinate,
+			</if>
+			<if test="doorCoordinate != null">
+				door_coordinate,
+			</if>
+			<if test="location != null">
+				location,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="oldCode != null">
+				old_code,
+			</if>
+			<if test="oldId != null">
+				old_id,
+			</if>
+			<if test="rank != null">
+				rank,
+			</if>
+			<if test="shopNumber != null">
+				shop_number,
+			</if>
+			<if test="shopType != null">
+				shop_type,
+			</if>
+			<if test="slug != null">
+				slug,
+			</if>
+			<if test="subtitle != null">
+				subtitle,
+			</if>
+			<if test="tags != null">
+				tags,
+			</if>
+			<if test="telephone != null">
+				telephone,
+			</if>
+			<if test="terminalPosition != null">
+				terminal_position,
+			</if>
+			<if test="terminalShop != null">
+				terminal_shop,
+			</if>
+			<if test="updatedAt != null">
+				updated_at,
+			</if>
+			<if test="zoneId != null">
+				zone_id,
+			</if>
+			<if test="onStatus != null">
+				on_status,
+			</if>
+			<if test="synchStatus != null">
+				synch_status,
+			</if>
+			<if test="synchMsg != null">
+				synch_msg,
+			</if>
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="recordType != null">
+				record_type,
+			</if>
+			<if test="openTime != null">
+				open_time,
+			</if>
+			<if test="mongoId != null">
+				mongo_id,
+			</if>
+			<if test="recommend != null">
+				recommend,
+			</if>
+			<if test="mongoBrandId != null">
+				mongo_brand_id,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="deleteStatus != null" >
+		        delete_status,
+		    </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="averageConsumption != null">
+				#{averageConsumption,jdbcType=VARCHAR},
+			</if>
+			<if test="brandId != null">
+				#{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="commentCount != null">
+				#{commentCount,jdbcType=INTEGER},
+			</if>
+			<if test="coordinate != null">
+				#{coordinate,jdbcType=VARCHAR},
+			</if>
+			<if test="doorCoordinate != null">
+				#{doorCoordinate,jdbcType=VARCHAR},
+			</if>
+			<if test="location != null">
+				#{location,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="oldCode != null">
+				#{oldCode,jdbcType=INTEGER},
+			</if>
+			<if test="oldId != null">
+				#{oldId,jdbcType=INTEGER},
+			</if>
+			<if test="rank != null">
+				#{rank,jdbcType=INTEGER},
+			</if>
+			<if test="shopNumber != null">
+				#{shopNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="shopType != null">
+				#{shopType,jdbcType=INTEGER},
+			</if>
+			<if test="slug != null">
+				#{slug,jdbcType=VARCHAR},
+			</if>
+			<if test="subtitle != null">
+				#{subtitle,jdbcType=VARCHAR},
+			</if>
+			<if test="tags != null">
+				#{tags,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="terminalPosition != null">
+				#{terminalPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="terminalShop != null">
+				#{terminalShop,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedAt != null">
+				#{updatedAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="zoneId != null">
+				#{zoneId,jdbcType=VARCHAR},
+			</if>
+			<if test="onStatus != null">
+				#{onStatus,jdbcType=TINYINT},
+			</if>
+			<if test="synchStatus != null">
+				#{synchStatus,jdbcType=INTEGER},
+			</if>
+			<if test="synchMsg != null">
+				#{synchMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="recordType != null">
+				#{recordType,jdbcType=INTEGER},
+			</if>
+			<if test="openTime != null">
+				#{openTime,jdbcType=VARCHAR},
+			</if>
+			<if test="mongoId != null">
+				#{mongoId,jdbcType=VARCHAR},
+			</if>
+			<if test="recommend != null">
+				#{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="mongoBrandId != null">
+				#{mongoBrandId,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="deleteStatus != null" >
+		        #{deleteStatus,jdbcType=TINYINT},
+		    </if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.rongyi.cms.bean.Shops">
+		update shops
+		<set>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="averageConsumption != null">
+				average_consumption = #{averageConsumption,jdbcType=VARCHAR},
+			</if>
+			<if test="brandId != null">
+				brand_id = #{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="commentCount != null">
+				comment_count = #{commentCount,jdbcType=INTEGER},
+			</if>
+			<if test="coordinate != null">
+				coordinate = #{coordinate,jdbcType=VARCHAR},
+			</if>
+			<if test="doorCoordinate != null">
+				door_coordinate = #{doorCoordinate,jdbcType=VARCHAR},
+			</if>
+			<if test="location != null">
+				location = #{location,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="oldCode != null">
+				old_code = #{oldCode,jdbcType=INTEGER},
+			</if>
+			<if test="oldId != null">
+				old_id = #{oldId,jdbcType=INTEGER},
+			</if>
+			<if test="rank != null">
+				rank = #{rank,jdbcType=INTEGER},
+			</if>
+			<if test="shopNumber != null">
+				shop_number = #{shopNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="shopType != null">
+				shop_type = #{shopType,jdbcType=INTEGER},
+			</if>
+			<if test="slug != null">
+				slug = #{slug,jdbcType=VARCHAR},
+			</if>
+			<if test="subtitle != null">
+				subtitle = #{subtitle,jdbcType=VARCHAR},
+			</if>
+			<if test="tags != null">
+				tags = #{tags,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="terminalPosition != null">
+				terminal_position = #{terminalPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="terminalShop != null">
+				terminal_shop = #{terminalShop,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedAt != null">
+				updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="zoneId != null">
+				zone_id = #{zoneId,jdbcType=VARCHAR},
+			</if>
+			<if test="onStatus != null">
+				on_status = #{onStatus,jdbcType=TINYINT},
+			</if>
+			<if test="synchStatus != null">
+				synch_status = #{synchStatus,jdbcType=INTEGER},
+			</if>
+			<if test="synchMsg != null">
+				synch_msg = #{synchMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="recordType != null">
+				record_type = #{recordType,jdbcType=INTEGER},
+			</if>
+			<if test="openTime != null">
+				open_time = #{openTime,jdbcType=VARCHAR},
+			</if>
+			<if test="mongoId != null">
+				mongo_id = #{mongoId,jdbcType=VARCHAR},
+			</if>
+			<if test="recommend != null">
+				recommend = #{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="mongoBrandId != null">
+				mongo_brand_id = #{mongoBrandId,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="deleteStatus != null" >
+		        delete_status = #{deleteStatus,jdbcType=TINYINT},
+		    </if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.rongyi.cms.bean.Shops">
+		update shops
+		set address = #{address,jdbcType=VARCHAR},
+		average_consumption = #{averageConsumption,jdbcType=VARCHAR},
+		brand_id = #{brandId,jdbcType=INTEGER},
+		comment_count = #{commentCount,jdbcType=INTEGER},
+		coordinate = #{coordinate,jdbcType=VARCHAR},
+		door_coordinate = #{doorCoordinate,jdbcType=VARCHAR},
+		location = #{location,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		old_code = #{oldCode,jdbcType=INTEGER},
+		old_id = #{oldId,jdbcType=INTEGER},
+		rank = #{rank,jdbcType=INTEGER},
+		shop_number = #{shopNumber,jdbcType=VARCHAR},
+		shop_type = #{shopType,jdbcType=INTEGER},
+		slug = #{slug,jdbcType=VARCHAR},
+		subtitle = #{subtitle,jdbcType=VARCHAR},
+		tags = #{tags,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR},
+		terminal_position = #{terminalPosition,jdbcType=VARCHAR},
+		terminal_shop = #{terminalShop,jdbcType=VARCHAR},
+		updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+		zone_id = #{zoneId,jdbcType=VARCHAR},
+		on_status = #{onStatus,jdbcType=TINYINT},
+		synch_status = #{synchStatus,jdbcType=INTEGER},
+		synch_msg = #{synchMsg,jdbcType=VARCHAR},
+		pid = #{pid,jdbcType=VARCHAR},
+		record_type = #{recordType,jdbcType=INTEGER},
+		open_time = #{openTime,jdbcType=VARCHAR},
+		mongo_id = #{mongoId,jdbcType=VARCHAR},
+		recommend = #{recommend,jdbcType=INTEGER},
+		mongo_brand_id = #{mongoBrandId,jdbcType=VARCHAR},
+		description = #{description,jdbcType=LONGVARCHAR},
+		delete_status = #{deleteStatus,jdbcType=TINYINT}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.rongyi.cms.bean.Shops">
+		update shops
+		set address = #{address,jdbcType=VARCHAR},
+		average_consumption = #{averageConsumption,jdbcType=VARCHAR},
+		brand_id = #{brandId,jdbcType=INTEGER},
+		comment_count = #{commentCount,jdbcType=INTEGER},
+		coordinate = #{coordinate,jdbcType=VARCHAR},
+		door_coordinate = #{doorCoordinate,jdbcType=VARCHAR},
+		location = #{location,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		old_code = #{oldCode,jdbcType=INTEGER},
+		old_id = #{oldId,jdbcType=INTEGER},
+		rank = #{rank,jdbcType=INTEGER},
+		shop_number = #{shopNumber,jdbcType=VARCHAR},
+		shop_type = #{shopType,jdbcType=INTEGER},
+		slug = #{slug,jdbcType=VARCHAR},
+		subtitle = #{subtitle,jdbcType=VARCHAR},
+		tags = #{tags,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR},
+		terminal_position = #{terminalPosition,jdbcType=VARCHAR},
+		terminal_shop = #{terminalShop,jdbcType=VARCHAR},
+		updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+		zone_id = #{zoneId,jdbcType=VARCHAR},
+		on_status = #{onStatus,jdbcType=TINYINT},
+		synch_status = #{synchStatus,jdbcType=INTEGER},
+		synch_msg = #{synchMsg,jdbcType=VARCHAR},
+		pid = #{pid,jdbcType=VARCHAR},
+		record_type = #{recordType,jdbcType=INTEGER},
+		open_time = #{openTime,jdbcType=VARCHAR},
+		mongo_id = #{mongoId,jdbcType=VARCHAR},
+		recommend = #{recommend,jdbcType=INTEGER},
+		mongo_brand_id = #{mongoBrandId,jdbcType=VARCHAR},
+		delete_status = #{deleteStatus,jdbcType=TINYINT}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<sql id="ASBase_Column_List">
+		s.id as sh_id, s.address as sh_address, 
+		s.average_consumption as sh_average_consumption, 
+		s.brand_id as sh_brand_id, s.comment_count as sh_comment_count, 
+		s.coordinate as sh_coordinate,s.door_coordinate as sh_door_coordinate,
+		s.location as sh_location, s.name as sh_name, 
+		s.old_code as sh_old_code, s.old_id as sh_old_id, 
+		s.rank as sh_rank, s.shop_number as sh_shop_number, 
+		s.shop_type as sh_shop_type, s.slug as sh_slug, s.subtitle as sh_subtitle,
+		s.tags as sh_tags,s.telephone as sh_telephone, 
+		s.terminal_position as sh_terminal_position, 
+		s.terminal_shop as sh_terminal_shop, 
+		s.updated_at as sh_updated_at, s.zone_id as sh_zone_id, 
+		s.on_status as sh_on_status,s.synch_status as sh_synch_status,
+		s.synch_msg as sh_synch_msg, s.pid as sh_pid, 
+		s.record_type as sh_record_type, s.open_time as sh_open_time, 
+		s.mongo_id as sh_mongo_id, s.recommend as sh_recommend, 
+		s.mongo_brand_id as sh_mongo_brand_id,s.description as sh_description,s.delete_status as sh_delete_status
+	</sql>
+	<select id="queryLikeName" resultType="map"
+		parameterType="java.lang.String">
+		select mongo_id as id, name as name 
+<!-- 		<include refid="Base_Column_List" /> -->
+		<!-- from shops where name like '%${name}%' order by id -->
+		from shops where name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+		 and (record_type=1 or (record_type=0 and pid='-1')) and 
+		delete_status=0 and mongo_id is not null
+		order by id
+	</select>
+
+	<select id="listPageSearchShopsByParam" resultMap="ASBaseResultMap"
+		parameterType="com.rongyi.cms.bean.Shops">
+		select
+		<include refid="ASBase_Column_List" />
+		,
+		<include refid="com.rongyi.cms.mapper.BrandsMapper.ASBase_Column_List" />
+		from shops s
+		<if test="categoriesId != null">
+			join (select distinct brands_id from cate_link_brands a
+			JOIN
+			(select id from categories p
+			where id=#{categoriesId}
+			or parent_id=#{categoriesId}
+			) b
+			on a.categories_id=b.id) c
+			on s.brand_id =c.brands_id
+		</if>
+		left outer join brands br on s.brand_id=br.id
+		where 
+		(s.record_type=1 or (s.record_type=0 and s.pid=-1)) and 
+		s.delete_status =0  
+		<if test="onStatus != null">
+			and s.on_status = #{onStatus}
+		</if>
+		<if test="searchParams != null">
+			 and (s.name like
+			CONCAT('%',#{searchParams,jdbcType=VARCHAR},'%')
+			or
+			s.shop_number like CONCAT('%',#{searchParams,jdbcType=VARCHAR},'%'))
+		</if>
+		<if test="recommend != null">
+			and recommend = #{recommend,jdbcType=INTEGER}
+		</if>
+		order by s.shop_number
+	</select>
+	<select id="groupByShopsBySynchStatus" resultType="map">
+		select
+		 count(*) as counts,synch_status as ss
+		from shops s
+		left outer join brands br on s.brand_id=br.id
+		where 
+		(s.record_type=1 or (s.record_type=0 and s.pid='-1')) and 
+		s.delete_status =0  
+		group by s.synch_status;
+	</select>
+
+	<select id="listPageSearchShopsBySynchStatus" resultMap="ASBaseResultMap"
+		parameterType="com.rongyi.cms.bean.Shops">
+		select
+		<include refid="ASBase_Column_List" />
+		,
+		<include refid="com.rongyi.cms.mapper.BrandsMapper.ASBase_Column_List" />
+		from shops s
+		left outer join brands br on s.brand_id=br.id
+		where
+		(s.record_type=1 or (s.record_type=0 and s.pid='-1'))  and 
+		s.delete_status =0  
+		<if test="synchStatus1 != null">
+			and (s.synch_status = #{synchStatus1,jdbcType=INTEGER} 
+		</if>
+		<if test="synchStatus2 != null">
+			or s.synch_status = #{synchStatus2,jdbcType=INTEGER} 
+		</if>
+		<if test="synchStatus3 != null">
+			or s.synch_status = #{synchStatus3,jdbcType=INTEGER} 
+		</if>
+		)order by s.shop_number
+	</select>
+	<select id="selectByMongoId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from shops
+    where mongo_id = #{mongoId,jdbcType=VARCHAR} and delete_status=0
+  </select>
+
+</mapper>

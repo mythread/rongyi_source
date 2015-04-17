@@ -1,0 +1,141 @@
+/**
+ * 招聘 - 列表 页面 CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-22
+ */
+ 
+/* 顶部 */
+#top-title {
+	margin-top: 80px;
+}
+#top-img {
+	height: 340px;
+	background-image: url("../img/join-us.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-color: #4A3932;
+}
+#procedure {
+	margin-top:50px;
+	height: 50px;
+	background-image: url("../img/procedure.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.dash-line {
+	margin-top: 50px;
+	border-bottom: 1px dashed #c1cfd9;
+}
+
+/* 地址、城市选择 */
+#location {
+	margin-top: 50px;
+	height: 90px;
+}
+#location-left {
+	font-size: 24px;
+	float: left;
+	width: 278px;
+}
+#location-title {
+	float: left;
+	margin-top: 15px;
+}
+#location ul {
+	float: left;
+}
+#location ul li {
+	float: left;
+	width: 60px;
+	border-left: solid 1px #2e3641;
+	text-align: center;
+	margin-top: 15px;
+}
+#location ul li.location-all {
+	border-left: 0px;
+}
+a.location-selected {
+	color: #ff4900;
+}
+
+/* 职位列表 - list页面专用 */
+#job-list {
+	float: left;
+	margin-left: 60px;
+	width: 676px;
+}
+#job-list-header {
+	background-color: #e2ebf0;
+	height: 48px;
+}
+.job-list-row {
+	height: 44px;
+}
+.with-border-top {
+	border-top: #c1cfd9 1px dashed;
+}
+.job-list-header-column {
+	float: left;
+	line-height: 48px;
+	font-size: 14px;
+}
+.job-list-row-column {
+	float: left;
+	line-height: 44px;
+}
+.name-column {
+	width: 180px;
+	margin-left: 20px;
+}
+.location-column {
+	width: 110px;
+	text-align: center;
+}
+
+.type-column {
+	width: 216px;
+	text-align: center;
+}
+
+.department-column {
+	width: 150px;
+	text-align: center;
+}
+.pager {
+	margin-top: 48px;
+}
+
+/* 职位详情 - detail页面专用 */
+#job-detail {
+	float: left;
+	margin-left: 60px;
+	width: 676px;
+}
+#job-name {
+	font-size: 14px;
+	padding-bottom: 20px;
+	border-bottom: 1px dashed #c1cfd9;
+}
+.job-text {
+	margin-top: 20px;
+	line-height: 200%;
+}
+a.apply-btn {
+	display: block;
+	width: 200px;
+	height: 42px;
+	font-size: 18px;
+	line-height: 42px;
+	color: #efede6;
+	background-color: #ff4900;
+	text-align: center;
+	margin-top: 40px;
+}
+a.apply-btn:hover {
+	background-color: #df4900;
+}
+
+/* 底部空DIV */
+.bottom {
+	height: 104px;
+}

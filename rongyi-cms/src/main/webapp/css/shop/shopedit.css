@@ -1,0 +1,78 @@
+#show {
+	margin-top: 10px;
+}
+
+#back-btn {
+	float: right;
+	margin-right: 25px;
+}
+.top-title {
+	height: 30px;
+}
+hr {
+	margin-bottom: 0px;
+}
+#view-swith {
+	margin-bottom: 15px;
+	background: #ECF0F3;
+	height: 60px;
+	line-height: 60px;
+}
+#view-swith span {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+#view-swith .default-selecter {
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 16px;
+}
+
+#details {
+	padding: 15px;
+}
+
+#details hr {
+	margin-top : 0px;
+	clear: both;
+	margin-left: 10px;
+}
+
+.edit-box-title-div {
+	height: 60px;
+	line-height: 60px;
+	padding-left: 10px;
+}
+
+.edit-box-title {
+	float: left;
+	font-size: 16px;
+	height: 59px;
+	width:100px;
+	border-bottom: 2px #f97e76 solid;
+}
+
+.edit-box-save {
+	float: right;
+	margin-right: 10px;
+}
+
+.layer-settings textarea {
+	width: 350px;
+	height: 100px;
+	resize: none;
+	border: 0px;
+	outline: none;
+	padding-right: 28px;
+}
+
+.textarea-info {
+	width:552px;
+	text-align: right;
+}
+
+.textarea-info span {
+	color: red;
+}

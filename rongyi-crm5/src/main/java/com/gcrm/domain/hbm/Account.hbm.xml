@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.gcrm.domain">
+  <class dynamic-insert="true" dynamic-update="true"
+    name="com.gcrm.domain.Account" table="account">
+    <id column="id" name="id" type="java.lang.Integer">
+      <generator class="native" />
+    </id>
+    <property name="name" column="name" type="string" not-null="true" />
+    
+     <property name="advert_level" column="advert_level" type="string"/>
+     <property name="mallbd_level" column="mallbd_level" type="string"/>
+     <property name="province" column="province" type="string"/>
+     <property name="city" column="city" type="string"/>
+     <property name="district" column="district" type="string"/>
+     <property name="mall_circle" column="mall_circle" type="string"/>
+     <property name="address" column="address" type="string"/>
+     <property name="mall_acreage" column="mall_acreage" type="java.math.BigDecimal"/>
+     <property name="merchant_num" column="merchant_num" type="java.lang.Integer"/>
+      <property name="day_people_flow" column="day_people_flow" type="java.math.BigDecimal"/>
+      <property name="peak_people_flow" column="peak_people_flow" type="java.math.BigDecimal"/>
+      <property name="year_sales" column="year_sales" type="java.math.BigDecimal"/>
+      <property name="memo" column="memo" type="string"/>
+      <property name="assigned_date" column="assigned_date" type="java.util.Date"/>
+      <property name="accountIntent" column="accountIntent" type="java.lang.Integer"/>
+       <property name="accountVisit" column="accountVisit" type="java.lang.Integer"/>
+   	   <property name="floors" column="floors" type="string" />
+    <many-to-one name="account_level" class="AccountLevel"
+      column="account_level" />
+    <many-to-one name="currency" class="Currency" column="currency" />
+    <many-to-one name="capital" class="Capital" column="capital" />
+    <many-to-one name="annual_revenue" class="AnnualRevenue"
+      column="annual_revenue" />
+    <many-to-one name="company_size" class="CompanySize"
+      column="company_size" />
+    <many-to-one name="account_nature" class="AccountNature"
+      column="account_nature" />
+    <property name="office_phone" column="office_phone" type="string" />
+    <property name="website" column="website" type="string" />
+    <property name="fax" column="fax" type="string" />
+    <property name="bill_street" column="bill_street" type="string" />
+    <property name="bill_city" column="bill_city" type="string" />
+    <property name="bill_state" column="bill_state" type="string" />
+    <property name="bill_postal_code" column="bill_postal_code"
+      type="string" />
+    <property name="bill_country" column="bill_country" type="string" />
+    <property name="ship_street" column="ship_street" type="string" />
+    <property name="ship_city" column="ship_city" type="string" />
+    <property name="ship_state" column="ship_state" type="string" />
+    <property name="ship_postal_code" column="ship_postal_code"
+      type="string" />
+    <property name="ship_country" column="ship_country" type="string" />
+    <property name="email" column="email" type="string" />
+    <property name="notes" column="notes" type="string" />
+    <many-to-one name="account_type" class="AccountType"
+      column="account_type" />
+    <many-to-one name="industry" class="Industry" column="industry" />
+    <property name="legal_representative" column="legal_representative"
+      type="string" />
+    <property name="business_scope" column="business_scope"
+      type="string" />
+    <property name="create_date" column="create_date" type="java.util.Date" />
+    <property name="credit" column="credit" type="string" />
+    <property name="reputation" column="reputation" type="string" />
+    <property name="market_position" column="market_position"
+      type="string" />
+    <property name="development_potential" column="development_potential"
+      type="string" />
+    <property name="operational_characteristics" column="operational_characteristics"
+      type="string" />
+    <property name="operational_direction" column="operational_direction"
+      type="string" />
+    <property name="sic_code" column="sic_code" type="string" />
+    <property name="ticket_symbol" column="ticket_symbol" type="string" />
+    <many-to-one name="manager" class="Account" column="manager" />
+    <many-to-one name="assigned_to" class="User" column="assigned_to" />
+    <many-to-one name="created_by" class="User" column="created_by" />
+    <many-to-one name="updated_by" class="User" column="updated_by" />
+    <many-to-one name="owner" class="User" column="owner" />
+    <property name="created_on" column="created_on" type="java.util.Date" />
+    <property name="updated_on" column="updated_on" type="java.util.Date" />
+    <set cascade="all" name="targetLists" table="targetList_account">
+      <key column="account_id" />
+      <many-to-many class="com.gcrm.domain.TargetList"
+        column="targetList_id" />
+    </set>
+    <set cascade="all" name="documents" table="account_document">
+      <key column="account_id" />
+      <many-to-many class="com.gcrm.domain.Document"
+        column="document_id" />
+    </set>
+  </class>
+</hibernate-mapping>

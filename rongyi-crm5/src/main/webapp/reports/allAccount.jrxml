@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="900" pageHeight="842" columnWidth="860" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="MessageResources" uuid="4a14ee68-e07d-4d94-9829-128d7f8693cb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="8"/>
+	<property name="ireport.y" value="0"/>
+	<style name="color_style" hAlign="Center" vAlign="Middle">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style mode="Transparent" forecolor="#000000" backcolor="#E3E9F7"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==1)]]></conditionExpression>
+			<style forecolor="#000000" backcolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="email" class="java.lang.String">
+		<fieldDescription><![CDATA[email]]></fieldDescription>
+	</field>
+	<field name="bill_street" class="java.lang.String">
+		<fieldDescription><![CDATA[bill_street]]></fieldDescription>
+	</field>
+	<field name="bill_state" class="java.lang.String">
+		<fieldDescription><![CDATA[bill_state]]></fieldDescription>
+	</field>
+	<field name="bill_country" class="java.lang.String">
+		<fieldDescription><![CDATA[bill_country]]></fieldDescription>
+	</field>
+	<field name="bill_city" class="java.lang.String">
+		<fieldDescription><![CDATA[bill_city]]></fieldDescription>
+	</field>
+	<field name="assigned_to" class="java.lang.String">
+		<fieldDescription><![CDATA[assigned_to]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="office_phone" class="java.lang.String">
+		<fieldDescription><![CDATA[office_phone]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="81" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ca86eeb1-f977-4bc2-bff4-684439b5bcfa" x="328" y="61" width="165" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{report.account.title}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b12a4df6-8ff2-4686-ac73-2c41a689470a" mode="Opaque" x="22" y="1" width="119" height="20" backcolor="#E0E0E0"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{entity.name.label}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f79f42b3-9c2f-43c2-8edf-8e7889a643eb" mode="Opaque" x="141" y="1" width="100" height="20" backcolor="#E0E0E0"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{entity.office_phone.label}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="226455e0-1151-4d61-b865-723de499c7ee" mode="Opaque" x="241" y="1" width="111" height="20" backcolor="#E0E0E0"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{entity.email.label}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7adff422-4ac4-417c-ad58-32209e0408cb" mode="Opaque" x="352" y="1" width="117" height="20" backcolor="#E0E0E0"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{report.billing_street.label}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="44ef4779-ea73-4854-adfe-b408fe29a844" mode="Opaque" x="469" y="1" width="117" height="20" backcolor="#E0E0E0"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{report.billing_city.label}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1034722c-a3f8-49c5-b3fe-96be7d57521f" mode="Opaque" x="586" y="1" width="111" height="20" backcolor="#E0E0E0"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{report.billing_state.label}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="17671762-cc58-4cea-80e1-2be8f8e74815" mode="Opaque" x="697" y="1" width="111" height="20" backcolor="#E0E0E0"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{entity.assigned_to.label}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ea07e556-a703-498d-97a0-007aad6abd52" mode="Opaque" x="141" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{office_phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f8de0848-32b2-4ee7-873b-741822299ee6" mode="Opaque" x="241" y="0" width="111" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="542f9d1d-322c-4cf1-ad57-c2abfac66b74" mode="Opaque" x="352" y="0" width="117" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_street}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d0fabacf-53d7-40a9-8ce3-0cd54e3d89c3" mode="Opaque" x="469" y="0" width="117" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2021cc76-8641-4a06-ae84-a9389df3ab21" mode="Opaque" x="586" y="0" width="111" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bill_state}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="18990532-4cdd-4153-a600-638d8e782bd0" mode="Opaque" x="22" y="0" width="119" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="08d47da2-e8e6-4d23-98bc-bff8dd1a2e86" mode="Opaque" x="697" y="0" width="111" height="20"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{assigned_to}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3d425217-e1dc-4287-94ec-472a6575c151" x="351" y="9" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{report.page.label} + " "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="e8cdc933-a9b3-481d-abc7-301a20f7ab57" x="431" y="9" width="40" height="20"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

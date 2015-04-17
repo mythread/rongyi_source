@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="stdaily.build" default="build" basedir=".">
+	<description>
+		Compress Build File
+	</description>
+	<echo message="Building ${ant.file}" />
+	<property name="js.server" value="http://localhost/stdaily/js/src" />
+	<property name="todir" location="${root.dir}/js/build/" />
+	<target name="build">
+		<!--START========== app.js处理  ==========-->
+		<concatsource destfile="app_concat.js">
+			<srcfiles>
+				<fileset dir="." includes="fanxian.js" />
+				<fileset dir="." includes="jquery.ext.js" />
+			</srcfiles>
+		</concatsource>
+		<!--========== app.js处理  ==========END-->
+		
+		
+		<!-- 压缩*_concat.js -->
+		<compress src="." dest="${todir}" tmpdir="${tmp.dir}" includes="*_concat.js" />
+		<!-- 改名 -->
+		<move todir="${todir}">
+			<fileset dir="${todir}" />
+			<globmapper from="*_concat.js" to="*.js" />
+		</move>
+		<!-- debug文件 -->
+		<!--
+		<move todir="${todir}">
+			<fileset dir="." />
+			<globmapper from="*_concat.js" to="*_debug.js" />
+		</move>
+		-->
+	</target>
+</project>

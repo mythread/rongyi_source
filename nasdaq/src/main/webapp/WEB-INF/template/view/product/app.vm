@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>产品介绍</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/product/app.css" rel="stylesheet" type="text/css">
+		<link href="/static/css/jq.css" rel="stylesheet" type="text/css">	
+		<script type="text/javascript" src="/static/js/layer/layer.min.js"></script>
+	</head>
+
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+			
+			<div id="top-img">
+               #parse("view/product/nav.vm")
+			 <div id="top-img_ban">
+				<a href="javascript:void(0)" onclick="layerBox()">免费下载</a>
+			 </div>
+			</div>
+			
+    			
+            <div class="app-pic-one"></div>
+			<div class="app-pic-two"></div>
+			<div class="app-pic-three"></div>
+			
+            <div class="qrcode">
+                <div class="qrcode-header">扫一扫</div>
+    			<div class="qrcode-header">专享优惠贴身随行</div>
+				<img src="/static/img/qrcode.jpg" />
+                <div class="qrcode-bottom">容易逛APP下载</div>
+			</div>
+		</div>
+		
+		<div class="app_user" id="layer" >
+			<div class="app_user_close"><a href="javascript:void(0)" id="id_closeBox" onclick="closeBox()"></a></div>
+        	<div class="app_user_title" >
+        		<span>Android 用户</span>
+        	</div>
+	
+        	<div class="app_user_con">
+        		<ul>
+        			<li><a href="http://apk.91.com/Soft/Android/com.rongyi.rongyiguang-1.html" target="_blank"><span class="img1"></span><font>91市场</font></a></li>
+        			<li><a href="http://pdimg.rongyi.com/apk/rongyi.apk"><span class="img2"></span><font>本地</font></a></li>
+        			<li class="none"><a href="http://www.wandoujia.com/apps/com.rongyi.rongyiguang" target="_blank"><span class="img3"></span><font>豌豆荚</font></a></li>
+        			
+        			<li><a href="http://apk.hiapk.com/html/2014/05/2631894.html" target="_blank"><span class="img4"></span><font>安卓市场</font></a></li>
+        			<li><a href="http://apk.gfan.com/Product/App618458.html" target="_blank"><span class="img5"></span><font>机锋</font></a></li>
+        			<li class="none"><a href="https://play.google.com/store/apps/details?id=com.rongyi.rongyiguang&hl=zh-CN" target="_blank"><span class="img6"></span><font>Google play</font></a></li>
+        			
+        			<li><a href="http://www.anzhi.com/soft_1110833.html" target="_blank"><span class="img7"></span><font>安卓</font></a></li>
+        			<li><a href="http://zhushou.360.cn/detail/index/soft_id/711571?recrefer=SE_D_容易逛" target="_blank"><span class="img8"></span><font>360市场</font></a></li>
+        			<li class="none"><a href="http://app.xiaomi.com/detail/50001" target="_blank"><span class="img9"></span><font>小米</font></a></li>
+        		</ul>
+        	</div>
+	
+        	<div class="app_user_title">
+        		<span>iPhone 用户</span>
+        	</div>
+	
+        	<div class="app_user_btn">
+        		<a href="http://itunes.apple.com/cn/app/rong-yi-guang/id684748850?mt=8" target="_blank"><span></span><font>App Store</font></a></a>
+        	</div>
+	
+		</div>
+		#parse("widget/common/footer.vm")
+		<div id="box"></div>
+	</body>
+<script type="text/javascript">	
+/*
+var layerHtml = '';
+$(document).ready(function() {
+	layerHtml = $("#layer").html();
+	$("#layer").remove();
+});
+ 
+function layerBox(){
+	 jQuery.layer({
+	    	type: 1,
+	    	area: ['600px','450px'],
+	    	title: '容易逛APP下载',
+	    	page: {
+	    		html: layerHtml
+	    	},success: function(){
+	          
+	        }
+	    });
+}
+*/
+function layerBox(){
+	$('#layer').show();
+	$('#box').show();
+}
+function closeBox(){
+	$('#layer').hide();
+	$('#box').hide();
+}
+</script>
+</html>

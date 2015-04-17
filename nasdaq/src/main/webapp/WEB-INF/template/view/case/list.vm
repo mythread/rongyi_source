@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>案列分享</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/case/list.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+			<div id="content-top"></div>
+			
+			<div class="content-center">
+    			<div id="top-title" class="title">
+    				<div class="title-left">
+                        <span class="title-cn">案例分享</span>
+        				<span class="title-en">CASE</span>
+                    </div>
+    			</div>
+				#if($caseList)
+				#foreach($case in $caseList)
+					#if($velocityCount == 5 || $velocityCount == 9)
+                        <div class="list-dash-line"></div>
+					#end
+				<div class="case-block">
+                    <a href="/case/${case.id}.htm" target="_blank"><img src="${case.pic}"/></a>
+                    <div><a href="/case/${case.id}.htm" target="_blank">${case.mallName}</a></div>
+				</div>
+				#end
+				#end
+				<div class="for-clear bottom"></div>
+				
+				#parse("widget/common/pager.vm")
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

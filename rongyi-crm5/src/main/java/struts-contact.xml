@@ -1,0 +1,155 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="contact" extends="default">
+      	<action name="listContact" class="listContactAction" method="list">
+    	  <result name="success" type="json"></result>
+        </action>
+
+      	<action name="listContactFull" class="listContactAction" method="listFull">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="selectContact" class="listContactAction" method="select">
+    	  <result type="redirect">/jsp/crm/listContact.jsp</result>
+        </action>
+        
+    	<action name="unselectContact" class="listContactAction" method="unselect">
+    	  <result type="redirect">/jsp/crm/listContact.jsp</result>
+        </action>
+                
+    	<action name="selectContactPage" class="listContactAction" method="selectPage">
+    	  <result>/jsp/crm/selectContact.jsp</result>
+        </action>
+        
+      	<action name="filterContact" class="listContactAction" method="filter">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="filterContactPage" class="listContactAction" method="filterPage">
+    	  <result>/jsp/crm/filterContact.jsp</result>
+        </action>
+         
+      	<action name="relateContactOpportunity" class="listContactAction" method="relateContactOpportunity">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateContactOpportunityPage" class="listContactAction" method="filterPage">
+    	  <result>/jsp/crm/relateOpportunity.jsp</result>
+        </action>
+
+      	<action name="relateContactLead" class="listContactAction" method="relateContactLead">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateContactLeadPage" class="listContactAction" method="filterPage">
+    	  <result>/jsp/crm/relateLead.jsp</result>
+        </action>
+
+      	<action name="relateContactDocument" class="listContactAction" method="relateContactDocument">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="relateContactDocumentPage" class="listContactAction" method="filterPage">
+    	  <result>/jsp/crm/relateDocument.jsp</result>
+        </action>
+        
+      	<action name="relateContactCase" class="listContactAction" method="relateContactCase">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="relateContactCasePage" class="listContactAction" method="filterPage">
+    	  <result>/jsp/crm/relateCase.jsp</result>
+        </action>        
+                                        
+    	<action name="listContactPage">
+    	  <result type="redirect">/jsp/crm/listContact.jsp</result>
+        </action>
+        
+         <action name="exportContact" class="listContactAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>  
+
+         <action name="exportTemplateContact" class="listContactAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">templateStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>
+        
+         <action name="importContact" class="listContactAction" method="importCSV">
+        	<result name="input">/jsp/crm/uploadContact.jsp</result>
+			<result>/jsp/crm/upload-success.jsp</result>            	  
+        </action>        
+
+         <action name="copyContact" class="listContactAction" method="copy">
+        	<result name="input">/jsp/crm/listContact.jsp</result>
+			<result>/jsp/crm/listContact.jsp</result>            	  
+        </action>
+                        
+        <action name="editContact" class="editContactAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result>/jsp/crm/editContact.jsp</result>
+        </action>
+                        
+        <action name="saveContact" class="editContactAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editContact.jsp</result>
+            <result name="error">/jsp/crm/editContact.jsp</result>
+            <result type="redirectAction">editContact.action?id=${id}&amp;saveFlag=${saveFlag}</result>
+        </action>
+
+        <action name="saveCloseContact" class="editContactAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editContact.jsp</result>          
+    	    <result type="redirect">/jsp/crm/listContact.jsp</result>
+        </action>
+                        
+        <action name="deleteContact" class="listContactAction" method="delete">
+			<result name="input">/jsp/crm/listContact.jsp</result>
+			<result type="redirect">/jsp/crm/listContact.jsp</result>
+        </action>  
+        
+        <action name="removeContact" class="listContactAction" method="remove">
+			<result type="redirect">/jsp/crm/listContact.jsp</result>
+        </action> 
+        
+        <action name="massUpdateContact" class="editContactAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editContact.jsp</result>          
+    	    <result>/jsp/crm/editContact.jsp</result>
+        </action> 
+        
+         <action name="massUpdateCloseContact" class="editContactAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editContact.jsp</result>          
+    	  <result type="redirect">/jsp/crm/listContact.jsp</result>
+        </action> 
+        
+      	<action name="getContactRelationCounts" class="editContactAction" method="getContactRelationCounts">
+    	  <result name="success" type="json"></result>
+        </action>   
+        
+        <action name="downloadContact" class="editContactAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">APPLICATION/OCTET-STREAM</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>                 
+        </action>           
+  </package>      
+    
+</struts>

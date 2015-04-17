@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>产品介绍</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/product/terminal.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+			
+			<div id="top-img">
+               #parse("view/product/nav.vm")
+			</div>
+			
+			<div class="content-center">
+    			
+                <div class="top-text">我们能帮您实现</div>
+				
+                <div class="second-text">
+				
+                    <div class="second-text-left">
+                        <div class="second-text-left-big">引流及导流</div>
+						<div class="second-text-left-small">容易电子互动屏可通过屏上互动活动</div>
+						<div class="second-text-left-small">提升您的到店客流、积极引导客流到相关楼层和店铺</div>
+						
+						<div class="second-text-left-big">增加到店、提升业绩</div>
+						<div class="second-text-left-small">容易电子互动屏可定制各种促销活动</div>
+						<div class="second-text-left-small">大幅提升您的客流及店内销售</div>
+					</div>
+					<div class="second-text-right">
+						<div class="second-text-left-big">提升趣味及活跃度</div>
+						<div class="second-text-left-small">通过容易电子互动屏，</div>
+						<div class="second-text-left-small">您可以充分提升您商店的趣味性和活跃度</div>
+						
+						<div class="second-text-left-big">精准的会员体系</div>
+						<div class="second-text-left-small">容易电子互动屏可深度结合您的会员体系，</div>
+						<div class="second-text-left-small">通过互动屏提供电子会员验证、会员积分查询、</div>
+						<div class="second-text-left-small">累积、消费，停车券打印等一系列功能</div>
+					</div>
+
+				</div>
+				
+				<div class="title" style="margin-top: 30px;">
+    				<div class="title-left">
+                        <span class="title-cn">标准版电子互动屏</span>
+                    </div>
+    			</div>
+				
+                <div class="product-title-line">分类导航标配</div>
+                <div class="standard-config"></div>
+				
+				<div class="product-title-line">功能展示</div>
+				
+                <div class="feature-block feature-block-left">
+                    <div class="block-num">01</div>
+                    <div class="block-right">
+                        <div class="block-title">主页：商场活动宣传</div>
+                        <div class="block-text">展示商场特色活动、抽奖活动等内容</div>
+                        <div class="block-img">
+							<img src="/static/img/feature1.jpg" />
+						</div>
+					</div>
+				</div>
+				<div class="feature-block feature-block-right">
+                    <div class="block-num">02</div>
+                    <div class="block-right">
+                        <div class="block-title">品牌导购：方便快捷</div>
+                        <div class="block-text">
+                            <div>快速筛选品牌：品类筛选、拼音筛选、优惠筛选、推荐筛选，</div>
+							<div>让用户以最便捷的方式找到所需商品</div>
+                        </div>
+                        <div class="block-img">
+							<img src="/static/img/feature2.jpg" />
+						</div>
+					</div>
+				</div>
+                <div class="for-clear"></div>
+				
+				<div class="feature-block feature-block-left">
+                    <div class="block-num">03</div>
+                    <div class="block-right">
+                        <div class="block-title">楼层导视：商场全貌一目了然</div>
+                        <div class="block-text">
+							<div>楼层地图展示、商铺定位、商铺详情、路线精确导航，</div>
+							<div>让您畅游商场</div>
+						</div>
+                        <div class="block-img">
+							<img src="/static/img/feature3.jpg" />
+						</div>
+					</div>
+				</div>
+				<div class="feature-block feature-block-right">
+                    <div class="block-num">04</div>
+                    <div class="block-right">
+                        <div class="block-title">会员中心：一站式会员服务</div>
+                        <div class="block-text">
+							<div>注册、积分、优惠券、停车券一站式会员服务，</div>
+							<div>让用户第一时间知晓商场最新动态</div>
+						</div>
+                        <div class="block-img">
+							<img src="/static/img/feature4.jpg" />
+						</div>
+					</div>
+				</div>
+                <div class="for-clear"></div>
+				
+				<div class="feature-block feature-block-left">
+                    <div class="block-num">05</div>
+                    <div class="block-right">
+                        <div class="block-title">全面介绍商场信息</div>
+                        <div class="block-text">
+                            <div>实时发布您商场最新的资讯。包括商场简介、周边交通、</div>
+							<div>促销活动、会员信息等</div>
+						</div>
+                        <div class="block-img">
+							<img src="/static/img/feature5.jpg" />
+						</div>
+					</div>
+				</div>
+				<div class="feature-block feature-block-right">
+                    <div class="block-num">06</div>
+                    <div class="block-right">
+                        <div class="block-title">特色优惠活动</div>
+                        <div class="block-text">
+							<div>综合展示商场最近、最新、最具特色的各类优惠，</div>
+							<div>实现不同人群的精准营销</div>
+						</div>
+                        <div class="block-img">
+							<img src="/static/img/feature6.jpg" />
+						</div>
+					</div>
+				</div>
+                <div class="for-clear"></div>
+				
+				<div class="title">
+    				<div class="title-left">
+                        <span class="title-cn">个性化定制电子互动屏</span>
+                    </div>
+    			</div>
+				
+				<div class="product-title-line">定制流程</div>
+                <div class="order-process"></div>
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

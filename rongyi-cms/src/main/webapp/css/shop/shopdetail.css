@@ -1,0 +1,178 @@
+/* 公用头部样式 */
+#show {
+	margin-top: 10px;
+}
+
+#back-btn {
+	float: right;
+	margin-right: 25px;
+}
+
+.top-title {
+	height: 30px;
+}
+
+hr {
+	margin-bottom: 0px;
+}
+
+#view-swith {
+	margin-bottom: 15px;
+	background: #ECF0F3;
+	height: 60px;
+	line-height: 60px;
+}
+
+#view-swith span {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#view-swith .default-selecter {
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 16px;
+}
+
+#view-content {
+	background: #C9D312;
+	border-top: 1px solid #999999;
+	padding: 20px;
+}
+
+#details {
+	padding: 20px;
+	background: white;
+}
+
+
+/* 下面2个样式 - 用户鼠标悬浮后可编辑的交互功能 */
+.detail-editable {
+	border: 2px solid white;
+	position: relative;
+}
+/*.detail-editable-enable {
+	border: 2px solid orange;
+}*/
+.detail-editor-btn {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	visibility: hidden;
+}
+/*.detail-editor-btn-enable {
+	visibility: visible;
+}*/
+
+/* 下面2个样式 - 评价星星的样式 */
+.star-enable {
+	color: orange;
+}
+.star-disable{
+	color: #999999;
+}
+
+#detail-head {
+	height: 90px;
+	width: 500px;
+}
+
+#detail-logo {
+	float: left;
+	margin: 3px;
+}
+
+#detail-logo img {
+	height: 82px;
+}
+
+#detail-title {
+	float: left;
+	line-height: 82px;
+	margin-left: 20px;
+	font-size: 20px;
+	max-width: 300px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow:ellipsis;
+}
+
+#detail-address {
+	width: 500px;
+	padding: 5px;
+	font-size: 20px;
+	height: 50px;
+	line-height: 50px;
+}
+
+#detail-address span {
+	width: 500px;
+	padding: 5px;
+	background: #999999;
+	color: white;
+	padding: 5px;
+	margin-right: 10px;
+}
+
+#detail-infomation {
+	padding: 3px;
+	width: 500px;
+}
+
+#detail-body {
+	height: 430px;
+}
+
+#detail-body-left {
+	width: 550px;
+	float: left;
+}
+
+#detail-description {
+	margin-top: 40px;
+	margin-bottom: 30px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.textarea-info {
+	text-align: right;
+}
+
+.textarea-info span {
+	color: red;
+}
+
+/* 显示四张商铺图片的样式 */
+#detail-body-right {
+	width: 486px;
+	height:402px;
+	float: right;
+}
+#detail-body-right img {
+	position: absolute;
+}
+.detail-big-pic {
+	height: 320px;
+	width: 486px;
+}
+.detail-small-pic {
+	height: 80px;
+	width: 120px;
+	top: 322px;
+	cursor: pointer;
+}
+.detail-small-pic1 {
+	left: 0px;
+}
+.detail-small-pic2 {
+	left: 122px;
+}
+.detail-small-pic3 {
+	left: 244px;
+}
+.detail-small-pic4 {
+	left: 366px;
+}

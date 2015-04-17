@@ -1,0 +1,136 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="opportunity" extends="default">
+      	<action name="listOpportunity" class="listOpportunityAction" method="list">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+      	<action name="listOpportunityFull" class="listOpportunityAction" method="listFull">
+    	  <result name="success" type="json"></result>
+        </action>        
+
+    	<action name="listOpportunityPage">
+    	  <result type="redirect">/jsp/crm/listOpportunity.jsp</result>
+        </action>
+
+    	<action name="selectOpportunity" class="listOpportunityAction" method="select">
+    	  <result type="redirect">/jsp/crm/listOpportunity.jsp</result>
+        </action>
+        
+    	<action name="unselectOpportunity" class="listOpportunityAction" method="unselect">
+    	  <result type="redirect">/jsp/crm/listOpportunity.jsp</result>
+        </action>
+                
+    	<action name="selectOpportunityPage" class="listOpportunityAction" method="selectPage">
+    	  <result>/jsp/crm/selectOpportunity.jsp</result>
+        </action>
+        
+      	<action name="filterOpportunity" class="listOpportunityAction" method="filter">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="filterOpportunityPage" class="listOpportunityAction" method="filterPage">
+    	  <result>/jsp/crm/filterOpportunity.jsp</result>
+        </action>
+        
+      	<action name="relateOpportunityContact" class="listOpportunityAction" method="relateOpportunityContact">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateOpportunityContactPage" class="listOpportunityAction" method="filterPage">
+    	  <result>/jsp/crm/relateContact.jsp</result>
+        </action>     
+        
+      	<action name="relateOpportunityLead" class="listOpportunityAction" method="relateOpportunityLead">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateOpportunityLeadPage" class="listOpportunityAction" method="filterPage">
+    	  <result>/jsp/crm/relateLead.jsp</result>
+        </action>  
+        
+      	<action name="relateOpportunityDocument" class="listOpportunityAction" method="relateOpportunityDocument">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateOpportunityDocumentPage" class="listOpportunityAction" method="filterPage">
+    	  <result>/jsp/crm/relateDocument.jsp</result>
+        </action>                    
+                        
+         <action name="exportOpportunity" class="listOpportunityAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>  
+
+         <action name="exportTemplateOpportunity" class="listOpportunityAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">templateStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>
+        
+         <action name="importOpportunity" class="listOpportunityAction" method="importCSV">
+        	<result name="input">/jsp/crm/uploadOpportunity.jsp</result>
+			<result>/jsp/crm/upload-success.jsp</result>            	  
+        </action> 
+
+         <action name="copyOpportunity" class="listOpportunityAction" method="copy">
+        	<result name="input">/jsp/crm/listOpportunity.jsp</result>
+			<result>/jsp/crm/listOpportunity.jsp</result>            	  
+        </action>
+                                
+        <action name="editOpportunity" class="editOpportunityAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result>/jsp/crm/editOpportunity.jsp</result>
+        </action>
+                        
+        <action name="saveOpportunity" class="editOpportunityAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editOpportunity.jsp</result>          
+    	    <result type="redirectAction">editOpportunity.action?id=${id}&amp;saveFlag=${saveFlag}</result>
+        </action>
+
+        <action name="saveCloseOpportunity" class="editOpportunityAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editOpportunity.jsp</result>          
+    	    <result type="redirect">/jsp/crm/listOpportunity.jsp</result>
+        </action>
+                        
+        <action name="deleteOpportunity" class="listOpportunityAction" method="delete">
+			<result name="input">/jsp/crm/listOpportunity.jsp</result>
+			<result type="redirect">/jsp/crm/listOpportunity.jsp</result>
+        </action> 
+        
+        <action name="removeOpportunity" class="listOpportunityAction" method="remove">
+			<result type="redirect">/jsp/crm/listOpportunity.jsp</result>
+        </action> 
+        
+        <action name="massUpdateOpportunity" class="editOpportunityAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editOpportunity.jsp</result>          
+    	    <result>/jsp/crm/editOpportunity.jsp</result>
+        </action>  
+        
+        <action name="massUpdateCloseOpportunity" class="editOpportunityAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editOpportunity.jsp</result>          
+    	    <result type="redirect">/jsp/crm/listOpportunity.jsp</result>
+        </action>  
+        
+      	<action name="getOpportunityRelationCounts" class="editOpportunityAction" method="getOpportunityRelationCounts">
+    	  <result name="success" type="json"></result>
+        </action>           
+  </package>      
+    
+</struts>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false" package="com.gcrm.domain">
+ <class dynamic-insert="true" dynamic-update="true"
+  name="com.gcrm.domain.Role" table="role">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="native"/>
+  </id>
+  <property column="name" generated="never" insert="true" lazy="false"
+   length="50" name="name" not-null="true" type="java.lang.String" update="true"/>
+  <property column="scope_account" generated="never" insert="true"
+   lazy="false" name="scope_account" type="int" update="true"/>   
+  <property column="view_account" generated="never" insert="true"
+   lazy="false" name="view_account" type="int" update="true"/>   
+  <property column="create_account" generated="never" insert="true"
+   lazy="false" name="create_account" type="int" update="true"/>   
+  <property column="update_account" generated="never" insert="true"
+   lazy="false" name="update_account" type="int" update="true"/>      
+  <property column="delete_account" generated="never" insert="true"
+   lazy="false" name="delete_account" type="int" update="true"/> 
+  <property column="scope_call" generated="never" insert="true"
+   lazy="false" name="scope_call" type="int" update="true"/>   
+  <property column="view_call" generated="never" insert="true"
+   lazy="false" name="view_call" type="int" update="true"/>   
+  <property column="create_call" generated="never" insert="true"
+   lazy="false" name="create_call" type="int" update="true"/>   
+  <property column="update_call" generated="never" insert="true"
+   lazy="false" name="update_call" type="int" update="true"/>      
+  <property column="delete_call" generated="never" insert="true"
+   lazy="false" name="delete_call" type="int" update="true"/>   
+  <property column="scope_campaign" generated="never" insert="true"
+   lazy="false" name="scope_campaign" type="int" update="true"/>   
+  <property column="view_campaign" generated="never" insert="true"
+   lazy="false" name="view_campaign" type="int" update="true"/>   
+  <property column="create_campaign" generated="never" insert="true"
+   lazy="false" name="create_campaign" type="int" update="true"/>   
+  <property column="update_campaign" generated="never" insert="true"
+   lazy="false" name="update_campaign" type="int" update="true"/>      
+  <property column="delete_campaign" generated="never" insert="true"
+   lazy="false" name="delete_campaign" type="int" update="true"/>   
+  <property column="scope_case" generated="never" insert="true"
+   lazy="false" name="scope_case" type="int" update="true"/>   
+  <property column="view_case" generated="never" insert="true"
+   lazy="false" name="view_case" type="int" update="true"/>   
+  <property column="create_case" generated="never" insert="true"
+   lazy="false" name="create_case" type="int" update="true"/>   
+  <property column="update_case" generated="never" insert="true"
+   lazy="false" name="update_case" type="int" update="true"/>      
+  <property column="delete_case" generated="never" insert="true"
+   lazy="false" name="delete_case" type="int" update="true"/>   
+  <property column="scope_contact" generated="never" insert="true"
+   lazy="false" name="scope_contact" type="int" update="true"/>   
+  <property column="view_contact" generated="never" insert="true"
+   lazy="false" name="view_contact" type="int" update="true"/>   
+  <property column="create_contact" generated="never" insert="true"
+   lazy="false" name="create_contact" type="int" update="true"/>   
+  <property column="update_contact" generated="never" insert="true"
+   lazy="false" name="update_contact" type="int" update="true"/>      
+  <property column="delete_contact" generated="never" insert="true"
+   lazy="false" name="delete_contact" type="int" update="true"/>   
+  <property column="scope_document" generated="never" insert="true"
+   lazy="false" name="scope_document" type="int" update="true"/>   
+  <property column="view_document" generated="never" insert="true"
+   lazy="false" name="view_document" type="int" update="true"/>   
+  <property column="create_document" generated="never" insert="true"
+   lazy="false" name="create_document" type="int" update="true"/>   
+  <property column="update_document" generated="never" insert="true"
+   lazy="false" name="update_document" type="int" update="true"/>      
+  <property column="delete_document" generated="never" insert="true"
+   lazy="false" name="delete_document" type="int" update="true"/>   
+  <property column="scope_lead" generated="never" insert="true"
+   lazy="false" name="scope_lead" type="int" update="true"/>   
+  <property column="view_lead" generated="never" insert="true"
+   lazy="false" name="view_lead" type="int" update="true"/>   
+  <property column="create_lead" generated="never" insert="true"
+   lazy="false" name="create_lead" type="int" update="true"/>   
+  <property column="update_lead" generated="never" insert="true"
+   lazy="false" name="update_lead" type="int" update="true"/>      
+  <property column="delete_lead" generated="never" insert="true"
+   lazy="false" name="delete_lead" type="int" update="true"/>   
+  <property column="scope_meeting" generated="never" insert="true"
+   lazy="false" name="scope_meeting" type="int" update="true"/>   
+  <property column="view_meeting" generated="never" insert="true"
+   lazy="false" name="view_meeting" type="int" update="true"/>   
+  <property column="create_meeting" generated="never" insert="true"
+   lazy="false" name="create_meeting" type="int" update="true"/>   
+  <property column="update_meeting" generated="never" insert="true"
+   lazy="false" name="update_meeting" type="int" update="true"/>      
+  <property column="delete_meeting" generated="never" insert="true"
+   lazy="false" name="delete_meeting" type="int" update="true"/>   
+  <property column="scope_visit" generated="never" insert="true"
+   lazy="false" name="scope_visit" type="int" update="true"/>   
+  <property column="view_visit" generated="never" insert="true"
+   lazy="false" name="view_visit" type="int" update="true"/>   
+  <property column="create_visit" generated="never" insert="true"
+   lazy="false" name="create_visit" type="int" update="true"/>   
+  <property column="update_visit" generated="never" insert="true"
+   lazy="false" name="update_visit" type="int" update="true"/>      
+  <property column="delete_visit" generated="never" insert="true"
+   lazy="false" name="delete_visit" type="int" update="true"/>   
+  <property column="scope_opportunity" generated="never" insert="true"
+   lazy="false" name="scope_opportunity" type="int" update="true"/>   
+  <property column="view_opportunity" generated="never" insert="true"
+   lazy="false" name="view_opportunity" type="int" update="true"/>   
+  <property column="create_opportunity" generated="never" insert="true"
+   lazy="false" name="create_opportunity" type="int" update="true"/>   
+  <property column="update_opportunity" generated="never" insert="true"
+   lazy="false" name="update_opportunity" type="int" update="true"/>      
+  <property column="delete_opportunity" generated="never" insert="true"
+   lazy="false" name="delete_opportunity" type="int" update="true"/>   
+  <property column="scope_target" generated="never" insert="true"
+   lazy="false" name="scope_target" type="int" update="true"/>   
+  <property column="view_target" generated="never" insert="true"
+   lazy="false" name="view_target" type="int" update="true"/>   
+  <property column="create_target" generated="never" insert="true"
+   lazy="false" name="create_target" type="int" update="true"/>   
+  <property column="update_target" generated="never" insert="true"
+   lazy="false" name="update_target" type="int" update="true"/>      
+  <property column="delete_target" generated="never" insert="true"
+   lazy="false" name="delete_target" type="int" update="true"/>   
+  <property column="scope_targetList" generated="never" insert="true"
+   lazy="false" name="scope_targetList" type="int" update="true"/>   
+  <property column="view_targetList" generated="never" insert="true"
+   lazy="false" name="view_targetList" type="int" update="true"/>   
+  <property column="create_targetList" generated="never" insert="true"
+   lazy="false" name="create_targetList" type="int" update="true"/>   
+  <property column="update_targetList" generated="never" insert="true"
+   lazy="false" name="update_targetList" type="int" update="true"/>      
+  <property column="delete_targetList" generated="never" insert="true"
+   lazy="false" name="delete_targetList" type="int" update="true"/>   
+   <property column="scope_task" generated="never" insert="true"
+   lazy="false" name="scope_task" type="int" update="true"/>   
+  <property column="view_task" generated="never" insert="true"
+   lazy="false" name="view_task" type="int" update="true"/>   
+  <property column="create_task" generated="never" insert="true"
+   lazy="false" name="create_task" type="int" update="true"/>   
+   <property column="scope_contract" generated="never" insert="true"
+   lazy="false" name="scope_contract" type="int" update="true"/>   
+  <property column="view_contract" generated="never" insert="true"
+   lazy="false" name="view_contract" type="int" update="true"/>   
+  <property column="create_contract" generated="never" insert="true"
+   lazy="false" name="create_contract" type="int" update="true"/>   
+  <property column="update_contract" generated="never" insert="true"
+   lazy="false" name="update_contract" type="int" update="true"/>      
+  <property column="delete_contract" generated="never" insert="true"
+   lazy="false" name="delete_contract" type="int" update="true"/>
+   <property column="scope_check" generated="never" insert="true"
+   lazy="false" name="scope_check" type="int" update="true"/>   
+  <property column="view_check" generated="never" insert="true"
+   lazy="false" name="view_check" type="int" update="true"/>   
+  <property column="create_check" generated="never" insert="true"
+   lazy="false" name="create_check" type="int" update="true"/>   
+  <property column="update_check" generated="never" insert="true"
+   lazy="false" name="update_check" type="int" update="true"/>      
+  <property column="delete_check" generated="never" insert="true"
+   lazy="false" name="delete_check" type="int" update="true"/>
+   <property column="scope_system" generated="never" insert="true"
+   lazy="false" name="scope_system" type="int" update="true"/>   
+  <property column="view_system" generated="never" insert="true"
+   lazy="false" name="view_system" type="int" update="true"/>   
+  <property column="create_system" generated="never" insert="true"
+   lazy="false" name="create_system" type="int" update="true"/>   
+  <property column="update_system" generated="never" insert="true"
+   lazy="false" name="update_system" type="int" update="true"/>      
+  <property column="delete_system" generated="never" insert="true"
+   lazy="false" name="delete_system" type="int" update="true"/>           
+  <property name="description" column="description" type="string" />
+  <property name="notes" column="notes" type="string" />  
+  <many-to-one name="owner"
+			class="User" column="owner" cascade="save-update"/>			        
+  <many-to-one name="created_by"
+            class="User" column="created_by" cascade="save-update"/>
+  <many-to-one name="updated_by"
+            class="User" column="updated_by" cascade="save-update"/>
+  <property name="created_on" column="created_on" type="java.util.Date" />
+  <property name="updated_on" column="updated_on" type="java.util.Date" /> 
+ </class>
+</hibernate-mapping>

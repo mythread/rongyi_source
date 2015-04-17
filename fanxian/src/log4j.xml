@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"  debug="true">
+    
+     <appender name="ALL_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="fileName" value="/home/jiejie/log/fanxian/web.log"/>
+        <param name="fileAppend" value="true"/>
+        <param name="encoding" value="utf-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="pattern" value="%d %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+    
+    <appender name="INFO_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+	    <param name="fileName" value="/home/jiejie/log/fanxian/info.log"/>
+        <param name="fileAppend" value="true"/>
+        <param name="encoding" value="utf-8"/>
+        <param name="threshold" value="info"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="pattern" value="%d %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+   <appender name="ERROR_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+	    <param name="fileName" value="/home/jiejie/log/fanxian/error.log"/>
+        <param name="fileAppend" value="true"/>
+        <param name="encoding" value="utf-8"/>
+        <param name="threshold" value="error"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="pattern" value="%d %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+    
+	<appender name="SQL_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+            <param name="fileName" value="/home/jiejie/log/fanxian/sql.log"/>
+        <param name="fileAppend" value="true"/>
+        <param name="encoding" value="utf-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="pattern" value="%d - %m%n"/>
+        </layout>
+    </appender>
+	
+	<appender name="SEINE_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="fileName" value="/home/jiejie/log/fanxian/seine.log"/>
+        <param name="fileAppend" value="true"/>
+        <param name="encoding" value="utf-8"/>
+        <param name="datePattern" value="'.'yyyy-MM-dd'.log'" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="pattern" value="%d - %m%n"/>
+        </layout>
+    </appender>
+    
+	<logger name="com.yue.commons.seine">  
+         <level value="debug" />
+         <appender-ref ref="SEINE_LOG"/>
+    </logger>
+	
+	<logger name="java.sql.Connection">
+         <level value="debug" />
+         <appender-ref ref="SQL_LOG"/>
+    </logger>
+    <logger name="java.sql.PreparedStatement">
+         <level value="debug" />
+         <appender-ref ref="SQL_LOG"/>
+    </logger>
+    
+      
+       
+   <!-- ===================================================================== -->
+    <!-- ===================================================================== -->
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="ALL_LOG"/>
+        <appender-ref ref="INFO_LOG"/>
+        <appender-ref ref="ERROR_LOG"/>
+   </root>
+</log4j:configuration>
+

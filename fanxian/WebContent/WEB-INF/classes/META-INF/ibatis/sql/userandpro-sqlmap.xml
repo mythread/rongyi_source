@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="USERANDPRO">
+	<typeAlias alias="UserAndProDO" type="com.fanxian.biz.userandpro.dataobject.UserAndProDO" />
+
+	<resultMap id="UserAndProResult" class="UserAndProDO">
+		<result column="ID"             property="id"             jdbcType="DECIMAL" />
+		<result column="GMT_CREATE"     property="gmtCreate"      jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFIED"   property="gmtModified"    jdbcType="TIMESTAMP" />
+		<result column="STATUS"         property="status"         jdbcType="DECIMAL" />
+		<result column="IDENTITY"        property="identity"      jdbcType="VARCHAR" />
+		<result column="USER_ID"        property="userId"         jdbcType="DECIMAL" />
+		<result column="PRODUCT_URL"    property="productUrl" jdbcType="VARCHAR" />
+		<result column="IP"    property="ip" jdbcType="VARCHAR" />
+		<result column="ALIPAY_STATUS"    property="alipayStatus" jdbcType="VARCHAR" />
+		<result column="PRICE"           property="price"          jdbcType="DECIMAL" />
+	</resultMap>
+
+
+	<!-- colums start -->
+	<sql id="columns">
+		ID,GMT_CREATE,GMT_MODIFIED,STATUS,IDENTITY,USER_ID,PRODUCT_URL,IP,ALIPAY_STATUS,PRICE
+	</sql>
+	<!-- colums end -->
+
+	<!-- insert start -->
+	<insert id="insert" parameterClass="UserAndProDO">
+		INSERT INTO USERANDPRO
+		(GMT_CREATE,GMT_MODIFIED,STATUS,IDENTITY,USER_ID,PRODUCT_URL,IP,ALIPAY_STATUS,PRICE)
+		VALUES
+		(now(), now(), #status:DECIMAL#, #identity:VARCHAR#,#userId:DECIMAL#,#productUrl:VARCHAR#,#ip:VARCHAR#,#alipayStatus:VARCHAR#,#price:DECIMAL#)
+		<selectKey keyProperty="id" resultClass="integer">
+			SELECT LAST_INSERT_ID() AS ID</selectKey>
+	</insert>
+	<!-- insert end -->
+	
+</sqlMap>

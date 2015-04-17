@@ -1,0 +1,50 @@
+/**
+ * 主页CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-22
+ */
+
+
+#top-title {
+	margin-top: 80px;
+	margin-bottom: 42px;
+}
+
+.case-block {
+	margin-left: 8px;
+	margin-right: 8px;
+	float: left;
+}
+
+.case-block img {
+	width: 222px;
+	height: 128px;
+}
+
+.case-block img:hover {
+	outline: 2px solid #ff4900;
+}
+
+.case-block div {
+	margin-top: 12px;
+	text-align: center;
+}
+.separate-line {
+	height: 52px;
+	border-bottom: #c1cfd9 dashed 1px;
+	margin-bottom: 54px;
+	clear: both;
+}
+.bottom {
+	height: 98px;
+}
+.pager {
+	margin-bottom: 104px;
+}
+
+.list-dash-line {
+	border-bottom: #c1cfd9 1px dashed;
+	clear: both;
+	height: 52px;
+	margin-bottom: 54px;
+}

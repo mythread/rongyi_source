@@ -1,0 +1,212 @@
+/**
+ * 商家平台 页面 CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-22
+ */
+ 
+#top-img {
+	background-image: url("../img/bg-platform.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 648px;
+}
+#top-img-content {
+	margin-left: auto;
+	margin-right: auto;
+	width: 924px;
+	height: 390px;
+}
+#top-none {
+	height: 176px;
+}
+#login {
+	width: 364px;
+	height: 382px;
+	border: 1px solid #c1cfd9;
+	padding-left: 60px;
+	padding-right: 60px;
+	background-image: url("../img/bg-transparent.png");
+	margin-left: 220px;
+	float: left;
+}
+.login-title {
+	font-size: 18px;
+	margin-top: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #c1cfd9;
+}
+.login-text {
+	font-size: 14px;
+}
+.login-input {
+	margin-top: 20px;
+	height: 48px;
+	border: 1px solid #c1cfd9;
+	background-image: url("../img/icon-login.png");
+	background-repeat: no-repeat;
+}
+.login-username {
+	background-position: 0px 8px;
+}
+.login-password {
+	background-position: 0px -57px;
+}
+.login-input-content {
+	margin-left: 45px;
+	height: 24px;
+	margin-top: 12px;
+	border-left: 1px solid #c1cfd9;
+}
+.login-input-content input {
+	width: 260px;
+	height: 24px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	outline: none;
+	margin-left: 28px;
+	color: #2e3641;
+	font-size: 14px;
+	font-family: Microsoft YaHei;
+	background-color: transparent;
+}
+.login-bottom {
+	font-size: 14px;
+	margin-top: 20px;
+}
+.login-bottom-left {
+	height: 20px;
+	float: left;
+	padding-left: 30px;
+	background-image: url("../img/icon-checkbox.png");
+	background-repeat: no-repeat;
+	background-position: -3px -2px;
+}
+.login-bottom-left.login-selected {
+	background-position: -3px -52px;
+}
+.login-bottom-right {
+	text-align: right;
+}
+a.login-btn {
+	display: block;
+	height: 40px;
+	line-height: 40px;
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	font-size: 18px;
+	color: white;
+	margin-top: 35px;
+	background-color: #ff4900;
+}
+a.login-btn:hover {
+	background-color: #df4900;
+}
+
+#leave-msg {
+	height: 182px;
+	width: 160px;
+	background-image: url("../img/bg-qq.png");
+	background-repeat: no-repeat;
+	float: left;
+	margin-left: 57px;
+	margin-top: 200px;
+}
+#leave-msg-close {
+	margin-left: auto;
+	height: 35px;
+	width: 35px;
+	cursor: pointer;
+}
+#qq-box {
+	cursor: pointer;
+	height: 44px;
+	width: 110px;
+	background-image: url("../img/bg-qqbox.png");
+	background-repeat: no-repeat;
+	margin-left: 20px;
+	line-height: 44px;
+	padding-left: 43px;
+	font-size: 14px;
+}
+.leave-msg-text {
+	width: 150px;
+	text-align: center;
+	font-size: 18px;
+	margin-top: 15px;
+	margin-bottom: 17px;
+}
+.leave-msg-white-text {
+	width: 120px;
+	color: #ffffff;
+	text-align: center;
+	margin: 20px auto;
+}
+
+.top-text {
+	margin-top: 35px;
+	margin-bottom: 65px;
+	text-align: center;
+	font-size: 30px;
+}
+.text-introduce {
+	height: 600px;
+}
+.text-left {
+	float: left;
+	width: 467px;
+	border-right: 1px dashed #c1cfd9;
+	height: 450px;
+}
+.text-right {
+	float: left;
+	width: 468px;
+	margin-left: 19px;
+}
+
+.main-text {
+	font-size: 18px;
+	background-image: url("../img/icon-platform.png");
+	background-repeat: no-repeat;
+	padding-left: 40px;
+	margin-bottom: 45px;
+}
+.main-text-left {
+	background-position: 0px -1px;
+}
+.main-text-right {
+	background-position: 0px -89px;
+}
+
+.text-normal {
+	font-size: 14px;
+}
+.text-color {
+	color: #ff4900;
+}
+.text-block {
+	background-image: url("../img/icon-num.png");
+	background-repeat: no-repeat;
+	padding-left: 40px;
+	margin-top: 35px;
+	width: 400px;
+	line-height: 25px;
+}
+.text-block-one {
+	background-position: -2px -5px;
+}
+.text-block-two {
+	background-position: -3px -78px;
+}
+.text-block-three {
+	background-position: -3px -151px;
+}
+.text-block-four {
+	background-position: -3px -226px;
+}
+.text-block-five {
+	background-position: -3px -295px;
+}

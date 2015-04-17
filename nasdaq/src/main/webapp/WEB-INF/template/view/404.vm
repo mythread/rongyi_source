@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>容易网</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/404.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="/static/js/404.js"></script>
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+            <div id="content-top"></div>
+			
+            <div id="file-not-found">
+                <div class="content-center">
+                    <div class="content-center-right">
+                        <div class="content-center-right-top"></div>
+                        <div class="big-text">出错啦！</div>
+        				<div class="medium-text">您访问的页面不存在哦！</div>
+        				<div class="small-text">点击以下链接继续浏览网站</div>
+                        <div class="small-text"><a href="javascript:void(0)" class="back">&gt;&gt; 返回上一级页面</a></div>
+                        <div class="small-text"><a href="/">&gt;&gt; 返回网站首页</a></div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

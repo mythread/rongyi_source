@@ -1,0 +1,35 @@
+/**
+ * 招商合作CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-23
+ */
+ 
+ 
+.text-header {
+	font-size: 20px;
+	margin-top: 50px;
+}
+
+.text-line {
+	font-size: 14px;
+	margin-top: 18px;
+	padding-left: 40px;
+	background-image: url("../../img/icon-cooperation.png");
+	background-repeat: no-repeat;
+}
+
+.text-email {
+	background-position: -5px -3px;
+}
+
+.text-tel {
+	background-position: -5px -34px;
+}
+
+.text-qq {
+	background-position: -5px -65px;
+}
+
+.bottom {
+	height: 360px;
+}

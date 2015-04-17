@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="USER">
+	<typeAlias alias="UserDO" type="com.fanxian.biz.user.dataobject.UserDO" />
+
+	<resultMap id="UserResult" class="UserDO">
+		<result column="ID"             property="id"             jdbcType="DECIMAL" />
+		<result column="GMT_CREATE"     property="gmtCreate"      jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFIED"   property="gmtModified"    jdbcType="TIMESTAMP" />
+		<result column="STATUS"         property="status"         jdbcType="DECIMAL" />
+		<result column="ACCOUNT"        property="account"        jdbcType="VARCHAR" />
+		<result column="COOKIE_ID"      property="cookieId"        jdbcType="VARCHAR" />
+		<result column="MEMO"           property="memo"           jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<!-- colums start -->
+	<sql id="columns">
+		ID,GMT_CREATE,GMT_MODIFIED,STATUS,ACCOUNT,COOKIE_ID,MEMO
+	</sql>
+	
+	<!-- colums end -->
+
+	<!-- insert start -->
+	<insert id="insert" parameterClass="UserDO">
+		INSERT INTO USER
+		(GMT_CREATE,GMT_MODIFIED,STATUS,ACCOUNT,COOKIE_ID,MEMO)
+		VALUES
+		(now(), now(), #status:DECIMAL#, #account:VARCHAR#,#cookieId:VARCHAR#,#memo:VARCHAR#)
+		<selectKey keyProperty="id" resultClass="integer">
+			SELECT LAST_INSERT_ID() AS ID</selectKey>
+	</insert>
+	<!-- insert end -->
+	
+	<select id="getByAccount" parameterClass="string" resultMap="UserResult">
+		SELECT <include refid="USER.columns" /> FROM USER WHERE STATUS = 0 AND ACCOUNT = #account:VARCHAR#
+	</select>
+	
+	<select id="getById" parameterClass="int" resultMap="UserResult">
+		SELECT <include refid="USER.columns" /> FROM USER WHERE STATUS = 0 AND ID = #id:DECIMAL#
+	</select>
+	
+<!-- 
+	<sql id="search_condition">
+		<dynamic prepend="WHERE" >
+			<isNotEmpty prepend="AND" property="kw">
+	    		( USERCODE LIKE CONCAT('%', #kw#, '%') OR USERNAME LIKE CONCAT('%', #kw#, '%') OR FILECODE LIKE CONCAT('%', #kw#, '%') ) 
+			</isNotEmpty>
+		    <isNotNull prepend="AND" property="status">
+				STATUS = #status:DECIMAL#
+			</isNotNull>
+			<isNotEmpty prepend="AND" property="startGmtLever">
+	        <![CDATA[GMT_LEVER >= #startGmtLever:TIMESTAMP# ]]>
+			</isNotEmpty>
+			<isNotEmpty prepend="AND" property="endGmtLever">
+	        <![CDATA[GMT_LEVER <= #endGmtLever:TIMESTAMP# ]]>
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+
+
+    <select id="count" parameterClass="UserQuery" resultClass="int">
+		SELECT COUNT(ID) FROM USER  
+			<include refid="USER.search_condition"/>
+	</select>
+	
+	<select id="listPagination" parameterClass="UserQuery" resultMap="UserResult">
+		SELECT
+		<include refid="USER.columns" />
+		FROM USER 
+		<include refid="USER.search_condition" />
+		ORDER BY RANK ASC
+		<include refid="PAGINATION.MYSQL_PAGINATION"/>
+	</select>
+ -->
+
+</sqlMap>

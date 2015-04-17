@@ -1,0 +1,250 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
+	font-family: Microsoft YaHei;
+	color: #2e3641;
+	width: 1190px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+	outline: none;
+}
+
+hr {
+	border: none;
+	border-top:1px solid #C1CFDA;
+}
+
+a img {
+	border: 0px;
+}
+
+/* Header部分 */
+
+.header-user a:link {
+	color:white;
+}
+
+.header-user a:visited {
+	color:white;
+}
+
+.header-user a:hover {
+	color:black;
+}
+
+.header-user a:active {
+	color:black;
+}
+
+#header {
+	background-color: #F97E76;
+	height: 70px;
+	padding: 10px 30px 10px 10px;
+	color: white;
+}
+
+h1,h2 {
+	letter-spacing: 1px;
+	margin-left: 20px;
+	margin-bottom: 0;
+	margin-top: 0;
+	font-weight: normal;
+}
+
+.header-title {
+	float: left;
+}
+
+.header-user {
+	float: right;
+	margin-left: 10px;
+	font-size: 15px;
+}
+
+/* 头部导航部分 */
+#nav {
+	float: left;
+	margin-top: 35px;
+	margin-left: 30px;
+}
+
+#nav ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#nav ul li {
+	float: left;
+	margin-right: 4px;
+}
+
+#nav ul li a {
+	display: block;
+	width: 200px;
+	height: 45px;
+	line-height: 45px;
+	text-align: center;
+	font-size: 16px;
+	color: black;
+	background-color: #C1CFDA;
+}
+
+#nav ul li a.selected {
+	background: white;
+}
+
+/* 左侧导航部分 */
+#left-nav {
+	float: left;
+	height: 850px;
+	background-color: #2E3641;
+	position: relative;
+}
+
+#left-nav ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#left-nav>ul>li>a {
+	display: block;
+	width: 200px;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	font-size: 16px;
+	color: white;
+	border-bottom: 2px solid #39414D;
+}
+
+#left-nav>ul>li>a.selected {
+	background: white;
+	color: black;
+}
+
+#right-content {
+	height: 850px;
+	padding-left: 200px;
+}
+
+/* 左侧二级导航 */
+.left-second-nav {
+	position: absolute;
+	top: 0px;
+	left: 200px;
+	background: white;
+	display: none;
+	z-index: 10;
+}
+
+.left-second-nav ul li a {
+	display: block;
+	width: 150px;
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	font-size: 14px;
+	color: black;
+	border: 1px solid #C1CFDA;
+}
+
+.left-second-nav ul li a:hover {
+	background: #F97E76;
+	color: white;
+}
+
+/* Footer部分 */
+#footer {
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	background: #D3DEE4;
+}
+
+/* 分页样式 */
+
+#pager {
+	text-align: center;
+}
+
+#pager .selected {
+	background: #F97E76;
+}
+
+/* 公用默认样式 */
+
+.default-selecter {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.default-selecter-selected {
+	background: #F97E76;
+	color: white;
+}
+
+.default-pink-btn-style {
+	background: #F97E76;
+	color: white;
+	font-size:16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+.default-pink-btn-style:hover {
+	background: #A27E76;
+}
+
+
+.default-gray-btn-style {
+	background: #C1CFDA;
+	font-size:16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+.default-gray-btn-style:hover {
+	background: #81CFDA
+}
+
+.default-black-btn-style {
+	background: #2E3641;
+	font-size:16px;
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	color: white;
+}
+
+.default-black-btn-style:hover {
+	background: #999;
+}
+
+.default-btn-style {
+	background: #2e3641;
+	color: white;
+	padding: 2px 12px 2px 12px;
+}
+
+.default-small-btn-style {
+	background: #444444;
+	color: white;
+	padding: 2px;
+}
+
+.for-clear {
+	clear: both;
+}

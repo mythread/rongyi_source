@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.mina.mapper.BrandsMapper" >
+  
+  <insert id="insert" parameterType="com.rongyi.mina.bean.Brands" useGeneratedKeys="true"  keyProperty="id">
+    insert into brands (address, average_consumption, 
+      aliases, cname, description, 
+      ename, icon, name, 
+      operator, tags, telephone, 
+      updated_at, old_code, old_id, 
+      syhch_status, syhch_msg, 
+      pid, record_type,task_id,cms_outerId,mongo_id,icon_url,mall_id,categoryIds)
+    values (#{address,jdbcType=VARCHAR}, #{averageConsumption,jdbcType=VARCHAR}, 
+      #{aliases,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{ename,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{oldCode,jdbcType=INTEGER}, #{oldId,jdbcType=INTEGER}, 
+      #{syhchStatus,jdbcType=INTEGER}, #{syhchMsg,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=INTEGER}, #{recordType,jdbcType=INTEGER}, #{taskId,jdbcType=INTEGER},
+      #{cmsOuterId,jdbcType=VARCHAR}, #{mongoId,jdbcType=VARCHAR},#{iconUrl,jdbcType=VARCHAR}, #{mallId,jdbcType=VARCHAR}, #{categoryIds, jdbcType=VARCHAR})
+  </insert>
+  
+  </mapper>

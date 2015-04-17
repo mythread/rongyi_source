@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>关于我们-媒体报道</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/about/newslist.css" rel="stylesheet" type="text/css">
+		<link href="/static/css/about/common.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+			<div id="content-top"></div>
+
+			
+			<div class="content-center">
+
+				#parse("view/about/leftnav.vm")
+				
+                <div id="right-content">
+					
+					<div class="title">
+        				<div class="title-left">
+                            <span class="title-cn">媒体报道</span>
+            				<span class="title-en">NEWS</span>
+                        </div>
+        			</div>
+					
+                    <div id="news-list">
+						#foreach($article in $articleList)
+						<div class="news-div">
+                            <div class="news-title">
+								<a href="/about/newsdetail/${article.id}.htm" target="_blank">${article.subject}</a>
+							</div>
+							<div class="news-abstract">
+								#set($str=${article.summary})
+								#if($str.length() < 65)
+									$str
+								#else
+									$str.substring(0,65)...
+								#end
+								<a href="/about/newsdetail/${article.id}.htm" target="_blank">查看全文 &gt;&gt;</a>
+							</div>
+						</div>
+						#end
+					</div>	
+					
+                    #parse("widget/common/pager.vm")
+					
+				</div>
+				
+				<div class="for-clear bottom">
+                </div>
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

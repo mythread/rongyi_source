@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>关于我们-招商合作</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/about/business.css" rel="stylesheet" type="text/css">
+		<link href="/static/css/about/common.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+			<div id="content-top"></div>
+
+			
+			<div class="content-center">
+
+				#parse("view/about/leftnav.vm")
+				
+                <div id="right-content">
+					
+					<div class="title">
+        				<div class="title-left">
+                            <span class="title-cn">招商合作</span>
+            				<span class="title-en">COOPERATION</span>
+                        </div>
+        			</div>
+					
+					<div class="text">
+        				
+                        <div class="text-header">商务合作事宜，请通过以下方式联系我们</div>
+						<div class="text-line text-email">邮箱：bd@rongyi.com（上海 ）</div>
+						<div class="text-line text-tel">电话：400-040-8989</div>
+						<div class="text-line text-qq">QQ：285033393（华东、华北、东北）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;173320065（华中、华南、华西、西北）</div>
+						
+        			</div>
+					
+				</div>
+				
+				<div class="for-clear bottom">
+                </div>
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

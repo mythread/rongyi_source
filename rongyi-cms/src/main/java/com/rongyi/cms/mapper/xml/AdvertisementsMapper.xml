@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.cms.mapper.AdvertisementsMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.cms.bean.Advertisements" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="shop_url" property="shopUrl" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="ad_zone_id" property="adZoneId" jdbcType="VARCHAR" />
+    <result column="delete_status" property="deleteStatus" jdbcType="TINYINT" />
+    <result column="on_status" property="onStatus" jdbcType="TINYINT" />
+    <result column="synch_status" property="synchStatus" jdbcType="INTEGER" />
+    <result column="mongodb_id" property="mongodbId" jdbcType="VARCHAR" />
+    <result column="synch_msg" property="synchMsg" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="record_type" property="recordType" jdbcType="TINYINT" />
+    <result column="min_picture" property="minPicture" jdbcType="VARCHAR" />
+     <result column="default_picture" property="defaultPicture" jdbcType="TINYINT" />
+      <result column="picture_url" property="pictureUrl" jdbcType="VARCHAR" />
+       <result column="min_picture_url" property="minPictureUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, shop_url, start_time, end_time, picture, updated_at, created_at, ad_zone_id, 
+    delete_status, on_status, synch_status, mongodb_id, synch_msg, pid, record_type, 
+    min_picture,default_picture,picture_url,min_picture_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from advertisements
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from advertisements
+    where pid = #{pid,jdbcType=INTEGER} and delete_status=0
+  </select>
+  <select id="selectByDefaultPic" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from advertisements
+    where ad_zone_id = #{adZoneId,jdbcType=VARCHAR} and default_picture = #{defaultPicture,jdbcType=INTEGER} and delete_status=0
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from advertisements
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rongyi.cms.bean.Advertisements" useGeneratedKeys="true"  keyProperty="id">
+    insert into advertisements (id, name, shop_url, 
+      start_time, end_time, picture, 
+      updated_at, created_at, ad_zone_id, 
+      delete_status, on_status, synch_status, 
+      mongodb_id, synch_msg, pid, 
+      record_type, min_picture,default_picture,picture_url,min_picture_url)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{shopUrl,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{picture,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, #{adZoneId,jdbcType=VARCHAR}, 
+      #{deleteStatus,jdbcType=TINYINT}, #{onStatus,jdbcType=TINYINT}, #{synchStatus,jdbcType=INTEGER}, 
+      #{mongodbId,jdbcType=VARCHAR}, #{synchMsg,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}, 
+      #{recordType,jdbcType=TINYINT}, #{minPicture,jdbcType=VARCHAR},#{defaultPicture,jdbcType=TINYINT},
+      #{pictureUrl,jdbcType=VARCHAR},#{minPictureUrl,jdbcType=VARCHAR})
+  </insert>
+  <select id="queryIncludeDate" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select 
+    <include refid="Base_Column_List" />
+    from advertisements 
+    where ((delete_status=0 and #{startTime}>=start_time and end_time>=#{startTime})
+    or    (delete_status=0 and #{endTime}>=start_time and end_time>=#{endTime}))
+    <if test="id > 0" >
+        and id!=#{id} and pid!=#{id}
+    </if>
+    <if test="pid > 0" >
+        and id!=#{pid}
+    </if>
+    and ad_zone_id=#{adZoneId} and pid!=0
+  </select>
+  <insert id="insertSelective" parameterType="com.rongyi.cms.bean.Advertisements" >
+    insert into advertisements
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="shopUrl != null" >
+        shop_url,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="adZoneId != null" >
+        ad_zone_id,
+      </if>
+      <if test="deleteStatus != null" >
+        delete_status,
+      </if>
+      <if test="onStatus != null" >
+        on_status,
+      </if>
+      <if test="synchStatus != null" >
+        synch_status,
+      </if>
+      <if test="mongodbId != null" >
+        mongodb_id,
+      </if>
+      <if test="synchMsg != null" >
+        synch_msg,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="recordType != null" >
+        record_type,
+      </if>
+      <if test="minPicture != null" >
+        min_picture,
+      </if>
+      <if test="defaultPicture != null" >
+        default_picture,
+      </if>
+      <if test="pictureUrl != null" >
+        picture_url,
+      </if>
+      <if test="minPictureUrl != null" >
+        min_picture_url
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopUrl != null" >
+        #{shopUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adZoneId != null" >
+        #{adZoneId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+        #{deleteStatus,jdbcType=TINYINT},
+      </if>
+      <if test="onStatus != null" >
+        #{onStatus,jdbcType=TINYINT},
+      </if>
+      <if test="synchStatus != null" >
+        #{synchStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mongodbId != null" >
+        #{mongodbId,jdbcType=VARCHAR},
+      </if>
+      <if test="synchMsg != null" >
+        #{synchMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="recordType != null" >
+        #{recordType,jdbcType=TINYINT},
+      </if>
+      <if test="minPicture != null" >
+        #{minPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultPicture != null" >
+        #{defaultPicture,jdbcType=TINYINT},
+      </if>
+      <if test="pictureUrl != null" >
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="minPictureUrl != null" >
+        #{minPictureUrl,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongyi.cms.bean.Advertisements" >
+    update advertisements set updated_at = now(),
+     <trim suffixOverrides="," >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shopUrl != null" >
+        shop_url = #{shopUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="adZoneId != null" >
+        ad_zone_id = #{adZoneId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+        delete_status = #{deleteStatus,jdbcType=TINYINT},
+      </if>
+      <if test="onStatus != null" >
+        on_status = #{onStatus,jdbcType=TINYINT},
+      </if>
+      <if test="synchStatus != null" >
+        synch_status = #{synchStatus,jdbcType=INTEGER},
+      </if>
+      <if test="mongodbId != null" >
+        mongodb_id = #{mongodbId,jdbcType=VARCHAR},
+      </if>
+      <if test="synchMsg != null" >
+        synch_msg = #{synchMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="recordType != null" >
+        record_type = #{recordType,jdbcType=TINYINT},
+      </if>
+      <if test="minPicture != null" >
+        min_picture = #{minPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="minPicture != null" >
+        default_picture = #{defaultPicture,jdbcType=TINYINT},
+      </if>
+      <if test="minPicture != null" >
+        picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="minPicture != null" >
+        min_picture_url = #{minPictureUrl,jdbcType=VARCHAR}
+      </if>
+     </trim>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongyi.cms.bean.Advertisements" >
+    update advertisements
+    set name = #{name,jdbcType=VARCHAR},
+      shop_url = #{shopUrl,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      picture = #{picture,jdbcType=VARCHAR},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      ad_zone_id = #{adZoneId,jdbcType=VARCHAR},
+      delete_status = #{deleteStatus,jdbcType=TINYINT},
+      on_status = #{onStatus,jdbcType=TINYINT},
+      synch_status = #{synchStatus,jdbcType=INTEGER},
+      mongodb_id = #{mongodbId,jdbcType=VARCHAR},
+      synch_msg = #{synchMsg,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      record_type = #{recordType,jdbcType=TINYINT},
+      min_picture = #{minPicture,jdbcType=VARCHAR},
+      default_picture = #{defaultPicture,jdbcType=TINYINT},
+      picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      min_picture_url = #{minPictureUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+   <select id="selectAdListByAdZoneId" resultMap="BaseResultMap" parameterType="com.rongyi.cms.bean.Advertisements" >
+    select 
+    <include refid="Base_Column_List" />
+    from advertisements
+    where ad_zone_id = #{adZoneId,jdbcType=VARCHAR} and delete_status = 0 
+    and (record_type=1 or (record_type=0 and pid='-1') )  
+    <if test="synchStatus != null" >
+      and  synch_status = #{synchStatus,jdbcType=INTEGER}
+    </if>
+    order by start_time;
+  </select>
+  
+  <select id="selectAdListByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from advertisements
+    where ad_zone_id = #{adZoneId,jdbcType=VARCHAR} and delete_status = 0 
+    and (record_type=1 or (record_type=0 and pid='-1') )  
+    <if test="synchStatus != null" >
+      and  synch_status = #{synchStatus,jdbcType=INTEGER}
+    </if>
+    <if test="startTime != null">
+      and (start_time>=#{startTime} or #{startTime} between start_time and end_time) 
+    </if>
+    <if test="endTime != null">
+    	and (#{endTime}>=end_time or #{endTime} between start_time and end_time) 
+    </if>
+    order by start_time;
+  </select>
+
+  <select id="groupSynchStatusByAdZoneId" resultType="map" parameterType="java.lang.String" >
+    select 
+    count(*) as counts,synch_status as ss 
+    from advertisements
+    where ad_zone_id = #{adZoneId,jdbcType=VARCHAR} and delete_status = 0 
+    and (record_type=1 or (record_type=0 and pid='-1') )  group by synch_status;
+  </select>
+  <update id="setDefaultAd" parameterType="java.util.Map">
+    update advertisements
+    set default_picture=0,
+    where id != #{id,jdbcType=INTEGER} and ad_zone_id = #{adZoneId,jdbcType=VARCHAR} and default_picture=1
+  </update>
+  <update id="updatePidById" parameterType="com.rongyi.cms.bean.Advertisements" >
+    update advertisements set updated_at = now(),
+        pid = #{pid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    
+    <select id="selectOnOffStatusAdListByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from advertisements
+    where ad_zone_id = #{adZoneId,jdbcType=VARCHAR} and delete_status = 0 
+    and (record_type=1 or (record_type=0 and pid='-1') )  
+    <if test="onStatus != null" >
+      and  on_status = #{onStatus,jdbcType=TINYINT}
+    </if>
+    <if test="startTime != null">
+      and (start_time>=#{startTime} or #{startTime} between start_time and end_time) 
+    </if>
+    <if test="endTime != null">
+    	and (#{endTime}>=end_time or #{endTime} between start_time and end_time) 
+    </if>
+    order by start_time;
+  </select>
+</mapper>

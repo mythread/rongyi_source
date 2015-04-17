@@ -1,0 +1,24 @@
+<div class="left-nav">
+    <ul>
+    	<li class="left-nav-first left-nav-descripe #if($leftNavSelected == 1) left-nav-selected #end">
+    		<a href="/about/introduce.htm">公司简介</a>
+    		#if($leftNavSelected == 1)<div class="left-nav-selected-icon"></div>#end
+        </li>
+    	<li class="left-nav-news #if($leftNavSelected == 2) left-nav-selected #end">
+            <a href="/about/newslist.htm">媒体报道</a>
+    		#if($leftNavSelected == 2)<div class="left-nav-selected-icon"></div>#end
+        </li>
+    	<li class="left-nav-area #if($leftNavSelected == 3) left-nav-selected #end">
+            <a href="/about/area.htm">区域覆盖</a>
+    		#if($leftNavSelected == 3)<div class="left-nav-selected-icon"></div>#end
+        </li>
+    	<li class="left-nav-business #if($leftNavSelected == 4) left-nav-selected #end">
+            <a href="/about/business.htm">招商合作</a>
+    		#if($leftNavSelected == 4)<div class="left-nav-selected-icon"></div>#end
+        </li>
+    	<li class="left-nav-contact #if($leftNavSelected == 5) left-nav-selected #end">
+            <a href="/about/contact.htm">联系我们</a>
+    		#if($leftNavSelected == 5)<div class="left-nav-selected-icon"></div>#end
+        </li>
+    </ul>
+</div>

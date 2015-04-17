@@ -1,0 +1,62 @@
+/**
+ * 公司简介CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-23
+ */
+
+
+#right-content img {
+	max-width: 100%;
+	margin-bottom: 48px;
+}
+#right-content p {
+	line-height: 25px;
+	margin-bottom: 38px;
+}
+#right-content p.big-text {
+	font-size: 18px;
+	margin-bottom: 18px;
+}
+.separate-line {
+	border-bottom: #c1cfd9 dashed 1px;
+	height: 12px;
+	margin-bottom: 48px;
+}
+ 
+#time-line {
+	margin-bottom: 104px;
+}
+#time-line-header {
+	height: 25px;
+	background-image: url("../../img/icon-clock.png");
+	background-repeat: no-repeat;
+	font-size: 18px;
+	padding-left: 45px;
+}
+#time-line-body {
+	background-image: url("../../img/bg-line.png");
+	background-repeat: repeat-y;
+}
+.time-line-year {
+	color: #ff4900;
+	font-family: tahoma;
+	font-size: 18px;
+	padding-left: 45px;
+	padding-top: 10px;
+	padding-bottom: 8px;
+}
+.time-line-block {
+	background-image: url("../../img/bg-circle.png");
+	background-repeat: no-repeat;
+	padding-left: 45px;
+	margin-bottom: 34px;
+}
+.time-line-time {
+	float: left;
+	color: #ff4900;
+	line-height: 25px;
+}
+.time-line-text {
+	margin-left: 85px;
+	line-height: 25px;
+}

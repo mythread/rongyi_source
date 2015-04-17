@@ -1,0 +1,17 @@
+<div id="content-top"></div>
+<div id="product-nav">
+    <div class="content-center">
+        <div class="product-nav-left">
+            <div class="product-nav-item #if($productNavSelected == 1) product-nav-selected #end">
+    			<a href="/product/terminal.htm">容易电子互动屏</a>
+    		</div>
+    	</div>
+        <div class="product-nav-line"></div>
+    	<div class="product-nav-right">
+    		<div class="product-nav-item #if($productNavSelected == 2) product-nav-selected #end">
+    			<a href="/product/app.htm">容易逛APP</a>
+            </div>
+    	</div>
+    	
+    </div>
+</div>

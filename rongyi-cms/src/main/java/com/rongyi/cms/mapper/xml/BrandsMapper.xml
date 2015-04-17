@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.cms.mapper.BrandsMapper">
+	<resultMap id="BaseResultMap" type="com.rongyi.cms.bean.Brands">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="average_consumption" property="averageConsumption"
+			jdbcType="VARCHAR" />
+		<result column="aliases" property="aliases" jdbcType="VARCHAR" />
+		<result column="cname" property="cname" jdbcType="VARCHAR" />
+		<result column="ename" property="ename" jdbcType="VARCHAR" />
+		<result column="icon" property="icon" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="operator" property="operator" jdbcType="VARCHAR" />
+		<result column="tags" property="tags" jdbcType="VARCHAR" />
+		<result column="telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+		<result column="old_code" property="oldCode" jdbcType="INTEGER" />
+		<result column="old_id" property="oldId" jdbcType="INTEGER" />
+		<result column="syhch_status" property="syhchStatus" jdbcType="INTEGER" />
+		<result column="syhch_msg" property="syhchMsg" jdbcType="VARCHAR" />
+		<result column="pid" property="pid" jdbcType="INTEGER" />
+		<result column="record_type" property="recordType" jdbcType="INTEGER" />
+		<result column="mongo_id" property="mongoId" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="LONGVARCHAR" />
+		<result column="icon_url" property="iconUrl" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ASBaseResultMap" type="com.rongyi.cms.bean.Brands">
+		<id column="br_id" property="id" jdbcType="INTEGER" />
+		<result column="br_address" property="address" jdbcType="VARCHAR" />
+		<result column="br_average_consumption" property="averageConsumption"
+			jdbcType="VARCHAR" />
+		<result column="br_aliases" property="aliases" jdbcType="VARCHAR" />
+		<result column="br_cname" property="cname" jdbcType="VARCHAR" />
+		<result column="br_ename" property="ename" jdbcType="VARCHAR" />
+		<result column="br_icon" property="icon" jdbcType="VARCHAR" />
+		<result column="br_name" property="name" jdbcType="VARCHAR" />
+		<result column="br_operator" property="operator" jdbcType="VARCHAR" />
+		<result column="br_tags" property="tags" jdbcType="VARCHAR" />
+		<result column="br_telephone" property="telephone" jdbcType="VARCHAR" />
+		<result column="br_updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+		<result column="br_old_code" property="oldCode" jdbcType="INTEGER" />
+		<result column="br_old_id" property="oldId" jdbcType="INTEGER" />
+		<result column="br_syhch_status" property="syhchStatus"
+			jdbcType="INTEGER" />
+		<result column="br_syhch_msg" property="syhchMsg" jdbcType="VARCHAR" />
+		<result column="br_pid" property="pid" jdbcType="INTEGER" />
+		<result column="br_record_type" property="recordType" jdbcType="INTEGER" />
+		<result column="br_mongo_id" property="mongoId" jdbcType="VARCHAR" />
+		<result column="br_description" property="description"
+			jdbcType="LONGVARCHAR" />
+		<result column="br_icon_url" property="iconUrl" jdbcType="VARCHAR" />
+		<association property="categories"
+			resultMap="com.rongyi.cms.mapper.CategoriesMapper.ASBaseResultMap" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		id, address, average_consumption, aliases, cname, ename,
+		icon, name,
+		operator, tags,
+		telephone, updated_at, old_code, old_id,
+		syhch_status, syhch_msg, pid,
+		record_type,
+		mongo_id,description,icon_url
+	</sql>
+	<sql id="ASBase_Column_List">
+		br.id as br_id, br.address as br_address,
+		br.average_consumption as br_average_consumption,
+		br.aliases as br_aliases, br.cname as br_cname, br.ename as br_ename,
+		br.icon as
+		br_icon, br.name as br_name, br.operator as br_operator,
+		br.tags as br_tags,br.telephone as br_telephone,
+		br.updated_at as br_updated_at,
+		br.old_code as br_old_code, br.old_id as br_old_id,
+		br.syhch_status as br_syhch_status,
+		br.syhch_msg as br_syhch_msg, br.pid as br_pid,
+		br.record_type as br_record_type,
+		br.mongo_id as br_mongo_id,br.description as br_description,
+		br.icon_url as br_icon_url
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from brands
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from brands
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.rongyi.cms.bean.Brands"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into brands (id, address,
+		average_consumption,
+		aliases, cname, ename,
+		icon, name, operator,
+		tags,
+		telephone, updated_at,
+		old_code, old_id, syhch_status,
+		syhch_msg, pid,
+		record_type,
+		mongo_id, description,icon_url)
+		values
+		(#{id,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR},
+		#{averageConsumption,jdbcType=VARCHAR},
+		#{aliases,jdbcType=VARCHAR},
+		#{cname,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR},
+		#{icon,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+		#{operator,jdbcType=VARCHAR},
+		#{tags,jdbcType=VARCHAR},
+		#{telephone,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP},
+		#{oldCode,jdbcType=INTEGER}, #{oldId,jdbcType=INTEGER},
+		#{syhchStatus,jdbcType=INTEGER},
+		#{syhchMsg,jdbcType=VARCHAR},
+		#{pid,jdbcType=INTEGER}, #{recordType,jdbcType=INTEGER},
+		#{mongoId,jdbcType=VARCHAR},
+		#{description,jdbcType=LONGVARCHAR},#{iconUrl,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.rongyi.cms.bean.Brands">
+		insert into brands
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="averageConsumption != null">
+				average_consumption,
+			</if>
+			<if test="aliases != null">
+				aliases,
+			</if>
+			<if test="cname != null">
+				cname,
+			</if>
+			<if test="ename != null">
+				ename,
+			</if>
+			<if test="icon != null">
+				icon,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="operator != null">
+				operator,
+			</if>
+			<if test="tags != null">
+				tags,
+			</if>
+			<if test="telephone != null">
+				telephone,
+			</if>
+			<if test="updatedAt != null">
+				updated_at,
+			</if>
+			<if test="oldCode != null">
+				old_code,
+			</if>
+			<if test="oldId != null">
+				old_id,
+			</if>
+			<if test="syhchStatus != null">
+				syhch_status,
+			</if>
+			<if test="syhchMsg != null">
+				syhch_msg,
+			</if>
+			<if test="pid != null">
+				pid,
+			</if>
+			<if test="recordType != null">
+				record_type,
+			</if>
+			<if test="mongoId != null">
+				mongo_id,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="iconUrl != null">
+				icon_url
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="averageConsumption != null">
+				#{averageConsumption,jdbcType=VARCHAR},
+			</if>
+			<if test="aliases != null">
+				#{aliases,jdbcType=VARCHAR},
+			</if>
+			<if test="cname != null">
+				#{cname,jdbcType=VARCHAR},
+			</if>
+			<if test="ename != null">
+				#{ename,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null">
+				#{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				#{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="tags != null">
+				#{tags,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				#{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedAt != null">
+				#{updatedAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="oldCode != null">
+				#{oldCode,jdbcType=INTEGER},
+			</if>
+			<if test="oldId != null">
+				#{oldId,jdbcType=INTEGER},
+			</if>
+			<if test="syhchStatus != null">
+				#{syhchStatus,jdbcType=INTEGER},
+			</if>
+			<if test="syhchMsg != null">
+				#{syhchMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				#{pid,jdbcType=INTEGER},
+			</if>
+			<if test="recordType != null">
+				#{recordType,jdbcType=INTEGER},
+			</if>
+			<if test="mongoId != null">
+				#{mongoId,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="iconUrl != null">
+				#{iconUrl,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.rongyi.cms.bean.Brands">
+		update brands
+		<set>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="averageConsumption != null">
+				average_consumption =
+				#{averageConsumption,jdbcType=VARCHAR},
+			</if>
+			<if test="aliases != null">
+				aliases = #{aliases,jdbcType=VARCHAR},
+			</if>
+			<if test="cname != null">
+				cname = #{cname,jdbcType=VARCHAR},
+			</if>
+			<if test="ename != null">
+				ename = #{ename,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null">
+				icon = #{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null">
+				operator = #{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="tags != null">
+				tags = #{tags,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedAt != null">
+				updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="oldCode != null">
+				old_code = #{oldCode,jdbcType=INTEGER},
+			</if>
+			<if test="oldId != null">
+				old_id = #{oldId,jdbcType=INTEGER},
+			</if>
+			<if test="syhchStatus != null">
+				syhch_status = #{syhchStatus,jdbcType=INTEGER},
+			</if>
+			<if test="syhchMsg != null">
+				syhch_msg = #{syhchMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=INTEGER},
+			</if>
+			<if test="recordType != null">
+				record_type = #{recordType,jdbcType=INTEGER},
+			</if>
+			<if test="mongoId != null">
+				mongo_id = #{mongoId,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="iconUrl != null">
+				icon_url = #{iconUrl,jdbcType=VARCHAR}
+			</if>
+
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.rongyi.cms.bean.Brands">
+		update brands
+		set
+		address = #{address,jdbcType=VARCHAR},
+		average_consumption =
+		#{averageConsumption,jdbcType=VARCHAR},
+		aliases =
+		#{aliases,jdbcType=VARCHAR},
+		cname = #{cname,jdbcType=VARCHAR},
+		ename =
+		#{ename,jdbcType=VARCHAR},
+		icon = #{icon,jdbcType=VARCHAR},
+		name =
+		#{name,jdbcType=VARCHAR},
+		operator = #{operator,jdbcType=VARCHAR},
+		tags
+		= #{tags,jdbcType=VARCHAR},
+		telephone = #{telephone,jdbcType=VARCHAR},
+		updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+		old_code =
+		#{oldCode,jdbcType=INTEGER},
+		old_id = #{oldId,jdbcType=INTEGER},
+		syhch_status = #{syhchStatus,jdbcType=INTEGER},
+		syhch_msg =
+		#{syhchMsg,jdbcType=VARCHAR},
+		pid = #{pid,jdbcType=INTEGER},
+		record_type = #{recordType,jdbcType=INTEGER},
+		mongo_id =
+		#{mongoId,jdbcType=VARCHAR},
+		description =
+		#{description,jdbcType=LONGVARCHAR},
+		icon_url =
+		#{iconUrl,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectBrandsBySubCategoryId" resultMap="ASBaseResultMap"
+		parameterType="com.rongyi.cms.bean.Categories">
+		select
+		<include refid="ASBase_Column_List" />
+		,
+		<include refid="com.rongyi.cms.mapper.CategoriesMapper.ASBase_Column_List" />
+		FROM
+		brands br
+		LEFT OUTER JOIN
+		cate_link_brands ca
+		ON br.id = ca.brands_id
+		LEFT OUTER JOIN
+		categories cs
+		ON ca.categories_id=cs.id
+		WHERE
+		ca.categories_id = #{id,jdbcType=VARCHAR} and br.syhch_status=2
+	</select>
+	<select id="selectBrandsByParentCategoryId" resultMap="ASBaseResultMap"
+		parameterType="com.rongyi.cms.bean.Categories">
+		select
+		distinct(br.id) as br_id, br.address as br_address,
+		br.average_consumption as br_average_consumption,
+		br.aliases as br_aliases, br.cname as br_cname, br.ename as br_ename,
+		br.icon as
+		br_icon, br.name as br_name, br.operator as br_operator,
+		br.tags as br_tags,br.telephone as br_telephone,
+		br.updated_at as br_updated_at,
+		br.old_code as br_old_code, br.old_id as br_old_id,
+		br.syhch_status as br_syhch_status,
+		br.syhch_msg as br_syhch_msg, br.pid as br_pid,
+		br.record_type as br_record_type,
+		br.mongo_id as br_mongo_id,br.description as br_description,
+		br.icon_url as br_icon_url 
+		FROM
+		brands br
+		LEFT OUTER JOIN cate_link_brands ca
+		ON br.id = ca.brands_id
+		LEFT OUTER JOIN categories cs
+		ON ca.categories_id=cs.id
+		WHERE
+		cs.parent_id = #{id,jdbcType=VARCHAR} and br.syhch_status=2
+	</select>
+	<select id="listPageselectBrandsByParentCategoryId" resultMap="ASBaseResultMap"
+		parameterType="com.rongyi.cms.bean.Categories">
+		select 
+		distinct(br.id) as br_id, br.address as br_address,
+		br.average_consumption as br_average_consumption,
+		br.aliases as br_aliases, br.cname as br_cname, br.ename as br_ename,
+		br.icon as
+		br_icon, br.name as br_name, br.operator as br_operator,
+		br.tags as br_tags,br.telephone as br_telephone,
+		br.updated_at as br_updated_at,
+		br.old_code as br_old_code, br.old_id as br_old_id,
+		br.syhch_status as br_syhch_status,
+		br.syhch_msg as br_syhch_msg, br.pid as br_pid,
+		br.record_type as br_record_type,
+		br.mongo_id as br_mongo_id,br.description as br_description,
+		br.icon_url as br_icon_url 
+		FROM
+		brands br
+		LEFT OUTER JOIN cate_link_brands ca
+		ON br.id = ca.brands_id
+		LEFT OUTER JOIN categories cs
+		ON ca.categories_id=cs.id
+		WHERE
+		cs.parent_id = #{id,jdbcType=VARCHAR} and br.syhch_status=2
+	</select>
+	<select id="selectBrandsByCEName" resultMap="ASBaseResultMap"
+		parameterType="com.rongyi.cms.bean.Brands">
+		select
+		<include refid="ASBase_Column_List" />
+		,
+		<include refid="com.rongyi.cms.mapper.CategoriesMapper.ASBase_Column_List" />
+		FROM
+		brands br
+		LEFT OUTER JOIN cate_link_brands ca
+		ON br.id = ca.brands_id
+		LEFT OUTER JOIN categories cs
+		ON ca.categories_id=cs.id
+		WHERE
+		br.syhch_status=2
+		AND
+		br.cname like CONCAT('%',#{cname,jdbcType=VARCHAR},'%')
+		or
+		br.ename like
+		CONCAT('%',#{ename,jdbcType=VARCHAR},'%')
+		or
+		br.name like CONCAT('%',#{name,jdbcType=VARCHAR},'%')
+
+	</select>
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.mina.mapper.CrmJobMapper" >
+	<resultMap id="cmsJobResult" type="com.rongyi.mina.bean.CrmJob" >
+    <id     property="id"           column="id"                 jdbcType="INTEGER" />
+    <result property="gmtCreate"      column="gmtCreate"        jdbcType="TIMESTAMP" />
+    <result property="gmtModified"    column="gmtModified"      jdbcType="TIMESTAMP" />
+    <result property="type"         column="type"             jdbcType="INTEGER" />
+    <result property="jobStatus"           column="job_status"       jdbcType="INTEGER" />
+    <result property="mallId"       column="mall_id"          jdbcType="VARCHAR" />
+    <result property="cmsOuterId"       column="cms_outerId"      jdbcType="VARCHAR" />
+    <result property="reviewStatus"   column="reviewStatus"     jdbcType="INTEGER" />
+    <result property="memo"         column="memo"             jdbcType="VARCHAR" />
+    <result property="mongodbId"    column="mongo_id"         jdbcType="VARCHAR" />
+    <result property="picUrl"       column="pic_url"          jdbcType="VARCHAR" />
+     <result property="minPicUrl"       column="min_picUrl"          jdbcType="VARCHAR" />
+  </resultMap>
+	
+   <sql id="columns">
+   		id,gmtCreate,gmtModified,type,job_status,mall_id,cms_outerId,reviewStatus,memo,mongo_id,pic_url,min_picUrl
+   </sql>	
+	
+  <select id="listUnHandleJob" resultMap="cmsJobResult" >
+      select <include refid="columns"/>	from crm_job where job_status = 0
+  </select>
+  
+  <update id="batchUpdateJobStatus" parameterType="java.util.List">
+  	update crm_job set gmtModified = now(), job_status = 1 where id in
+  	<foreach collection="list" open="(" close=")" separator="," index="index" item="item">
+  		#{item}
+  	</foreach>
+  </update>
+  
+  
+  </mapper>

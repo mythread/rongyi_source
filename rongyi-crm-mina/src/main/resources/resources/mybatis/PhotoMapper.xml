@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.mina.mapper.PhotosMapper" >
+	<resultMap id="photosResultMap" type="com.rongyi.mina.bean.Photos" >
+	    <id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+	    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+	    <result column="file" property="file" jdbcType="VARCHAR" />
+	    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+	    <result column="owner_type" property="ownerType" jdbcType="VARCHAR" />
+	    <result column="position" property="position" jdbcType="INTEGER" />
+	    <result column="owner_mongo_id" property="ownerMongoId" jdbcType="VARCHAR" />
+	    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+	    <result column="mongo_id" property="mongoId" jdbcType="VARCHAR" />
+	    <result column="delete_status" property="deleteStatus" jdbcType="TINYINT" />
+	    <result column="mall_id" property="mallId" jdbcType="VARCHAR" />
+	    <result column="cms_photo_id" property="cmsPhotoId" jdbcType="INTEGER" />
+	    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="columns">
+  	id,created_at,updated_at,file,owner_id,owner_type,position,owner_mongo_id,file_url,mongo_id,delete_status,mall_id,cms_photo_id,status
+  </sql>
+  
+  <insert id="insert" parameterType="com.rongyi.mina.bean.Photos"  useGeneratedKeys="true"  keyProperty="id">
+    insert into photos (id, status,created_at, file, owner_id,owner_type, position,updated_at, owner_mongo_id, file_url, 
+    mongo_id,delete_status, mall_id,cms_photo_id
+    )
+    values (#{id,jdbcType=INTEGER}, 0, #{createdAt,jdbcType=TIMESTAMP}, #{file,jdbcType=VARCHAR},#{ownerId,jdbcType=INTEGER},
+      #{ownerType,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, now(), #{ownerMongoId,jdbcType=VARCHAR},
+      #{fileUrl,jdbcType=VARCHAR}, #{mongoId,jdbcType=VARCHAR},#{deleteStatus,jdbcType=TINYINT}, #{mallId,jdbcType=VARCHAR}, #{cmsPhotoId,jdbcType=INTEGER})
+  </insert>
+  
+  <update id="delete" parameterType="java.util.Map">
+  	update photos set status = 1 , updated_at = now() where owner_id = #{ownerId,jdbcType=INTEGER} 
+  	and owner_type = #{ownerType,jdbcType=VARCHAR} and mall_id = #{mallId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="listByOwnerId" parameterType="java.util.Map" resultMap="photosResultMap">
+  	select <include refid="columns"/> from photos where status = 0 and owner_id = #{ownerId,jdbcType=INTEGER}
+  	and owner_type = #{ownerType,jdbcType=VARCHAR} and mall_id = #{mallId,jdbcType=VARCHAR}
+  </select>
+  </mapper>

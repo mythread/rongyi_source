@@ -1,0 +1,135 @@
+<div id="money" class="clearfix">
+	<div id="main" class="clearfix">
+        <div class="moneyarea01 clearfix">
+    		<form action="/search.htm" method="post">
+                <p class="money_title clearfix">
+                    <span><img src="/static/img/money_title_logo.jpg" alt="零花钱logo" /></span>
+                    <span class="line"><img src="/static/img/line.jpg" alt="line" /></span>
+                    <span><img src="/static/img/xcy.jpg" alt="免注册 高返利 及时到账" /></span>
+                    <span id="search_box">
+                        <input id="typein" type="text" name="url" border="0" placeholder="粘贴淘宝、天猫、聚划算的宝贝地址，如http://item.taobao.com..." value="" />
+                        <input type="submit" id="search_btn" value=""/>
+                    </span>
+    				#if($!error)
+    				<span class="error-msg">$!error</span>
+    				#end
+    				#if($!id || $!buyError)
+    					<span class="line01"></span> 
+    				#end
+                </p>
+    		</form>
+			#if($!id)
+	
+           <div class="productinfo">
+                    <p class="pro_info">
+						##  /static/img/pro_img.png
+                        <span><a href="$!item.getPicUrl()" target="_blank"><img src="$!item.getPicUrl()" alt="商品图片" width="100px" height="100px"/></a></span>                    
+                        <span class="pro_title">
+							##$!item.getTitle()  $!item.getNick()
+                            <span>$!item.getTitle()</span>  
+                            <span class="dpname">店铺：$!item.getNick()</span> 
+                        </span>                                            
+                        <span class="price">
+							##$!item.getPrice()
+                            <strong>¥$!item.getPrice()</strong>  
+                           ## <del>¥$!item.getPrice()</del> 
+                            <span class="sale_num">销量：425件</span>
+                            #**
+							#if($!price)
+							<span style="color: #FA0808;position: relative;top: 15px;">返利金额约：$currencyViewTools.format($!price)元</span>
+							<span class="group_return" style="display:block">
+                                <input id="return" type="button" value="有返利"/>
+                                <a href="javascript:;" title="help"><img src="/static/img/help.png" /></a>
+                            </span>
+							#else
+								<span style="color: #FA0808;position: relative;top: 15px;">无返利金额</span>
+							#end
+							*#
+                        </span> 
+                        <span class="account_info">	
+                            <input id="gobuy" type="button" value="点击去购买"/>
+                        </span>
+                    </p>
+					<!--弹出层-->     
+                	<div id="useraccount" style="display:none">
+                		<ul id="flinfo" style="width:475px">
+                			<li class="message">为了准确获得返利，请正确填写您的支付宝</li>
+                			<li>
+                				 <input type="text" id="id_aliAccount" placeholder="填写要返利的支付宝"/>
+                				<input type="button" value="提交" id="tj" onclick="submitAccount()"/>
+                			</li>
+                			<li class="attention">若因填错填写支付宝帐号，未收到返利责任自负！</li>
+                			<li>
+                				<form action="/goBuy.htm" method="post" name="gototb" style="width:250px">
+                					<input type="hidden" name="identity" value="$!id" />
+                					<input type="hidden" name="price" value="$!price" />
+                					<input type="button" value="填好了去购买" id="ok_gm" onclick="goBuy()"/>
+                				</form>
+                				<span class="zjgm">
+                					<a href="$!productUrl" target="_blank"><u style="color: #e85459;font-size: 12px;">or 不要返利，直接前往淘宝购买</u></a>
+                				</span>
+                			</li>
+                			<li>
+                				<input value="关闭" type="button" id="close" border="0"/>
+                			</li>
+                		</ul>
+                	</div>					
+            </div>
+			
+			#end
+			#if($!buyError)
+				<div class="buyerror">
+        			<button type="button" class="buyerr-close">×</button>
+        			<span>请输入支付宝帐号！</span>
+				</div>
+			#end
+			#**
+			#if($!tipMsg)
+			<div class="buyerror">
+        			<button type="button" class="buyerr-close">×</button>
+        			<span>注：查询输入的淘宝商品url，并购买，待确认收货后，返利将在当天返还给你！</span>
+			</div>
+			#end
+			*#
+        </div>
+    </div>
+</div>
+<div style="position: fixed;opacity:0; bottom:0">
+	<a data-type="0" biz-itemid="$id" data-tmpl="60x25" data-tmplid="623" data-rd="2" data-style="2" data-border="1" href="$!productUrl">去淘宝购买</a>
+</div>	
+<!--底部分享-->
+#**
+<div id="page_bottom" class="clearfix">
+        <span class="share">
+            <a href="" title="QQ空间"><img src="/static/img/QQ.png" alt="QQ空间" /></a>
+            <a href="" title="淘宝"><img src="/static/img/taobao.png" alt="淘宝" /></a>
+            <a href="" title="微博"><img src="/static/img/weibo.png" alt="微博" /></a>
+        </span>
+</div>
+*#
+<script>
+(function(win,doc){ 
+	var s = doc.createElement("script"), h = doc.getElementsByTagName("head")[0]; 
+	if (!win.alimamatk_show) { 
+		s.charset = "gbk"; 
+		s.async = true; 
+		s.src = "http://a.alimama.cn/tkapi.js";
+		h.insertBefore(s, h.firstChild); }; 
+		var o = { 
+			pid: "mm_33104736_3504629_14652018",/*推广单元ID，用于区分不同的推广渠道*/ 
+			appkey: "21307508",/*通过TOP平台申请的appkey，设置后引导成交会关联appkey*/ 
+			unid: "baobei"/*自定义统计字段*/ 
+		}; 
+		win.alimamatk_onload = win.alimamatk_onload || [];
+		win.alimamatk_onload.push(o); 
+})(window,document);
+
+/*
+setTimeout(function(){
+	var iframe = J('#writeable_iframe_0');
+    	if(iframe.size() > 0){
+    		$('.group_return').show();
+    	}
+},2000)
+*/
+</script>

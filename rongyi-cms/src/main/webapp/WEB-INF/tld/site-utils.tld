@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<!-- 查询分页tag -->
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.2</jspversion>
+	<shortname>site-utils</shortname>
+	<uri>http://rongyi.com/taglibs</uri>
+
+	<tag>
+		<name>pagination</name>
+		<tagclass>base.page.PaginationTag</tagclass>
+		<attribute>
+			<name>pagination</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>searchFormId</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>ajaxForm</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>pageselect</name>
+		<tagclass>base.page.PageSelectTag</tagclass>
+		<attribute>
+			<name>formId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>ajaxForm</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>config</name>
+		<tagclass>base.config.ConfigTag</tagclass>
+		<attribute>
+			<name>key</name>
+			<required>true</required>
+		</attribute>
+	</tag>
+</taglib>

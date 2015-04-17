@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.cms.mapper.CategoriesMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.cms.bean.Categories" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="app_show" property="appShow" jdbcType="TINYINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="old_code" property="oldCode" jdbcType="INTEGER" />
+    <result column="old_id" property="oldId" jdbcType="INTEGER" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="position" property="position" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ASBaseResultMap" type="com.rongyi.cms.bean.Categories" >
+    <id column="cs_id" property="id" jdbcType="VARCHAR" />
+    <result column="cs_app_show" property="appShow" jdbcType="TINYINT" />
+    <result column="cs_name" property="name" jdbcType="VARCHAR" />
+    <result column="cs_old_code" property="oldCode" jdbcType="INTEGER" />
+    <result column="cs_old_id" property="oldId" jdbcType="INTEGER" />
+    <result column="cs_updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="cs_position" property="position" jdbcType="INTEGER" />
+    <result column="cs_parent_id" property="parentId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_show, name, old_code, old_id, updated_at, position, parent_id
+  </sql>
+  <sql id="ASBase_Column_List" >
+    cs.id as cs_id, cs.app_show as cs_app_show, 
+    cs.name as cs_name,cs.old_code as cs_old_code, 
+    cs.old_id as cs_old_id, cs.updated_at as cs_updated_at, 
+    cs.position as cs_position,cs.parent_id as cs_parent_id
+  </sql>
+   <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from categories
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from categories
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from categories
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.rongyi.cms.bean.Categories" >
+    insert into categories (id, app_show, name, 
+      old_code, old_id, updated_at, 
+      position, parent_id)
+    values (#{id,jdbcType=VARCHAR}, #{appShow,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, 
+      #{oldCode,jdbcType=INTEGER}, #{oldId,jdbcType=INTEGER}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{position,jdbcType=INTEGER}, #{parentId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongyi.cms.bean.Categories" >
+    insert into categories
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appShow != null" >
+        app_show,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="oldCode != null" >
+        old_code,
+      </if>
+      <if test="oldId != null" >
+        old_id,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="appShow != null" >
+        #{appShow,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCode != null" >
+        #{oldCode,jdbcType=INTEGER},
+      </if>
+      <if test="oldId != null" >
+        #{oldId,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongyi.cms.bean.Categories" >
+    update categories
+    <set >
+      <if test="appShow != null" >
+        app_show = #{appShow,jdbcType=TINYINT},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCode != null" >
+        old_code = #{oldCode,jdbcType=INTEGER},
+      </if>
+      <if test="oldId != null" >
+        old_id = #{oldId,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongyi.cms.bean.Categories" >
+    update categories
+    set app_show = #{appShow,jdbcType=TINYINT},
+      name = #{name,jdbcType=VARCHAR},
+      old_code = #{oldCode,jdbcType=INTEGER},
+      old_id = #{oldId,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      position = #{position,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAllParentCategories" resultMap="BaseResultMap" >
+  	select 
+    <include refid="Base_Column_List" />
+    from categories
+    where parent_id = '-1'
+  </select>
+   <select id="selectSubCategoriesByParentId" resultMap="BaseResultMap"  parameterType="com.rongyi.cms.bean.Categories">
+  	select 
+    <include refid="Base_Column_List" />
+    from categories
+    where parent_id = #{parentId,jdbcType=VARCHAR}
+  </select>
+</mapper>

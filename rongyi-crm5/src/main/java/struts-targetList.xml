@@ -1,0 +1,140 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="targetList" extends="default">
+      	<action name="listTargetList" class="listTargetListAction" method="list">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+      	<action name="listTargetListFull" class="listTargetListAction" method="listFull">
+    	  <result name="success" type="json"></result>
+        </action>
+
+    	<action name="listTargetListPage">
+    	  <result type="redirect">/jsp/crm/listTargetList.jsp</result>
+        </action>
+
+    	<action name="selectTargetList" class="listTargetListAction" method="select">
+    	  <result type="redirect">/jsp/crm/listTargetList.jsp</result>
+        </action>
+        
+    	<action name="unselectTargetList" class="listTargetListAction" method="unselect">
+    	  <result type="redirect">/jsp/crm/listTargetList.jsp</result>
+        </action>
+
+    	<action name="selectTargetListPage" class="listTargetListAction" method="selectPage">
+    	  <result>/jsp/crm/selectTargetList.jsp</result>
+        </action>
+
+      	<action name="relateTargetListAccount" class="listTargetListAction" method="relateTargetListAccount">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateTargetListAccountPage" class="listTargetListAction" method="filterPage">
+    	  <result>/jsp/crm/relateAccount.jsp</result>
+        </action>
+        
+      	<action name="relateTargetListLead" class="listTargetListAction" method="relateTargetListLead">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateTargetListLeadPage" class="listTargetListAction" method="filterPage">
+    	  <result>/jsp/crm/relateLead.jsp</result>
+        </action>
+
+      	<action name="relateTargetListContact" class="listTargetListAction" method="relateTargetListContact">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateTargetListContactPage" class="listTargetListAction" method="filterPage">
+    	  <result>/jsp/crm/relateContact.jsp</result>
+        </action>
+
+      	<action name="relateTargetListTarget" class="listTargetListAction" method="relateTargetListTarget">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateTargetListTargetPage" class="listTargetListAction" method="filterPage">
+    	  <result>/jsp/crm/relateTarget.jsp</result>
+        </action>
+
+      	<action name="relateTargetListUser" class="listTargetListAction" method="relateTargetListUser">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateTargetListUserPage" class="listTargetListAction" method="filterPage">
+    	  <result>/jsp/system/relateUser.jsp</result>
+        </action>
+        
+         <action name="exportTargetList" class="listTargetListAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>  
+
+         <action name="exportTemplateTargetList" class="listTargetListAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">templateStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>
+                
+         <action name="importTargetList" class="listTargetListAction" method="importCSV">
+        	<result name="input">/jsp/crm/uploadTargetList.jsp</result>
+			<result>/jsp/crm/upload-success.jsp</result>            	  
+        </action>
+                        
+        <action name="editTargetList" class="editTargetListAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result>/jsp/crm/editTargetList.jsp</result>
+        </action>
+
+         <action name="copyTargetList" class="listTargetListAction" method="copy">
+        	<result name="input">/jsp/crm/listTargetList.jsp</result>
+			<result>/jsp/crm/listTargetList.jsp</result>            	  
+        </action>
+                                
+        <action name="saveTargetList" class="editTargetListAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editTargetList.jsp</result>          
+    	    <result type="redirectAction">editTargetList.action?id=${id}&amp;saveFlag=${saveFlag}</result> 
+        </action>
+
+        <action name="saveCloseTargetList" class="editTargetListAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editTargetList.jsp</result>          
+    	    <result type="redirect">/jsp/crm/listTargetList.jsp</result>
+        </action>
+                        
+        <action name="deleteTargetList" class="listTargetListAction" method="delete">
+			<result name="input">/jsp/crm/listTargetList.jsp</result>
+			<result type="redirect">/jsp/crm/listTargetList.jsp</result>
+        </action>
+        
+        <action name="massUpdateTargetList" class="editTargetListAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editTargetList.jsp</result>          
+    	    <result>/jsp/crm/editTargetList.jsp</result>
+        </action>  
+        
+        <action name="massUpdateCloseTargetList" class="editTargetListAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editTargetList.jsp</result>          
+    	    <result type="redirect">/jsp/crm/listTargetList.jsp</result>
+        </action>      
+        
+      	<action name="getTargetListRelationCounts" class="editTargetListAction" method="getTargetListRelationCounts">
+    	  <result name="success" type="json"></result>
+        </action>         
+  </package>      
+    
+</struts>

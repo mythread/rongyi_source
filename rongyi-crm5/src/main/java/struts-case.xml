@@ -1,0 +1,128 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="case" extends="default">
+      	<action name="listCase" class="listCaseAction" method="list">
+    	  <result name="success" type="json"></result>
+        </action>
+
+      	<action name="listCaseFull" class="listCaseAction" method="listFull">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="listCasePage">
+    	  <result type="redirect">/jsp/crm/listCaseInstance.jsp</result>
+        </action>
+  
+    	<action name="selectCase" class="listCaseAction" method="select">
+    	  <result type="redirect">/jsp/crm/listCaseInstance.jsp</result>
+        </action>
+        
+    	<action name="unselectCase" class="listCaseAction" method="unselect">
+    	  <result type="redirect">/jsp/crm/listCaseInstance.jsp</result>
+        </action>
+                
+    	<action name="selectCasePage" class="listCaseAction" method="selectPage">
+    	  <result>/jsp/crm/selectCase.jsp</result>
+        </action>
+          
+      	<action name="filterCase" class="listCaseAction" method="filter">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="filterCasePage" class="listCaseAction" method="filterPage">
+    	  <result>/jsp/crm/filterCase.jsp</result>
+        </action>
+              
+      	<action name="relateCaseInstanceContact" class="listCaseAction" method="relateCaseContact">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateCaseInstanceContactPage" class="listCaseAction" method="filterPage">
+    	  <result>/jsp/crm/relateContact.jsp</result>
+        </action>
+        
+      	<action name="relateCaseInstanceDocument" class="listCaseAction" method="relateCaseDocument">
+    	  <result name="success" type="json"></result>
+        </action>
+                
+    	<action name="relateCaseInstanceDocumentPage" class="listCaseAction" method="filterPage">
+    	  <result>/jsp/crm/relateDocument.jsp</result>
+        </action>        
+                        
+         <action name="exportCase" class="listCaseAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>  
+
+         <action name="exportTemplateCase" class="listCaseAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">templateStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>
+        
+         <action name="importCase" class="listCaseAction" method="importCSV">
+        	<result name="input">/jsp/crm/uploadCase.jsp</result>
+			<result>/jsp/crm/upload-success.jsp</result>            	  
+        </action>
+
+         <action name="copyCase" class="listCaseAction" method="copy">
+        	<result name="input">/jsp/crm/listCaseInstance.jsp</result>
+			<result>/jsp/crm/listCaseInstance.jsp</result>            	  
+        </action>
+                                
+        <action name="editCaseInstance" class="editCaseAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result>/jsp/crm/editCaseInstance.jsp</result>
+        </action>
+                        
+        <action name="saveCase" class="editCaseAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCaseInstance.jsp</result> 
+            <result type="redirectAction">editCaseInstance.action?id=${id}&amp;saveFlag=${saveFlag}</result>
+        </action>
+
+        <action name="saveCloseCase" class="editCaseAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCaseInstance.jsp</result>          
+    	  <result type="redirect">/jsp/crm/listCaseInstance.jsp</result>
+        </action>
+                        
+        <action name="deleteCase" class="listCaseAction" method="delete">
+			<result name="input">/jsp/crm/listCaseInstance.jsp</result>
+			<result type="redirect">/jsp/crm/listCaseInstance.jsp</result>
+        </action>    
+        
+        <action name="removeCase" class="listCaseAction" method="remove">
+			<result type="redirect">/jsp/crm/listCaseInstance.jsp</result>
+        </action> 
+        
+        <action name="massUpdateCase" class="editCaseAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCaseInstance.jsp</result>          
+    	    <result>/jsp/crm/editCaseInstance.jsp</result>
+        </action> 
+        
+        <action name="massUpdateCloseCase" class="editCaseAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCaseInstance.jsp</result>          
+    	  <result type="redirect">/jsp/crm/listCaseInstance.jsp</result>
+        </action>  
+        
+      	<action name="getCaseRelationCounts" class="editCaseAction" method="getCaseRelationCounts">
+    	  <result name="success" type="json"></result>
+        </action>           
+  </package>      
+    
+</struts>

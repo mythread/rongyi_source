@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.mallcms.domain">
+ <class dynamic-insert="false" dynamic-update="true"
+  name="com.mallcms.domain.BrandsPojo" table="brands">
+  <id column="id" name="id" type="java.lang.String">
+  </id>
+   <property name="status"    column="status"   type="java.lang.Integer" />   
+  <property name="address"    column="address"   type="java.lang.String" />   
+  <property name="averageConsumption" column="average_consumption" type="java.lang.String" />  
+  <property name="aliases" column="aliases" type="java.lang.String" /> 
+  <property name="cname" column="cname" type="java.lang.String" /> 
+  <property name="description" column="description" type="java.lang.String" /> 
+  <property name="ename" column="ename" type="java.lang.String" /> 
+  <property name="icon" column="icon" type="java.lang.String" /> 
+  <property name="name" column="name" type="java.lang.String" /> 
+  <property name="operator" column="operator" type="java.lang.String" />
+  <property name="tags" column="tags" type="java.lang.String" />
+   <property name="telephone" column="telephone" type="java.lang.String" />
+  <property name="updatedAt" column="updated_at" type="java.util.Date" />
+    <property name="oldCode" column="old_code" type="java.lang.Integer" />
+    <property name="oldId" column="old_id" type="java.lang.Integer" />
+    <property name="categoryId" column="category_id" type="java.lang.String" />
+    <property name="syhchStatus" column="syhch_status" type="java.lang.Integer" />
+     <property name="syhchMsg" column="syhch_msg" type="java.lang.String" />
+      <property name="pid" column="pid" type="java.lang.Integer" />
+      <property name="recordType" column="record_type" type="java.lang.Integer" />
+      <property name="taskId" column="task_id" type="java.lang.Integer" />
+       <property name="cmsOuterId" column="cms_outerId" type="java.lang.String" />
+       <property name="mongoId" column="mongo_id" type="java.lang.String" />
+       <property name="mallId" column="mall_id" type="java.lang.String" />
+       <property name="categoryIds" column="categoryIds" type="java.lang.String" />
+       <property name="iconUrl" column="icon_url" type="java.lang.String" />
+ </class>
+</hibernate-mapping>

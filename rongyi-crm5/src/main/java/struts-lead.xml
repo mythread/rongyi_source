@@ -1,0 +1,117 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="lead" extends="default">
+      	<action name="listLead" class="listLeadAction" method="list">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+      	<action name="listLeadFull" class="listLeadAction" method="listFull">
+    	  <result name="success" type="json"></result>
+        </action>        
+
+    	<action name="listLeadPage">
+    	  <result type="redirect">/jsp/crm/listLead.jsp</result>
+        </action>
+
+    	<action name="selectLead" class="listLeadAction" method="select">
+    	  <result type="redirect">/jsp/crm/listLead.jsp</result>
+        </action>
+        
+    	<action name="unselectLead" class="listLeadAction" method="unselect">
+    	  <result type="redirect">/jsp/crm/listLead.jsp</result>
+        </action>
+                
+    	<action name="selectLeadPage" class="listLeadAction" method="selectPage">
+    	  <result>/jsp/crm/selectLead.jsp</result>
+        </action>
+        
+      	<action name="filterLead" class="listLeadAction" method="filter">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="filterLeadPage" class="listLeadAction" method="filterPage">
+    	  <result>/jsp/crm/filterLead.jsp</result>
+        </action>
+        
+        <action name="exportLead" class="listLeadAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>  
+
+         <action name="exportTemplateLead" class="listLeadAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">templateStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>
+        
+         <action name="importLead" class="listLeadAction" method="importCSV">
+        	<result name="input">/jsp/crm/uploadLead.jsp</result>
+			<result>/jsp/crm/upload-success.jsp</result>            	  
+        </action>
+        
+         <action name="copyLead" class="listLeadAction" method="copy">
+        	<result name="input">/jsp/crm/listLead.jsp</result>
+			<result>/jsp/crm/listLead.jsp</result>            	  
+        </action>
+        
+         <action name="convertLead" class="editLeadAction" method="convert">
+        	<result name="input">/jsp/crm/convertLead.jsp</result>
+			<result>/jsp/crm/convert-success.jsp</result>            	  
+        </action>
+                                
+        <action name="editLead" class="editLeadAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result>/jsp/crm/editLead.jsp</result>
+        </action>
+                        
+        <action name="saveLead" class="editLeadAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editLead.jsp</result> 
+            <result type="redirectAction">editLead.action?id=${id}&amp;saveFlag=${saveFlag}</result> 
+        </action>
+
+        <action name="saveCloseLead" class="editLeadAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editLead.jsp</result>          
+    	    <result type="redirect">/jsp/crm/listLead.jsp</result>
+        </action>
+                        
+        <action name="deleteLead" class="listLeadAction" method="delete">
+			<result name="input">/jsp/crm/listLead.jsp</result>
+			<result type="redirect">/jsp/crm/listLead.jsp</result>
+        </action>  
+        
+        <action name="removeLead" class="listLeadAction" method="remove">
+			<result type="redirect">/jsp/crm/listLead.jsp</result>
+        </action> 
+        
+        <action name="massUpdateLead" class="editLeadAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editLead.jsp</result>          
+    	    <result>/jsp/crm/editLead.jsp</result>
+        </action>  
+        
+        <action name="massUpdateCloseLead" class="editLeadAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editLead.jsp</result>          
+    	    <result type="redirect">/jsp/crm/listLead.jsp</result>
+        </action> 
+        
+      	<action name="getLeadRelationCounts" class="editLeadAction" method="getLeadRelationCounts">
+    	  <result name="success" type="json"></result>
+        </action>          
+  </package>      
+    
+</struts>

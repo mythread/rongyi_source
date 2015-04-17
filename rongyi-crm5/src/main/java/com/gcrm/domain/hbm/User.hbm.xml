@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.gcrm.domain">
+ <class dynamic-insert="true" dynamic-update="true" lazy="true"
+  name="com.gcrm.domain.User" table="users">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="native"/>
+  </id>
+  <property column="name" generated="never" lazy="false" name="name"
+   not-null="true" type="string"/>
+  <property column="first_name" generated="never" lazy="false"
+   name="first_name" type="string"/>
+  <property column="last_name" generated="never" lazy="false"
+   name="last_name" type="string"/>
+  <many-to-one cascade="save-update" class="UserStatus" column="status" name="status"/>
+  <property column="password" generated="never" lazy="false"
+   name="password" type="string"/>
+  <property column="title" generated="never" lazy="false" name="title" type="string"/>
+  <property column="email" generated="never" lazy="false" name="email" type="string"/>
+  <property column="mobile" generated="never" lazy="false" name="mobile" type="string"/>
+  <property column="phone" generated="never" lazy="false" name="phone" type="string"/>
+  <property column="fax" generated="never" lazy="false" name="fax" type="string"/>
+  <property column="department" generated="never" lazy="false"
+   name="department" type="string"/>
+  <many-to-one cascade="save-update" class="User" column="report_to" name="report_to"/>
+  <property column="mail_street" generated="never" lazy="false"
+   name="mail_street" type="string"/>
+  <property column="mail_city" generated="never" lazy="false"
+   name="mail_city" type="string"/>
+  <property column="mail_state" generated="never" lazy="false"
+   name="mail_state" type="string"/>
+  <property column="mail_postal_code" generated="never" lazy="false"
+   name="mail_postal_code" type="string"/>
+  <property column="mail_country" generated="never" lazy="false"
+   name="mail_country" type="string"/>
+  <property column="other_street" generated="never" lazy="false"
+   name="other_street" type="string"/>
+  <property column="other_state" generated="never" lazy="false"
+   name="other_state" type="string"/>
+  <property column="other_postal_code" generated="never" lazy="false"
+   name="other_postal_code" type="string"/>
+  <property column="other_country" generated="never" lazy="false"
+   name="other_country" type="string"/>
+  <property column="age" generated="never" lazy="false" name="age" type="java.lang.Integer"/>
+  <property column="smtp_username" generated="never" lazy="false"
+   name="smtp_username" type="string"/>
+  <property column="smtp_password" generated="never" lazy="false"
+   name="smtp_password" type="string"/>
+  <property column="description" generated="never" lazy="false"
+   name="description" type="string"/>
+  <property column="notes" generated="never" lazy="false" name="notes" type="string"/>
+  <property column="ip" generated="never" lazy="false" name="ip" type="string"/>
+  <property column="count" generated="never" lazy="false" name="count" type="java.lang.Integer"/>
+  <property column="login_on" generated="never" lazy="false" name="login_on" type="java.util.Date"/>
+  <set cascade="all" name="roles" sort="unsorted" table="users_role">
+   <key column="user_id"/>
+   <many-to-many class="com.gcrm.domain.Role" column="role_id" unique="false"/>
+  </set>
+  <many-to-one cascade="save-update" class="User" column="owner" name="owner"/>
+  <many-to-one cascade="save-update" class="User" column="created_by" name="created_by"/>
+  <many-to-one cascade="save-update" class="User" column="updated_by" name="updated_by"/>
+  <property column="created_on" generated="never" lazy="false"
+   name="created_on" type="java.util.Date"/>
+  <property column="updated_on" generated="never" lazy="false"
+   name="updated_on" type="java.util.Date"/>
+  <set cascade="all" name="targetLists" sort="unsorted" table="targetList_user">
+   <key column="user_id"/>
+   <many-to-many class="com.gcrm.domain.TargetList"
+    column="targetList_id" unique="false"/>
+  </set>
+  <set cascade="all" name="calls" sort="unsorted" table="call_user">
+   <key column="user_id"/>
+   <many-to-many class="com.gcrm.domain.Call" column="call_id" unique="false"/>
+  </set>
+  <set cascade="all" name="meetings" sort="unsorted" table="meeting_user">
+   <key column="user_id"/>
+   <many-to-many class="com.gcrm.domain.Meeting" column="meeting_id" unique="false"/>
+  </set>
+  <set cascade="all" name="visits" sort="unsorted" table="visit_user">
+   <key column="user_id"/>
+   <many-to-many class="com.gcrm.domain.Visit" column="visit_id" unique="false"/>
+  </set>
+ </class>
+</hibernate-mapping>

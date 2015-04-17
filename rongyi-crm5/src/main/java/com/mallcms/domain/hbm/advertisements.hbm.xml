@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.mallcms.domain">
+ <class dynamic-insert="false" dynamic-update="true"
+  name="com.mallcms.domain.AdvertisementsPojo" table="advertisements">
+  <id column="id" name="id" type="java.lang.String">
+   <generator class="native"/>
+  </id>
+  <property name="name" column="name" type="java.lang.String" />   
+  <property name="shopUrl" column="shop_url" type="java.lang.String" />  
+  <property name="startTime" column="start_time" type="java.util.Date" /> 
+  <property name="endTime" column="end_time" type="java.util.Date" /> 
+  <property name="picture" column="picture" type="java.lang.String" /> 
+  <property name="updatedAt" column="updated_at" type="java.util.Date" /> 
+  <property name="createdAt" column="created_at" type="java.util.Date" /> 
+  <property name="adZoneId" column="ad_zone_id" type="java.lang.String" /> 
+   <property name="deleteStatus" column="delete_status" type="java.lang.Byte" /> 
+   <property name="onStatus" column="on_status" type="java.lang.Byte" /> 
+   <property name="synchStatus" column="synch_status" type="java.lang.Integer" /> 
+   <property name="mongodbId" column="mongodb_id" type="java.lang.String" /> 
+   <property name="synchMsg" column="synch_msg" type="java.lang.String" /> 
+   <property name="pid" column="pid" type="java.lang.Integer" /> 
+   <property name="recordType" column="record_type" type="java.lang.Byte" /> 
+   <property name="minPicture" column="min_picture" type="java.lang.String" /> 
+   <property name="defaultPicture" column="default_picture" type="java.lang.Integer" /> 
+   <property name="pictureUrl" column="picture_url" type="java.lang.String" /> 
+   <property name="minPictureUrl" column="min_picture_url" type="java.lang.String" /> 
+   <property name="taskId" column="task_id" type="java.lang.Integer" /> 
+   <property name="cmsOuterId" column="cms_outerId" type="java.lang.String" /> 
+ </class>
+</hibernate-mapping>

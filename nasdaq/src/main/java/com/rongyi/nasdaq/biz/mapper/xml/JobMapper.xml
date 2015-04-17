@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.nasdaq.biz.mapper.JobMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.nasdaq.biz.domain.JobDO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="jobNum" property="jobNum" jdbcType="INTEGER" />
+    <result column="jobTypeId" property="jobTypeId" jdbcType="INTEGER" />
+    <result column="jobTypeName" property="jobTypeName" jdbcType="VARCHAR" />
+    <result column="jobPlaceId" property="jobPlaceId" jdbcType="INTEGER" />
+    <result column="jobPlaceName" property="jobPlaceName" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+     <result column="depId" property="depId" jdbcType="INTEGER" />
+     <result column="depName" property="depName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="columns" >
+    id, gmtCreate, gmtModified, status, name, jobNum, jobTypeId,jobTypeName,jobPlaceId,jobPlaceName,
+    level,memo,email,depId,depName
+  </sql>
+  
+   <select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select  <include refid="columns" /> from job where id = #{id,jdbcType=INTEGER} and status = 0
+  </select>
+  
+   <select id="list" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select  count(id) from job where status = 0 order by id desc, level desc
+  	<if test="limitSize != null" >
+        limit 0 , #{limitSize,jdbcType=INTEGER}
+    </if>
+  </select>
+  
+  <select id="listPagination" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select  <include refid="columns" /> from job where status = 0 
+  	<if test="jobPlaceId != null" >
+  		and jobPlaceId = #{jobPlaceId,jdbcType=INTEGER}
+  	</if>
+  	<if test="jobTypeId != null">
+  		and jobTypeId = #{jobTypeId,jdbcType=INTEGER} 
+  	</if>
+  	order by id desc, level desc
+  	 <include refid="PAGINATION.MYSQL_PAGINATION" />
+  </select>
+  
+   <select id="getTotalNum" resultType="java.lang.Integer" parameterType="java.util.Map">
+    select  count(id) from job where status = 0
+    <if test="jobPlaceId != null" >
+  		and jobPlaceId = #{jobPlaceId,jdbcType=INTEGER}
+  	</if>
+  	<if test="jobTypeId != null">
+  		and jobTypeId = #{jobTypeId,jdbcType=INTEGER} 
+  	</if>
+  </select>
+</mapper>

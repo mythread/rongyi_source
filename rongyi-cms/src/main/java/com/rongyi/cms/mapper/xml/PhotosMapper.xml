@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.cms.mapper.PhotosMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.cms.bean.Photos" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="file" property="file" jdbcType="VARCHAR" />
+    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <result column="owner_type" property="ownerType" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="INTEGER" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="owner_mongo_id" property="ownerMongoId" jdbcType="VARCHAR" />
+    <result column="file_url" property="fileUrl" jdbcType="VARCHAR" />
+    <result column="mongo_id" property="mongoId" jdbcType="VARCHAR" />
+    <result column="delete_status" property="deleteStatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, created_at, file, owner_id, owner_type, position, updated_at, owner_mongo_id, 
+    file_url, mongo_id, delete_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from photos
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByOwnerIdAndType" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select 
+    <include refid="Base_Column_List" />
+    from photos
+    where owner_id = #{ownerId,jdbcType=INTEGER} and owner_type = #{ownerType,jdbcType=VARCHAR}
+    and delete_status=0
+    order by position
+  </select>
+  
+  <select id="selectAllByOwnerId" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select 
+    <include refid="Base_Column_List" />
+    from photos
+    where owner_id = #{ownerId,jdbcType=INTEGER} and owner_type = #{ownerType,jdbcType=VARCHAR}
+    order by position
+  </select>
+  
+  <select id="listNewPhotosByOwnerId" resultMap="BaseResultMap" parameterType="java.util.Map">
+  	select <include refid="Base_Column_List"/> from photos 
+  	where owner_id = #{ownerId,jdbcType=INTEGER} and owner_type = #{ownerType,jdbcType=VARCHAR}
+  	and file_url = '-1' and delete_status=0
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from photos
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rongyi.cms.bean.Photos" >
+    insert into photos (id, created_at, file, 
+      owner_id, owner_type, position, 
+      updated_at, owner_mongo_id, file_url, 
+      mongo_id, delete_status)
+    values (#{id,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{file,jdbcType=VARCHAR}, 
+      #{ownerId,jdbcType=INTEGER}, #{ownerType,jdbcType=VARCHAR}, #{position,jdbcType=INTEGER}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{ownerMongoId,jdbcType=VARCHAR}, #{fileUrl,jdbcType=VARCHAR}, 
+      #{mongoId,jdbcType=VARCHAR}, #{deleteStatus,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongyi.cms.bean.Photos" >
+    insert into photos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="file != null" >
+        file,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="ownerType != null" >
+        owner_type,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="ownerMongoId != null" >
+        owner_mongo_id,
+      </if>
+      <if test="fileUrl != null" >
+        file_url,
+      </if>
+      <if test="mongoId != null" >
+        mongo_id,
+      </if>
+      <if test="deleteStatus != null" >
+		delete_status,
+	  </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="file != null" >
+        #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerType != null" >
+        #{ownerType,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownerMongoId != null" >
+        #{ownerMongoId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mongoId != null" >
+        #{mongoId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+	        #{deleteStatus,jdbcType=TINYINT},
+	    </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongyi.cms.bean.Photos" >
+    update photos
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="file != null" >
+        file = #{file,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerType != null" >
+        owner_type = #{ownerType,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownerMongoId != null" >
+        owner_mongo_id = #{ownerMongoId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileUrl != null" >
+        file_url = #{fileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mongoId != null" >
+        mongo_id = #{mongoId,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteStatus != null" >
+        delete_status = #{deleteStatus,jdbcType=TINYINT},
+    </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongyi.cms.bean.Photos" >
+    update photos
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      file = #{file,jdbcType=VARCHAR},
+      owner_id = #{ownerId,jdbcType=INTEGER},
+      owner_type = #{ownerType,jdbcType=VARCHAR},
+      position = #{position,jdbcType=INTEGER},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      owner_mongo_id = #{ownerMongoId,jdbcType=VARCHAR},
+      file_url = #{fileUrl,jdbcType=VARCHAR},
+      mongo_id = #{mongoId,jdbcType=VARCHAR},
+      delete_status = #{deleteStatus,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

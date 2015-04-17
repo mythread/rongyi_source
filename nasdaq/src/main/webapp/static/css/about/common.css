@@ -1,0 +1,70 @@
+/**
+ * 关于我们公共样式 - 包含左侧导航、整体布局 CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-23
+ */
+
+.left-nav li {
+	background-image: url("../../img/icon-about.png");
+	background-repeat: no-repeat;
+}
+
+.left-nav-descripe {
+	background-position: 22px -656px;
+}
+.left-nav-news {
+	background-position: 21px -765px;
+}
+.left-nav-area {
+	background-position: 22px -887px;
+}
+.left-nav-business {
+	background-position: 24px -710px;
+}
+.left-nav-contact {
+	background-position: 23px -824px;
+}
+
+.left-nav-descripe.left-nav-selected {
+	background-position: 21px -15px;
+}
+.left-nav-news.left-nav-selected {
+	background-position: 22px -150px;
+}
+.left-nav-area.left-nav-selected {
+	background-position: 21px -280px;
+}
+.left-nav-business.left-nav-selected {
+	background-position: 23px -76px;
+}
+.left-nav-contact.left-nav-selected {
+	background-position: 22px -213px;
+}
+
+.left-nav-descripe:hover {
+	background-position: 21px -355px;
+}
+.left-nav-news:hover {
+	background-position: 20px -485px;
+}
+.left-nav-area:hover {
+	background-position: 21px -596px;
+}
+.left-nav-business:hover {
+	background-position: 23px -419px;
+}
+.left-nav-contact:hover {
+	background-position: 21px -540px;
+}
+
+
+/* 关于我们的公共样式 */
+.content-center {
+	margin-top: 80px;
+}
+
+#right-content {
+	float: left;
+	margin-left: 60px;
+	width: 676px;
+}

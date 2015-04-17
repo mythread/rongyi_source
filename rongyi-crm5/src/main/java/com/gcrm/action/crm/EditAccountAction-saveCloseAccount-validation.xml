@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators
+    PUBLIC "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+    "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+
+<validators>    
+    <field name="account.name">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+			<message>${getText("errors.required", {getText("entity.name.label")})}</message>
+        </field-validator>
+    </field>
+    <field name="account.email">
+        <field-validator type="email">
+			<message>${getText("errors.email", {getText("entity.email.label")})}</message>
+        </field-validator>       
+    </field>       
+</validators>

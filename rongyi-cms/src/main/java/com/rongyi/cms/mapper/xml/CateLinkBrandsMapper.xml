@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.cms.mapper.CateLinkBrandsMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.cms.bean.CateLinkBrands" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="categories_id" property="categoriesId" jdbcType="VARCHAR" />
+    <result column="brands_id" property="brandsId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, categories_id, brands_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cate_link_brands
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getCategoryIdsByBrandId" parameterType="java.lang.Integer" resultType="java.lang.String">
+  	select categories_id from cate_link_brands where brands_id = #{brandId,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cate_link_brands
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.rongyi.cms.bean.CateLinkBrands" >
+    insert into cate_link_brands (id, categories_id, brands_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{categoriesId,jdbcType=VARCHAR}, #{brandsId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.rongyi.cms.bean.CateLinkBrands" >
+    insert into cate_link_brands
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categoriesId != null" >
+        categories_id,
+      </if>
+      <if test="brandsId != null" >
+        brands_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="categoriesId != null" >
+        #{categoriesId,jdbcType=VARCHAR},
+      </if>
+      <if test="brandsId != null" >
+        #{brandsId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongyi.cms.bean.CateLinkBrands" >
+    update cate_link_brands
+    <set >
+      <if test="categoriesId != null" >
+        categories_id = #{categoriesId,jdbcType=VARCHAR},
+      </if>
+      <if test="brandsId != null" >
+        brands_id = #{brandsId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rongyi.cms.bean.CateLinkBrands" >
+    update cate_link_brands
+    set categories_id = #{categoriesId,jdbcType=VARCHAR},
+      brands_id = #{brandsId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

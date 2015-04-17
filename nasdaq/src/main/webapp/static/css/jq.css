@@ -1,0 +1,63 @@
+﻿@charset "utf-8";
+*{ margin:0px; padding:0px;}
+html,body{ width:100%; height:100%; font-size:12px; color:#333; font-family:"microsoft YaHei","宋体",Arial;}
+a{ color:#333; text-decoration:none;cursor:pointer;}
+a:hover{ color:#cf0000; text-decoration:none}
+img,a img{ border:0px;}
+ul{ list-style:none; overflow:hidden; margin:0px; padding:0px;}
+ul li{ list-style:none; overflow:hidden; margin:0px; padding:0px;}
+form{ margin:0; padding:0; list-style:none}
+.clear{ width:100%; height:0px; line-height:0px; clear:both}
+
+
+/*Android用户+iPhone用户*/
+.app_user{ width:590px; height:auto; padding:40px 55px; background:#fff; margin:50px auto; border:1px solid #ccc; position:fixed;top:75px;left:29%;z-index: 9999;display:none}
+.app_user_title{ width:100%; height:40px; margin:0 auto 10px auto; background:url(../img/app_user/app_user_line.jpg) 0 50% repeat-x;}
+.app_user_title span{ display:block; width:200px; height:40px; margin:0 auto; background:#fff; text-align:center; line-height:40px; font-size:24px; color:#2e3641;}
+
+.app_user_con{ width:100%; height:auto; margin:20px auto 10px auto;}
+.app_user_con ul{ width:100%;}
+.app_user_con ul li{ width:190px; height:55px; float:left; margin:0 10px 10px 0;}
+.app_user_con ul li.none{ margin:0 0 10px 0;}
+.app_user_con ul li a{ width:190px; height:55px;background:#2e3641; display:block;}
+.app_user_con ul li a:hover{ background:#ff4900;}
+.app_user_con ul li a span{ width:45px; height:40px; margin:7px 0 0 15px; display:block; float:left; background:url(../img/app_user/app_user_tb.png);}
+.app_user_con ul li a font{ width:105px; height:55px; display:block; float:right; margin-right:15px; overflow:hidden; color:#fff; font-size:24px; line-height:55px;}
+
+.app_user_con ul li a span.img1{ background-position:0 -8px;}
+.app_user_con ul li a span.img2{ background-position:-55px -8px;}
+.app_user_con ul li a span.img3{ background-position:-110px -8px;}
+
+.app_user_con ul li a span.img4{ background-position:0px -60px;}
+.app_user_con ul li a span.img5{ background-position:-55px -60px;}
+.app_user_con ul li a span.img6{ background-position:-110px -60px;}
+
+.app_user_con ul li a span.img7{ background-position:0px -114px;}
+.app_user_con ul li a span.img8{ background-position:-55px -114px;}
+.app_user_con ul li a span.img9{ background-position:-110px -114px;}
+
+.app_user_btn{ width:100%; height:55px; margin:20px auto 15px auto;}
+.app_user_btn a{ width:190px; height:55px;background:#2e3641; display:block; margin:0 auto;}
+.app_user_btn a:hover{background:#ff4900;}
+.app_user_btn a span{ width:45px; height:40px; margin:7px 0 0 10px; display:block; float:left; background:url(../img/app_user/app_user_tb1.png) no-repeat;}
+.app_user_btn a font{ width:120px; height:55px; display:block; float:right; margin-right:10px; overflow:hidden; color:#fff; font-size:24px; line-height:55px;}
+
+.app_user_close{ width:30px; height:30px; position:absolute; top:-15px; right:-15px; z-index:100;}
+.app_user_close a{ width:30px; height:30px; display:inline-block; background:url(../img/app_user/app_user_close.png) no-repeat; cursor:pointer;}
+
+/*Android用户+iPhone用户 end*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

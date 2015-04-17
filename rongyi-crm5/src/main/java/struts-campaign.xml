@@ -1,0 +1,114 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="campaign" extends="default">
+     	<action name="listCampaign" class="listCampaignAction" method="list">
+    	  <result name="success" type="json"></result>
+        </action>
+
+     	<action name="listCampaignFull" class="listCampaignAction" method="listFull">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="listCampaignPage">
+    	  <result type="redirect">/jsp/crm/listCampaign.jsp</result>
+        </action>
+
+      	<action name="relateCampaignTargetList" class="listCampaignAction" method="relateCampaignTargetList">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateCampaignTargetListPage" class="listCampaignAction" method="filterPage">
+    	  <result>/jsp/crm/relateTargetList.jsp</result>
+        </action>
+        
+         <action name="exportCampaign" class="listCampaignAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>  
+
+         <action name="exportTemplateCampaign" class="listCampaignAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">templateStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>
+        
+         <action name="importCampaign" class="listCampaignAction" method="importCSV">
+        	<result name="input">/jsp/crm/uploadCampaign.jsp</result>
+			<result>/jsp/crm/upload-success.jsp</result>            	  
+        </action>
+
+         <action name="copyCampaign" class="listCampaignAction" method="copy">
+        	<result name="input">/jsp/crm/listCampaign.jsp</result>
+			<result>/jsp/crm/listCampaign.jsp</result>            	  
+        </action>
+                    
+        <action name="editCampaign" class="editCampaignAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result>/jsp/crm/editCampaign.jsp</result>
+        </action>
+                        
+        <action name="saveCampaign" class="editCampaignAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCampaign.jsp</result>
+            <result type="redirectAction">editCampaign.action?id=${id}&amp;saveFlag=${saveFlag}</result>
+        </action>
+
+        <action name="saveCloseCampaign" class="editCampaignAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCampaign.jsp</result>          
+    	  <result type="redirect">/jsp/crm/listCampaign.jsp</result>
+        </action>
+
+        <action name="sendInvitesCampaign" class="editCampaignAction" method="sendInvites">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCampaign.jsp</result>          
+    	    <result>/jsp/crm/sendCampaignEmail.jsp</result>
+        </action>
+  
+        <action name="sendEmailCampaign" class="editCampaignAction" method="send">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/sendCampaignEmail.jsp</result>          
+    	    <result>/jsp/crm/editCampaign.action</result>
+        </action>
+                   
+        <action name="selectCampaignTemplate" class="editCampaignAction" method="selectTemplate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/sendCampaignEmail.jsp</result>
+    	    <result>/jsp/crm/sendCampaignEmail.jsp</result>
+        </action>
+                                
+        <action name="deleteCampaign" class="listCampaignAction" method="delete">
+			<result name="input">/jsp/crm/listCampaign.jsp</result>
+			<result type="redirect">/jsp/crm/listCampaign.jsp</result>
+        </action>  
+        
+        <action name="massUpdateCampaign" class="editCampaignAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCampaign.jsp</result>          
+    	    <result>/jsp/crm/editCampaign.jsp</result>
+        </action> 
+        
+        <action name="massUpdateCloseCampaign" class="editCampaignAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCampaign.jsp</result>          
+    	  <result type="redirect">/jsp/crm/listCampaign.jsp</result>
+        </action>           
+        
+      	<action name="getCampaignRelationCounts" class="editCampaignAction" method="getCampaignRelationCounts">
+    	  <result name="success" type="json"></result>
+        </action>           
+  </package>      
+    
+</struts>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.monitor.biz.mapper.TerminalScheduleInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.monitor.biz.domain.TerminalScheduleInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="terminalId" property="terminalId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="mallId" property="mallId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="columns" >
+    id, gmtCreate, gmtModified,terminalId, status, message,mallId
+  </sql>
+  
+ 	<insert id="insert" parameterType="com.rongyi.monitor.biz.domain.TerminalScheduleInfo" useGeneratedKeys="true"  keyProperty="id">
+ 		insert into terminalScheduleInfo (id,gmtCreate,gmtModified,terminalId,status,message,mallId)
+ 		values (#{id,jdbcType=INTEGER}, now(),now(),#{terminalId,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{message,jdbcType=VARCHAR}
+ 		,#{mallId,jdbcType=VARCHAR})
+ 	</insert>
+ 	
+ 	<select id="listUnableStatus" resultMap="BaseResultMap">
+ 		select <include refid="columns" /> from terminalScheduleInfo where status = 1
+ 	</select>
+ 	
+ 	<select id="listfor30Min" resultMap="BaseResultMap">
+ 		select <include refid="columns" /> from terminalScheduleInfo where timestampdiff(minute,gmtModified,now()) >= 30 and status = 0
+ 		and gmtModified > CURDATE()
+ 	</select>
+ 	
+ 	<update id="updateGmtModified" parameterType="com.rongyi.monitor.biz.domain.TerminalScheduleInfo">
+ 		update terminalScheduleInfo set gmtModified = now(),
+ 	<trim suffixOverrides="," >
+	      <if test="status != null" >
+	        status = #{status,jdbcType=INTEGER},
+	      </if>
+	      <if test="message != null" >
+	        message = #{message,jdbcType=VARCHAR}
+	      </if>
+     </trim>
+    where terminalId = #{terminalId,jdbcType=VARCHAR}
+ 	</update>
+</mapper>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>人才招聘</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/recruit.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+			#**<div id="content-top"></div>*#
+            <div id="top-img">
+			</div>
+			
+            <div id="procedure">
+			</div>
+			
+			<div class="content-center">
+				<div class="dash-line">
+                </div>
+				
+                <div id="location">
+                    <div id="location-left">社会招聘</div>
+                    <div id="location-title">地区：</div>
+					<ul>
+						<li class="location-all">
+                            <a href="/job/list/$selectTypeId/0/1.htm" #if($selectPlaceId == 0) class="location-selected" #end>全国</a>
+                        </li>
+						#foreach($jobPlace in $jobPlaceList)
+						<li>
+                            <a href="/job/list/$selectTypeId/${jobPlace.id}/1.htm" #if($selectPlaceId == ${jobPlace.id}) class="location-selected" #end>${jobPlace.name}</a>
+                        </li>
+						#end
+                    </ul>
+				</div>
+				
+				<div class="left-nav">
+					<ul>
+						<li class="left-nav-first #if($selectTypeId == 0) left-nav-selected #end">
+							<a href="/job/list/0/$selectPlaceId/1.htm">全部职位</a>
+							#if($selectTypeId == 0) <div class="left-nav-selected-icon"></div> #end
+                        </li>
+						#foreach($jobType in $jobTypeList)
+						<li #if(${jobType.id} == $selectTypeId) class="left-nav-selected" #end>
+                            <a href="/job/list/${jobType.id}/$selectPlaceId/1.htm" >${jobType.name}</a>
+							#if(${jobType.id} == $selectTypeId) <div class="left-nav-selected-icon"></div> #end
+                        </li>
+						#end
+
+                    </ul>
+                </div>
+				
+                <div id="job-list">
+					<div id="job-list-header">
+                        <div class="job-list-header-column name-column">职位名称</div>
+						<div class="job-list-header-column location-column">工作地点</div>
+						<div class="job-list-header-column type-column">职位类别</div>
+						<div class="job-list-header-column department-column">所属部门</div>
+                    </div>
+                    
+					#foreach($job in $jobList)
+					<div class="job-list-row #if($velocityCount != 1) with-border-top #end">
+						<div class="job-list-row-column name-column">
+							<a href="/job/detail/$selectTypeId/$selectPlaceId/${job.id}.htm">$!{job.name}</a>
+						</div>
+						<div class="job-list-row-column location-column">$!{job.jobPlaceName}</div>
+						<div class="job-list-row-column type-column">$!{job.jobTypeName}</div>
+						<div class="job-list-row-column department-column">$!{job.depName}</div>
+                    </div>
+					#end
+                    #parse("widget/common/pager.vm")
+				</div>
+				
+				<div class="for-clear bottom">
+                </div>
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

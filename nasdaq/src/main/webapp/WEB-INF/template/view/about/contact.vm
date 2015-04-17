@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>关于我们-联系我们</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/about/contact.css" rel="stylesheet" type="text/css">
+		<link href="/static/css/about/common.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+			<div id="content-top"></div>
+
+			
+			<div class="content-center">
+
+				#parse("view/about/leftnav.vm")
+				
+                <div id="right-content">
+					<div class="title">
+        				<div class="title-left">
+                            <span class="title-cn">联系我们</span>
+            				<span class="title-en">CONTACT</span>
+                        </div>
+        			</div>
+					
+                    <div class="contact">
+                        <div class="contact-header">商务合作</div>
+						<div class="contact-text">
+    						<div>邮箱：bd@rongyi.com</div>
+    						<div>电话：021-54100171-813</div>
+                        </div>
+						
+						<div class="contact-header">客户咨询</div>
+						<div class="contact-text">
+    						<div>若您对我们的内容有疑问，可通过以下途径进行咨询：</div>
+    						<div>热线：400-040-8989</div>
+    						<div>QQ：1626365605</div>
+    						<div>Email：service@rongyi.com</div>
+                        </div>
+						
+						<div class="contact-header">媒体合作</div>
+                        <div class="contact-text">
+    						<div>若您希望采访容易网、寻求容易网采访报道、进行媒体资讯合作，请通过以下方式联系我们：</div>
+    						<div>电话：021-54100171-808</div>
+    						<div>Email：contact@rongyi.com</div>
+						</div>
+						
+						<div class="contact-header">加入我们</div>
+						<div class="contact-text">
+    						<div>欢迎热情坚韧、善于学习、富有创业激情的你加入容易网大家庭！</div>
+    						<div>Email：hr@rongyi.com</div>
+                        </div>
+					</div>
+					
+					<div class="location">
+                        <div class="location-header">我们在这儿...</div>
+                        <div class="location-text">
+                            <div class="location-first-line"><span>上海 |</span> 容易网电子商务有限公司</div>
+                            <div>Shanghai Rongyi e-commerce Co.,ltd</div>
+							<div>地址：上海市徐汇区漕溪北路88号圣爱大厦2505-2507室</div>
+							<div>Room 2505 2507，No.88 North Caoxi Road,Xuhui District,Shanghai,200030</div>
+						</div>
+						<div class="location-text">
+                            <div class="location-first-line"><span>北京 |</span> 上海容易网电子商务有限公司北京分公司</div>
+                            <div>地址：北京朝阳区八里庄西里98号住邦2000商务中心3号楼1008室</div>
+						</div>
+						<div class="location-text">
+                            <div class="location-first-line"><span>深圳 |</span> 上海容易网电子商务有限公司深圳分公司</div>
+                            <div>地址：深圳市深南东路4003号世界金融中心B座1106室</div>
+							<div>联系电话：0755-22159105，0755-22159107</div>
+						</div>
+						<div class="location-text">
+                            <div class="location-first-line"><span>重庆 |</span> 上海容易网电子商务有限公司重庆分公司</div>
+                            <div>地址：重庆市渝中区大坪正街160号万科中心一栋2107室</div>
+							<div>联系电话：023-63862863</div>
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="for-clear bottom">
+                </div>
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

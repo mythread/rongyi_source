@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+            http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+			http://www.springframework.org/schema/aop 
+			http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+			http://www.springframework.org/schema/jee 
+			http://www.springframework.org/schema/jee/spring-jee-4.0.xsd 
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+			http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+			http://www.springframework.org/schema/util 
+			http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+			
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+	<!-- Local Apache Commons DBCP DataSource that refers to a combined database -->
+	<!-- (see dataAccessContext-jta.xml for an alternative) -->
+	<!-- The placeholders are resolved from jdbc.properties through -->
+	<!-- the PropertyPlaceholderConfigurer in applicationContext.xml -->
+	
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>		
+		<!--最大连接数-->
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<!-- 未使用过的连接保存最大数-->
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<!-- 未使用过的连接保存最小数-->
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<!-- -->
+		<property name="maxWait" value="${jdbc.maxWait}" />
+		<!-- The initial number of connections that are created when the pool -->
+		<property name="initialSize" value="${jdbc.initialSize}"/>
+
+	</bean>
+	
+	<!-- MyBatis sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:com/rongyi/cms/mapper/xml/*.xml" />
+		<property name="configLocation" value="classpath:config/mybatis-configuration.xml" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+     	<property name="basePackage" value="com.rongyi.cms.mapper" />
+  	</bean>
+	
+	
+	<!-- Transaction manager for a single JDBC DataSource -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+		
+	<bean id="serviceExceptionCatcher" class="base.exception.ServiceExceptionCatcher"></bean>
+	<!--
+		========================= ASPECT TRANSACTION CONFIGURATION ========================
+	-->
+
+	<aop:config>
+
+		<aop:pointcut id="entryPointMethod"
+			expression="execution(* *..service..*Service.*(..))" />
+		<!--
+			This definition creates auto-proxy infrastructure based on the given
+			pointcut, expressed in AspectJ pointcut language. Here: applying the
+			advice named "txAdvice" to all methods on classes named PetStoreImpl.
+		-->
+		<aop:advisor pointcut-ref="entryPointMethod" advice-ref="txAdvice" />
+
+		<aop:aspect id="afterThrowing" ref="serviceExceptionCatcher">
+			<aop:after-throwing pointcut-ref="entryPointMethod"
+				method="log" throwing="exception" />
+		</aop:aspect>
+
+	</aop:config>
+
+	<!--
+		Transaction advice definition, based on method name patterns. Defaults
+		to PROPAGATION_REQUIRED for all methods whose name starts with
+		"insert" or "update", and to PROPAGATION_REQUIRED with read-only hint
+		for all other methods.
+	-->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+		
+			<tx:method name="import*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="upload*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="insert*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="add*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="save*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="delete*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="update*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="modify*"
+				rollback-for="java.lang.Throwable" />
+				
+			<tx:method name="do*"
+				rollback-for="java.lang.Throwable" />
+
+			<tx:method name="get*" read-only="true" />
+			
+		</tx:attributes>
+	</tx:advice>
+	  
+</beans>

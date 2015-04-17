@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.mina.mapper.CmsTaskMapper" >
+  <resultMap id="cmsTaskResult" type="com.rongyi.mina.bean.CmsTask" >
+    <id     property="id"           column="id"              jdbcType="INTEGER" />
+    <result property="gmtCreate"      column="gmtCreate"       jdbcType="TIMESTAMP" />
+    <result property="gmtModified"    column="gmtModified"     jdbcType="TIMESTAMP" />
+    <result property="taskStatus"     column="task_status"     jdbcType="INTEGER" />
+    <result property="type"           column="type"            jdbcType="INTEGER" />
+    <result property="brandUrl"       column="brand_url"       jdbcType="VARCHAR" />
+    <result property="mallName"       column="mall_name"        jdbcType="VARCHAR" />
+    <result property="gmtJobCreate"   column="gmtJobCreate"     jdbcType="TIMESTAMP" />
+    <result property="actionType"     column="action_type"      jdbcType="INTEGER" />
+    <result property="reviewStatus"   column="reviewStatus"     jdbcType="INTEGER" />
+    <result property="showInfo"       column="show_info"        jdbcType="VARCHAR" />
+    <result property="mallId"         column="mall_id"            jdbcType="VARCHAR" />
+    <result property="cmsOuterId"     column="cms_outerId"       jdbcType="VARCHAR" />
+    <result property="reviewInfo"     column="review_info"       jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="columns" >
+    id, gmtCreate, gmtModified, task_status,type, brand_url,mall_name, gmtJobCreate, action_type, 
+    reviewStatus, show_info,mall_id,cms_outerId,review_info
+  </sql>
+  
+  <insert id="insert" parameterType="com.rongyi.mina.bean.CmsTask" >
+    insert into cms_task (gmtCreate, gmtModified, task_status,type, brand_url,mall_name, gmtJobCreate, action_type, 
+    reviewStatus, show_info,mall_id,cms_outerId,review_info
+    )
+    values (now(), now(), #{taskStatus,jdbcType=INTEGER},
+      #{type,jdbcType=INTEGER}, #{brandUrl,jdbcType=VARCHAR}, #{mallName,jdbcType=VARCHAR}, #{gmtJobCreate,jdbcType=TIMESTAMP},
+      #{actionType,jdbcType=INTEGER}, #{reviewStatus,jdbcType=INTEGER}, #{showInfo,jdbcType=VARCHAR},#{mallId,jdbcType=VARCHAR},
+      #{cmsOuterId,jdbcType=VARCHAR},#{reviewInfo,jdbcType=VARCHAR})
+      <selectKey keyProperty="id" resultType="INTEGER">
+		SELECT LAST_INSERT_ID() AS ID
+	  </selectKey>
+  </insert>
+  
+  </mapper>

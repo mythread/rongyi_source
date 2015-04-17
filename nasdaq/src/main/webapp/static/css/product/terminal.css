@@ -1,0 +1,108 @@
+/**
+ * 产品 - 终端机 页面 CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-22
+ */
+ 
+#top-img {
+	background-image: url("../../img/product-terminal.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 628px;
+}
+
+.top-text {
+	margin-top: 44px;
+	padding-bottom: 50px;
+	border-bottom: 1px dashed #c1cfd9;
+	font-size: 24px;
+	text-align: center;
+}
+
+.second-text {
+	background-image: url("../../img/icon-product1.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 360px;
+}
+.second-text-left {
+	float: left;
+	text-align: right;
+	width: 340px;
+}
+.second-text-right {
+	float: right;
+	width: 340px;
+}
+.second-text-left-big {
+	margin-top: 50px;
+	margin-bottom: 20px;
+	font-size: 30px;
+}
+.second-text-left-small {
+	font-size: 14px;
+	line-height: 25px;
+}
+
+.product-title-line {
+	height: 53px;
+	text-align: center;
+	background-image: url("../../img/bg-product1.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	font-size: 18px;
+	line-height: 30px;
+	margin-top: 20px;
+}
+
+.order-process {
+	background-image: url("../../img/bg-product2.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 100px;
+	margin-bottom: 100px;
+}
+.standard-config {
+	background-image: url("../../img/bg-product3.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 100px;
+	margin-top: 20px;
+	margin-bottom: 70px;
+}
+
+.feature-block {
+	width: 458px;
+	height: 650px;
+}
+.feature-block-left {
+	float: left;
+}
+.feature-block-right {
+	float: right;
+}
+.block-num {
+	font-size: 60px;
+	color: #c1cfd9;
+	float: left;
+	font-family: Tahoma;
+	width: 78px;
+}
+.block-right {
+	float: left;
+	width: 380px;
+}
+.block-title {
+	font-size: 26px;
+	margin-top: 16px;
+}
+.block-text {
+	font-size: 14px;
+	margin-top: 10px;
+	line-height: 25px;
+	height: 60px;
+}
+.block-img img {
+	width: 266px;
+	height: 473px;
+}

@@ -1,0 +1,130 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="call" extends="default">
+      	<action name="listCall" class="listCallAction" method="list">
+    	  <result name="success" type="json"></result>
+        </action>
+
+      	<action name="listCallFull" class="listCallAction" method="listFull">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="listCallPage">
+    	  <result type="redirect">/jsp/crm/listCall.jsp</result>
+        </action>
+
+      	<action name="relateCallLead" class="listCallAction" method="relateCallLead">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="relateCallLeadPage" class="listCallAction" method="filterPage">
+    	  <result>/jsp/crm/relateLead.jsp</result>
+        </action>
+        
+      	<action name="relateCallContact" class="listCallAction" method="relateCallContact">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="relateCallContactPage" class="listCallAction" method="filterPage">
+    	  <result>/jsp/crm/relateContact.jsp</result>
+        </action>        
+                
+      	<action name="relateCallUser" class="listCallAction" method="relateCallUser">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+    	<action name="relateCallUserPage" class="listCallAction" method="filterPage">
+    	  <result>/jsp/system/relateUser.jsp</result>
+        </action>
+                        
+         <action name="exportCall" class="listCallAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>  
+
+         <action name="exportTemplateCall" class="listCallAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">application/x-msdownload;charset=ISO8859-1</param>
+                <param name="inputName">templateStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>
+        
+         <action name="importCall" class="listCallAction" method="importCSV">
+        	<result name="input">/jsp/crm/uploadCall.jsp</result>
+			<result>/jsp/crm/upload-success.jsp</result>            	  
+        </action>
+
+         <action name="copyCall" class="listCallAction" method="copy">
+        	<result name="input">/jsp/crm/listCall.jsp</result>
+			<result>/jsp/crm/listCall.jsp</result>            	  
+        </action>
+                                
+        <action name="editCall" class="editCallAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result>/jsp/crm/editCall.jsp</result>
+        </action>
+                        
+        <action name="saveCall" class="editCallAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCall.jsp</result>
+            <result type="redirectAction">editCall.action?id=${id}&amp;saveFlag=${saveFlag}</result> 
+        </action>
+
+        <action name="saveCloseCall" class="editCallAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCall.jsp</result>          
+    	  <result type="redirect">/jsp/crm/listCall.jsp</result>
+        </action>
+
+        <action name="sendInvitesCall" class="editCallAction" method="sendInvites">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCall.jsp</result>          
+    	    <result>/jsp/crm/sendCallEmail.jsp</result>
+        </action>
+  
+        <action name="sendEmailCall" class="editCallAction" method="send">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/sendCallEmail.jsp</result>          
+    	    <result>/jsp/crm/editCall.action</result>
+        </action>
+                   
+        <action name="selectCallTemplate" class="editCallAction" method="selectTemplate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/sendCallEmail.jsp</result>
+    	    <result>/jsp/crm/sendCallEmail.jsp</result>
+        </action>
+                                
+        <action name="deleteCall" class="listCallAction" method="delete">
+            <result name="input">/jsp/crm/listCall.jsp</result> 
+			<result type="redirect">/jsp/crm/listCall.jsp</result>
+        </action>  
+        
+        <action name="massUpdateCall" class="editCallAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCall.jsp</result>          
+    	    <result>/jsp/crm/editCall.jsp</result>
+        </action>
+        
+        <action name="massUpdateCloseCall" class="editCallAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editCall.jsp</result>          
+    	  <result type="redirect">/jsp/crm/listCall.jsp</result>
+        </action>    
+        
+      	<action name="getCallRelationCounts" class="editCallAction" method="getCallRelationCounts">
+    	  <result name="success" type="json"></result>
+        </action>           
+  </package>      
+    
+</struts>

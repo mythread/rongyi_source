@@ -1,0 +1,199 @@
+/**
+ * 主页CSS
+ * author:叉叉哥 - 吴操
+ * date:2014-05-21
+ */
+ 
+/* 焦点图 */
+#focus-imgs-div .bx-prev {
+	height: 92px;
+	width: 60px;
+	background-image: url("../img/icon-focus.png");
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+}
+#focus-imgs-div .bx-next {
+	height: 92px;
+	width: 60px;
+	background-image: url("../img/icon-focus.png");
+	background-repeat: no-repeat;
+	background-position: -60px 0px;
+}
+#focus-imgs-div .bx-prev:hover {
+	background-position: 0px -102px;
+}
+#focus-imgs-div .bx-next:hover {
+	background-position: -61px -103px;
+}
+.bx-pager {
+	z-index: 99;
+}
+#focus-imgs a {
+	display: block;
+	height: 600px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+a.bx-pager-link {
+	background-image: url("../img/icon-point.png");
+	background-repeat: no-repeat;
+	background-position: -64px -10px;
+	border: 0px;
+	background-color: transparent;
+}
+a.bx-pager-link.active {
+	background-position: -25px -10px;
+}
+
+/* 互动、整合、精准 三块 */
+.intro-blocks {
+	margin-top: 60px;
+	height: 270px;
+	width: 1008px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.intro-block {
+	float: left;
+	width: 300px;
+	height: 270px;
+	margin-left: 18px;
+	margin-right: 18px;
+	text-align: center;
+}
+.intro-block-hd {
+	background-image: url("../img/home-hd.png");
+}
+.intro-block-zh {
+	background-image: url("../img/home-zh.png");
+}
+.intro-block-jz {
+	background-image: url("../img/home-jz.png");
+}
+.intro-block-title {
+	margin-top: 140px;
+	margin-bottom: 10px;
+	font-size: 30px;
+}
+.intro-block-text {
+	font-size: 18px;
+}
+
+/* 案例分享 */
+#silde-imgs {
+	margin-top: 92px;
+}
+#silde-imgs .title {
+	width: 956px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+}
+.silde-imgs-title {
+	font-size: 14px;
+	text-align: center;
+	margin-top: 15px;
+}
+#silde-imgs .bx-prev {
+	top: 50px;
+	left: -42px;
+	height: 48px;
+	background-image: url("../img/icon-silde.png");
+	background-repeat: no-repeat;
+	background-position: -13px -1px;
+}
+#silde-imgs .bx-next {
+	top: 50px;
+	right: -42px;
+	height: 48px;
+	background-image: url("../img/icon-silde.png");
+	background-repeat: no-repeat;
+	background-position: -38px -1px;
+}
+#silde-imgs .silde-img {
+	border: 2px solid white;
+}
+#silde-imgs .silde-img:hover {
+	border-color: #ff4900;
+}
+
+/* 视频和媒体报道 */
+#video-and-news {
+	width: 956px;
+	height: 390px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 92px;
+}
+#video-div {
+	width: 480px;
+	height: 390px;
+	float: left;
+}
+#news-div {
+	width: 440px;
+	height: 390px;
+	float: right;
+}
+#video {
+	margin-top: 30px;
+	height: 320px;
+}
+#video video {
+	background-color: black;
+}
+#news {
+	margin-top: 20px;
+}
+.news-line {
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px dashed #c8cccf;
+	display: block;
+	padding-left: 30px;
+	background-image: url("../img/news.png");
+	background-repeat: no-repeat;
+	background-position: 0px -32px;
+}
+.news-line:hover {
+	background-position: 0px 8px;
+}
+.news-line img {
+	margin-top: 3px;
+	margin-left: 5px;
+}
+
+/* 合作伙伴 */
+#partners {
+	width: 956px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#partners .title {
+	margin-bottom: 30px;
+	margin-top: 92px;
+}
+.partners-title {
+	font-size: 18px;
+	text-align: center;
+}
+.partners-market {
+	margin-top: 42px;
+	margin-bottom: 42px;
+}
+.partners-zl {
+	margin-top: 30px;
+	margin-bottom: 100px;
+}
+
+/* 播放器 */
+.fp-context-menu {
+	visibility: hidden;
+}
+#video>a {
+	visibility: hidden;
+}
+
+.logo{ width:956px; height:302px; margin-top: 42px;margin-bottom: 42px;}
+.logo ul{ width:100%;}
+.logo ul li{ width:82px; height:82px; float:left; margin:10px 12px;}

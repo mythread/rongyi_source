@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<!-- url 映射 -->
+	<bean class="com.yue.commons.seine.web.handler.ComponentMethodHandlerMapping">
+		<property name="mappings">
+			<map>
+				<entry key="/ok.htm" 			   value="okController"/>
+				<entry key="/home.htm"             value="commonController"/>
+				<entry key="/login.htm"            value="userController" />
+				<entry key="/search.htm"            value="searchController" />
+				<entry key="/goBuy.htm"            value="searchController" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- widgets -->
+	<bean class="com.yue.commons.seine.web.handler.WidgetHandlerMapping">
+		<property name="mappings">
+			<map>
+				<entry key="/*" 							value="commonWidget"/>
+			</map>
+		</property>
+	</bean>
+
+	<!-- controller bean -->
+	<bean id="okController" 			class="com.fanxian.web.fanxian.controller.OKController"  scope="prototype"/>
+	<bean id="commonController"         class="com.fanxian.web.fanxian.controller.CommonController" scope="prototype" />
+	<bean id="userController"         class="com.fanxian.web.fanxian.controller.user.UserController" scope="prototype" />
+	<bean id="searchController"         class="com.fanxian.web.fanxian.controller.SearchController" scope="prototype" />
+	<!-- widget bean-->
+	<bean id="commonWidget" 			class="com.fanxian.web.fanxian.controller.CommonWidgetController" 	scope="prototype"/>
+	
+	<!-- 处理器 覆盖默认配置-->
+	<!--  
+	<bean id="handlerAdapter"
+		class="com.yue.commons.seine.web.handler.ComponentMethodHandlerAdapter">
+		<property name="methodNameResolverAdapter" ref="methodNameResolverAdapter"/>
+	</bean>
+	-->
+	<!--
+	<bean id="methodNameResolverAdapter" class="com.yue.commons.seine.web.handler.MethodNameResolverAdapter">
+		<property name="mappings">
+			<map>
+			</map>
+		</property>
+	</bean>
+	-->
+	<!-- 方法解析器 -->
+	
+	<!-- <bean id="pluginLoginMethodNameResolver" class="com.yue.commons.seine.web.handler.nameresolver.AssignMethodNameResolver">
+		<property name="methodName" value="loginsuccess"/>
+	</bean> -->
+	
+	<bean id="currencyViewTools" 		class="com.fanxian.web.common.viewtools.CurrencyFormattor"/>
+	<!-- view tools -->
+	<bean class="com.yue.commons.seine.web.view.ViewToolsFactory">
+		<property name="viewTools">
+			<map>
+				<entry key="currencyViewTools" 	value-ref="currencyViewTools"/>
+			</map>
+		</property>
+	</bean>
+	<!-- view tools bean -->
+</beans>

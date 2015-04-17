@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="compress.build" default="build" basedir=".">
+	<description>Compress Build File</description>
+	<property name="compressor.version" value="2.4.7" />
+	<property name="compressor.task.version" value="0.5.7" />
+	<property name="ant.contrib.version" value="1.0b3" />
+	<property name="root.dir" location="./" />
+	<property name="tools.dir" location="./tools" />
+	<property name="tmp.dir" location="${tools.dir}/tmp" />
+	<property name="compressor.jar" location="${tools.dir}/yui-compressor/yuicompressor-${compressor.version}.jar" />
+	<property name="compressor.task.jar" location="${tools.dir}/yui-compressor-ant-task/yui-compressor-ant-task-${compressor.task.version}.jar" />
+	<property name="ant.contrib.jar" location="${tools.dir}/ant-contrib/ant-contrib-${ant.contrib.version}.jar" />
+
+	<!-- import antcontrib task lib -->
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="${ant.contrib.jar}" />
+		</classpath>
+	</taskdef>
+
+	<!-- define yui compressor task -->
+	<taskdef name="yui-compressor" classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+		<classpath>
+			<pathelement location="${compressor.jar}" />
+			<pathelement location="${compressor.task.jar}" />
+		</classpath>
+	</taskdef>
+	<macrodef name="cleardir">
+		<attribute name="dir" />
+		<sequential>
+			<delete dir="@{dir}" includes="**/*" quiet="true" includeemptydirs="true" />
+		</sequential>
+	</macrodef>
+	<macrodef name="compress">
+		<attribute name="src" />
+		<attribute name="dest" />
+		<attribute name="includes" />
+		<attribute name="tmpdir" />
+		<attribute name="jsSuffix" default=".js" />
+		<attribute name="cssSuffix" default=".css" />
+		<sequential>
+			<echo level="info">Starting Compress @{src}/@{includes} To @{dest}/@{includes}</echo>
+			<cleardir dir="@{tmpdir}" />
+			<yui-compressor charset="UTF-8" warn="false" munge="true" jsSuffix="@{jsSuffix}" cssSuffix="@{cssSuffix}" preserveAllSemiColons="false" fromDir="@{src}" toDir="@{tmpdir}">
+				<include name="@{includes}" />
+			</yui-compressor>
+			<native2ascii encoding="UTF-8" src="@{tmpdir}" dest="@{dest}" includes="@{includes}" />
+			<cleardir dir="@{tmpdir}" />
+		</sequential>
+	</macrodef>
+	<macrodef name="concatsource">
+		<attribute name="destfile" />
+		<element name="srcfiles" />
+		<sequential>
+			<echo level="info">Concatenating...</echo>
+			<concat encoding="utf-8" destfile="@{destfile}" fixlastline="true">
+				<srcfiles />
+			</concat>
+		</sequential>
+	</macrodef>
+	<target name="banner">
+		<echo message="***************************************" />
+		<echo message="********** Compress Starting **********" />
+		<echo message="***************************************" />
+		<echo message="* Ant version:        ${ant.version}" />
+		<echo message="* Java version:       ${java.version}" />
+		<echo message="* compressor:         yui-compressor-${compressor.version}" />
+		<echo message="* compressor-task:    yui-compressor-ant-task-${compressor.task.version}" />
+		<echo message="***************************************" />
+	</target>
+	<target name="build" depends="banner">
+		<for param="dir">
+			<path>
+				<dirset dir="${root.dir}" includes="js/src/site/**" />
+			</path>
+			<sequential>
+				<available property="compress.xml.exist" file="compress.xml" filepath="@{dir}" />
+				<if>
+					<equals arg1="${compress.xml.exist}" arg2="true" />
+					<then>
+						<ant antfile="compress.xml" dir="@{dir}" />
+					</then>
+				</if>
+				<var name="compress.xml.exist" unset="true" value="false" />
+			</sequential>
+		</for>
+	</target>
+</project>
+

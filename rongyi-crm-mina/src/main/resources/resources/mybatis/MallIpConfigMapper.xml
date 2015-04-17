@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.mina.mapper.MallIpConfigMapper" >
+	<resultMap id="configResult" type="com.rongyi.mina.bean.MallIpConfig" >
+    <id     property="id"           column="id"                 jdbcType="INTEGER" />
+    <result property="gmtCreate"    column="gmtCreate"        jdbcType="TIMESTAMP" />
+    <result property="gmtModified"  column="gmtModified"      jdbcType="TIMESTAMP" />
+    <result property="ip"           column="ip"             jdbcType="VARCHAR" />
+    <result property="mallId"       column="mall_id"          jdbcType="VARCHAR" />
+    <result property="port"         column="port"          jdbcType="INTEGER" />
+    <result property="domain"       column="domain"             jdbcType="VARCHAR" />
+  </resultMap>
+	
+   <sql id="columns">
+   		id,gmtCreate,gmtModified,ip,mall_id,port,domain
+   </sql>	
+	
+  <select id="list" resultMap="configResult">
+      select <include refid="columns"/>	from mallIpConfig 
+  </select>
+  
+  
+  
+  </mapper>

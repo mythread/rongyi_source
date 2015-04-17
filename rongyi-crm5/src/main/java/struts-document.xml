@@ -1,0 +1,117 @@
+﻿<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     <package namespace="/jsp/crm" name="document" extends="default">
+      	<action name="listDocument" class="listDocumentAction" method="list">
+    	  <result name="success" type="json"></result>
+        </action>
+        
+      	<action name="listDocumentFull" class="listDocumentAction" method="listFull">
+    	  <result name="success" type="json"></result>
+        </action>        
+
+    	<action name="listDocumentPage">
+    	  <result type="redirect">/jsp/crm/listDocument.jsp</result>
+        </action>
+              
+    	<action name="selectDocument" class="listDocumentAction" method="select">
+    	  <result type="redirect">/jsp/crm/listDocument.jsp</result>
+        </action>
+        
+    	<action name="unselectDocument" class="listDocumentAction" method="unselect">
+    	  <result type="redirect">/jsp/crm/listDocument.jsp</result>
+        </action>
+                
+    	<action name="selectDocumentPage" class="listDocumentAction" method="selectPage">
+    	  <result>/jsp/crm/selectDocument.jsp</result>
+        </action>              
+       
+      	<action name="relateDocumentAccount" class="listDocumentAction" method="relateDocumentAccount">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateDocumentAccountPage" class="listDocumentAction" method="filterPage">
+    	  <result>/jsp/crm/relateAccount.jsp</result>
+        </action>        
+                
+      	<action name="relateDocumentContact" class="listDocumentAction" method="relateDocumentContact">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateDocumentContactPage" class="listDocumentAction" method="filterPage">
+    	  <result>/jsp/crm/relateContact.jsp</result>
+        </action> 
+        
+      	<action name="relateDocumentOpportunity" class="listDocumentAction" method="relateDocumentOpportunity">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateDocumentOpportunityPage" class="listDocumentAction" method="filterPage">
+    	  <result>/jsp/crm/relateOpportunity.jsp</result>
+        </action> 
+        
+      	<action name="relateDocumentCase" class="listDocumentAction" method="relateDocumentCase">
+    	  <result name="success" type="json"></result>
+        </action>
+                        
+    	<action name="relateDocumentCasePage" class="listDocumentAction" method="filterPage">
+    	  <result>/jsp/crm/relateCase.jsp</result>
+        </action>                
+                        
+         <action name="copyDocument" class="listDocumentAction" method="copy">
+        	<result name="input">/jsp/crm/listDocument.jsp</result>
+			<result>/jsp/crm/listDocument.jsp</result>            	  
+        </action>
+                                
+        <action name="editDocument" class="editDocumentAction" method="get">
+			<interceptor-ref name="prepareInterceptor" /> 
+			<result>/jsp/crm/editDocument.jsp</result>
+        </action>
+                        
+        <action name="saveDocument" class="editDocumentAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editDocument.jsp</result>
+            <result type="redirectAction">editDocument.action?id=${id}&amp;saveFlag=${saveFlag}</result>
+        </action>
+ 
+        <action name="saveCloseDocument" class="editDocumentAction" method="save">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editDocument.jsp</result>          
+    	    <result type="redirect">/jsp/crm/listDocument.jsp</result>
+        </action>
+                        
+        <action name="deleteDocument" class="listDocumentAction" method="delete">
+			<result name="input">/jsp/crm/listDocument.jsp</result>
+			<result type="redirect">/jsp/crm/listDocument.jsp</result>
+        </action>  
+        
+         <action name="downloadDocument" class="editDocumentAction">
+            <interceptor-ref name="defaultStack"/>
+            <result name="success" type="stream">
+                <param name="contentType">APPLICATION/OCTET-STREAM</param>
+                <param name="inputName">inputStream</param>
+                <param name="contentDisposition">attachment;filename="${fileName}"</param>
+                <param name="bufferSize">4096</param>
+            </result>            	  
+        </action>   
+        
+        <action name="massUpdateDocument" class="editDocumentAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editDocument.jsp</result>          
+    	    <result>/jsp/crm/editDocument.jsp</result>
+        </action> 
+        
+        <action name="massUpdateCloseDocument" class="editDocumentAction" method="massUpdate">
+			<interceptor-ref name="prepareInterceptor" /> 
+            <result name="input">/jsp/crm/editDocument.jsp</result>          
+    	   <result type="redirect">/jsp/crm/listDocument.jsp</result>
+        </action>     
+        
+      	<action name="getDocumentRelationCounts" class="editDocumentAction" method="getDocumentRelationCounts">
+    	  <result name="success" type="json"></result>
+        </action>          
+  </package>      
+    
+</struts>

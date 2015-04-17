@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.gcrm.domain">
+ <class dynamic-insert="true" dynamic-update="true"
+  name="com.gcrm.domain.EmailSetting" table="emailsetting">
+  <id column="id" name="id" type="java.lang.Integer">
+   <generator class="native"/>
+  </id>
+  <property name="from_name" column="from_name" type="string" not-null="true"/>   
+  <property name="from_address" column="from_address" type="string" not-null="true"/> 
+  <property name="smtp_port" column="smtp_port" type="java.lang.Integer" />       
+  <property name="gmail_address" column="gmail_address" type="string" />   
+  <property name="gmail_password" column="gmail_password" type="string" />     
+  <property name="yahoo_mail_ID" column="yahoo_mail_ID" type="string" />   
+  <property name="yahoo_mail_password" column="yahoo_mail_password" type="string" />   
+  <property name="smtp_server" column="smtp_server" type="string" />     
+  <property name="email_provider" column="email_provider" type="java.lang.Integer" />     
+  <property name="smtp_authentication" column="smtp_authentication" type="boolean" /> 
+  <property name="smtp_protocol" column="smtp_protocol" type="java.lang.Integer" />   
+  <property name="smtp_username" column="smtp_username" type="string" />     
+  <property name="smtp_password" column="smtp_password" type="string" />   
+  <many-to-one name="created_by"
+			class="User" column="created_by" cascade="save-update"/>
+  <many-to-one name="updated_by"
+			class="User" column="updated_by" cascade="save-update"/>
+  <property name="created_on" column="created_on" type="java.util.Date" />
+  <property name="updated_on" column="updated_on" type="java.util.Date" /> 
+ </class>
+</hibernate-mapping>

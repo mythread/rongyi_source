@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:b="http://www.springframework.org/schema/beans"
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+            http://www.springframework.org/schema/beans/spring-beans.xsd  
+            http://www.springframework.org/schema/context  
+            http://www.springframework.org/schema/context/spring-context.xsd  
+            http://www.springframework.org/schema/tx  
+            http://www.springframework.org/schema/tx/spring-tx.xsd  
+            http://www.springframework.org/schema/jdbc  
+            http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+            http://www.springframework.org/schema/mvc
+			http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- auto-config = true 则使用from-login. 如果不使用该属性 则默认为http-basic(没有session).    
+		access-denied-page:出错后跳转到的错误页面;   
+	-->
+
+	<http auto-config="true" access-denied-page="/common/403.jsp" >
+		
+		<!-- intercept-url:拦截器,可以设定哪些路径需要哪些权限来访问. filters=none 不使用过滤,也可以理解为忽略 -->
+<intercept-url pattern="/js/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+<intercept-url pattern="/css/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+<intercept-url pattern="/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+<intercept-url pattern="/common/code.jsp" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+<intercept-url pattern="/favicon.ico" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+<intercept-url pattern="/index.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+<intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+<intercept-url pattern="/user/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+
+		
+		<intercept-url pattern="/**/**" access="IS_AUTHENTICATED_FULLY"/>
+		<!-- session-management是针对session的管理. 这里可以不配置. 如有需求可以配置. -->
+		<!-- id登陆唯一. 后登陆的账号会挤掉第一次登陆的账号  error-if-maximum-exceeded="true" 禁止2次登陆;   
+			session-fixation-protection="none" 防止伪造sessionid攻击. 用户登录成功后会销毁用户当前的session.   
+			创建新的session,并把用户信息复制到新session中.   
+			
+			<session-management session-fixation-protection="none">
+			<concurrency-control />
+			</session-management>
+		-->
+		
+		
+		<form-login login-page="/user/login"
+			authentication-failure-url="/user/login?error=true"
+			default-target-url="/adzones/index"
+			always-use-default-target="true" />
+		<logout logout-success-url="/user/login" />
+		<http-basic />
+		
+	</http>
+	<b:bean id="loggerListener"  class="org.springframework.security.authentication.event.LoggerListener" />
+	<b:bean id="userPasswordEncoder" class="base.util.security.UserPasswordEncoder"/>
+	<authentication-manager alias="authenticationManager">
+		<!--获取用户权限信息-->
+		<authentication-provider user-service-ref="userDetailService">
+			<password-encoder ref="userPasswordEncoder">
+				<salt-source user-property="username"/>
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+</b:beans>

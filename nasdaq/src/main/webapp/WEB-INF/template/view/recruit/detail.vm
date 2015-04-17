@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("widget/common/dynamicMeta.vm")
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/recruit.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+            
+			#**<div id="content-top"></div>*#
+            <div id="top-img">
+			</div>
+			
+            <div id="procedure">
+			</div>
+			
+			<div class="content-center">
+				<div class="dash-line">
+                </div>
+				
+                <div id="location">
+                    <div id="location-left">社会招聘</div>
+                    <div id="location-title">地区：</div>
+					<ul>
+						<li class="location-all">
+                            <a href="/job/list/$selectTypeId/0/1.htm" #if($selectPlaceId == 0) class="location-selected" #end>全国</a>
+                        </li>
+						#foreach($jobPlace in $jobPlaceList)
+						<li>
+                            <a href="/job/list/$selectTypeId/${jobPlace.id}/1.htm" #if($selectPlaceId == ${jobPlace.id}) class="location-selected" #end>${jobPlace.name}</a>
+                        </li>
+						#end
+                    </ul>
+				</div>
+				
+				<div class="left-nav">
+					<ul>
+						<li class="left-nav-first #if($selectTypeId == 0) left-nav-selected #end">
+							<a href="/job/list/0/$selectPlaceId/1.htm">全部职位</a>
+							#if($selectTypeId == 0) <div class="left-nav-selected-icon"></div> #end
+                        </li>
+						#foreach($jobType in $jobTypeList)
+						<li #if(${jobType.id} == $selectTypeId) class="left-nav-selected" #end>
+                            <a href="/job/list/${jobType.id}/$selectPlaceId/1.htm" >${jobType.name}</a>
+							#if(${jobType.id} == $selectTypeId) <div class="left-nav-selected-icon"></div> #end
+                        </li>
+						#end
+
+                    </ul>
+                </div>
+				
+				#if($jobDO)
+                <div id="job-detail">
+					
+                    <div id="job-name">职位名称：$!{jobDO.name}</div>
+					
+					<div class="job-text">
+                        <div>$!{jobDO.memo}</div>
+					</div>
+					
+                    <a class="apply-btn" href="mailto:${jobDO.email}">立刻申请</a>
+				</div>
+				#end
+				<div class="for-clear bottom">
+                </div>
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

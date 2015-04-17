@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.monitor.biz.mapper.TraceRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.rongyi.monitor.biz.domain.TraceRecordDO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="terminalId" property="terminalId" jdbcType="VARCHAR" />
+    <result column="receiverTel" property="receiverTel" jdbcType="VARCHAR" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="mallId" property="mallId" jdbcType="VARCHAR" />
+    <result column="smsStatus" property="smsStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="columns" >
+    id, gmtCreate, gmtModified,terminalId, receiverTel, message,mallId,smsStatus
+  </sql>
+  
+ 	<insert id="insert" parameterType="com.rongyi.monitor.biz.domain.TraceRecordDO" useGeneratedKeys="true"  keyProperty="id">
+ 		insert into traceRecord (id,gmtCreate,gmtModified,terminalId,receiverTel,message,mallId,smsStatus)
+ 		values (#{id,jdbcType=INTEGER}, now(),now(),#{terminalId,jdbcType=VARCHAR},#{receiverTel,jdbcType=VARCHAR},#{message,jdbcType=VARCHAR}
+ 		,#{mallId,jdbcType=VARCHAR},#{smsStatus,jdbcType=VARCHAR})
+ 	</insert>
+ 	
+</mapper>

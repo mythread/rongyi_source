@@ -1,0 +1,997 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<bean id="SpringContextUtil" class="com.gcrm.util.spring.SpringContextUtil" />
+
+	<!-- Postgres Data Source -->
+    <import resource="mongo-config.xml" /> 
+	<!-- 数据源配置 -->
+	<bean id="dataSource" class="com.gcrm.util.DataSource"
+		destroy-method="close">
+		<!-- 设置JDBC驱动名称 -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<!-- 设置JDBC连接URL -->
+		 <property name="url"
+			value="jdbc:mysql://192.168.1.88:3306/ry_crm?useUnicode=true&amp;zeroDateTimeBehavior=round&amp;characterEncoding=UTF-8" /> 
+		<!--<property name="url" value="jdbc:mysql://10.4.6.63:3306/ry_crm?useUnicode=true&amp;zeroDateTimeBehavior=round&amp;characterEncoding=UTF-8" 
+			/> -->
+		<!-- 设置数据库用户名 -->
+		<property name="username" value="root" />
+		<!-- 设置数据库密码 -->
+		 <property name="password" value="rongyi" /> 
+		<!--<property name="password" value="rongyi123$qwer" /> -->
+		<!-- 设置连接池初始值 -->
+		<property name="initialSize" value="5" />
+		<!-- 设置连接池最大值 -->
+		<property name="maxActive" value="100" />
+		<!-- 设置连接池最小空闲值 -->
+		<property name="minIdle" value="20" />
+		<!-- 设置连接池最大空闲值 -->
+		<property name="maxIdle" value="50" />
+	</bean>
+
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+		lazy-init="true">
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<!--property name="mappingDirectoryLocations"> <list> <value>/WEB-INF/classes/com/gcrm/domain/hbm</value> 
+			</list> </property -->
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:com/gcrm/domain/hbm/*.hbm.xml</value>
+				<value>classpath:com/mallcms/domain/hbm/*.hbm.xml</value>
+			</list>
+		</property>
+		
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.c3p0.max_size">130</prop>
+				<prop key="hibernate.c3p0.min_size">10</prop>
+				<prop key="hibernate.c3p0.timeout">120</prop>
+				<prop key="hibernate.c3p0.max_statements">100</prop>
+				<prop key="hibernate.c3p0.idle_test_period">120</prop>
+				<prop key="hibernate.c3p0.acquire_increment">5</prop>
+				<prop key="hibernate.c3p0.validate">true</prop>
+				<prop key="hibernate.connection.SetBigStringTryClob">true</prop>
+			</props>
+		</property>
+		<property name="lobHandler">
+			<ref local="lobHandler" />
+		</property>
+	</bean>
+
+	<!-- hibernateTransactionManager -->
+	<bean id="grassTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<!-- Annotation -->
+	<tx:annotation-driven transaction-manager="grassTransactionManager" />
+
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="30" />
+	</bean>
+
+	<bean id="mailService" class="com.gcrm.util.mail.MailService">
+		<property name="taskExecutor" ref="taskExecutor" />
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<!-- Schedule -->
+	<bean id="repeatTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="jobtask" />
+		<property name="startDelay" value="20000" />
+		<property name="repeatInterval" value="3600000" />
+	</bean>
+
+	<bean id="scheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="repeatTrigger" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jobtask"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="mailRemind" />
+		</property>
+		<property name="targetMethod">
+			<value>getRemindInstances</value>
+		</property>
+	</bean>
+
+	<bean id="mailRemind" class="com.gcrm.util.schedule.MailRemind">
+		<property name="callService" ref="callService" />
+		<property name="meetingService" ref="meetingService" />
+		<property name="visitService" ref="visitService" />
+		<property name="mailService" ref="mailService" />
+		<property name="emailTemplateService" ref="baseService" />
+	</bean>
+
+	<!-- Dao Config -->
+	<bean id="baseDao" class="com.gcrm.dao.impl.BaseDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="callDao" class="com.gcrm.dao.impl.CallDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="meetingDao" class="com.gcrm.dao.impl.MeetingDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="visitDao" class="com.gcrm.dao.impl.VisitDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="userDao" class="com.gcrm.dao.impl.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="userUtil" class="com.gcrm.util.security.UserUtil">
+		<property name="baseDao" ref="baseDao"></property>
+	</bean>
+
+	<!-- Services -->
+	<bean id="baseService" class="com.gcrm.service.impl.BaseService">
+		<property name="baseDao" ref="baseDao" />
+	</bean>
+
+	<bean id="callService" class="com.gcrm.service.impl.CallService">
+		<property name="baseDao" ref="callDao" />
+		<property name="callDao" ref="callDao" />
+	</bean>
+
+	<bean id="leadService" class="com.gcrm.service.impl.LeadService">
+		<property name="baseDao" ref="baseDao" />
+		<property name="accountService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="leadStatusService" ref="optionService" />
+	</bean>
+
+	<bean id="meetingService" class="com.gcrm.service.impl.MeetingService">
+		<property name="baseDao" ref="meetingDao" />
+		<property name="meetingDao" ref="meetingDao" />
+	</bean>
+
+	<bean id="visitService" class="com.gcrm.service.impl.VisitService">
+		<property name="baseDao" ref="visitDao" />
+		<property name="visitDao" ref="visitDao" />
+	</bean>
+
+	<bean id="optionService" class="com.gcrm.service.impl.OptionService">
+		<property name="baseDao" ref="baseDao" />
+	</bean>
+
+	<bean id="targetService" class="com.gcrm.service.impl.TargetService">
+		<property name="baseDao" ref="baseDao" />
+		<property name="leadService" ref="baseService" />
+		<property name="leadStatusService" ref="baseService" />
+	</bean>
+
+	<bean id="userService" class="com.gcrm.service.impl.UserService">
+		<property name="baseDao" ref="baseDao" />
+		<property name="userDao" ref="userDao" />
+		<property name="mailService" ref="mailService" />
+	</bean>
+
+
+	<!-- Actions -->
+	<bean id="homeAction" class="com.gcrm.action.crm.HomeAction"
+		scope="prototype">
+	</bean>
+
+	<bean id="accountReportAction" class="com.gcrm.action.report.AccountReportAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="accountByIndustryReportAction" class="com.gcrm.action.report.AccountByIndustryReportAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="contactAddressReportAction" class="com.gcrm.action.report.ContactAddressReportAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="opportunityByStageReportAction" class="com.gcrm.action.report.OpportunityByStageReportAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="opportunityByLeadReportAction" class="com.gcrm.action.report.OpportunityByLeadReportAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="leadByStatusReportAction" class="com.gcrm.action.report.LeadByStatusReportAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="leadBySourceReportAction" class="com.gcrm.action.report.LeadBySourceReportAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="totalfilterAction" class="com.gcrm.action.crm.TotalFilter"
+		scope="prototype">
+	</bean>
+
+	<bean id="listAccountAction" class="com.gcrm.action.crm.ListAccountAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="contactBaseService" ref="baseService" />
+		<property name="accountTypeService" ref="optionService" />
+		<property name="accountLevelService" ref="optionService" />
+		<property name="capitalService" ref="optionService" />
+		<property name="annualRevenueService" ref="optionService" />
+		<property name="companySizeService" ref="optionService" />
+		<property name="accountNatureService" ref="optionService" />
+		<property name="industryService" ref="optionService" />
+		<property name="currencyService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="campaignService" ref="baseService" />
+		<property name="targetListService" ref="baseService" />
+		<property name="documentService" ref="baseService" />
+	</bean>
+
+	<bean id="editAccountAction" class="com.gcrm.action.crm.EditAccountAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="accountTypeService" ref="optionService" />
+		<property name="accountLevelService" ref="optionService" />
+		<property name="capitalService" ref="optionService" />
+		<property name="annualRevenueService" ref="optionService" />
+		<property name="companySizeService" ref="optionService" />
+		<property name="accountNatureService" ref="optionService" />
+		<property name="industryService" ref="optionService" />
+		<property name="currencyService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="campaignService" ref="baseService" />
+		<property name="targetListService" ref="baseService" />
+		<property name="documentService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+		<property name="recordService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="contractService" ref="baseService" />
+	</bean>
+
+	<bean id="listCampaignAction" class="com.gcrm.action.crm.ListCampaignAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="campaignTypeService" ref="baseService" />
+		<property name="campaignStatusService" ref="baseService" />
+		<property name="currencyService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+	</bean>
+
+	<bean id="editCampaignAction" class="com.gcrm.action.crm.EditCampaignAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="campaignTypeService" ref="optionService" />
+		<property name="campaignStatusService" ref="optionService" />
+		<property name="currencyService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="mailService" ref="mailService" />
+		<property name="emailTemplateService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listCallAction" class="com.gcrm.action.crm.ListCallAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="callStatusService" ref="baseService" />
+		<property name="callDirectionService" ref="baseService" />
+		<property name="reminderOptionService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+	</bean>
+	<bean id="editCallAction" class="com.gcrm.action.crm.EditCallAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="callStatusService" ref="optionService" />
+		<property name="callDirectionService" ref="optionService" />
+		<property name="reminderOptionService" ref="optionService" />
+		<property name="userService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="caseService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="leadService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="targetService" ref="baseService" />
+		<property name="taskService" ref="baseService" />
+		<property name="mailService" ref="mailService" />
+		<property name="emailTemplateService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listCaseAction" class="com.gcrm.action.crm.ListCaseAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="caseStatusService" ref="baseService" />
+		<property name="casePriorityService" ref="baseService" />
+		<property name="caseTypeService" ref="baseService" />
+		<property name="caseOriginService" ref="baseService" />
+		<property name="caseReasonService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="documentService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+	</bean>
+
+	<bean id="editCaseAction" class="com.gcrm.action.crm.EditCaseAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="caseStatusService" ref="optionService" />
+		<property name="casePriorityService" ref="optionService" />
+		<property name="caseTypeService" ref="optionService" />
+		<property name="caseOriginService" ref="optionService" />
+		<property name="caseReasonService" ref="optionService" />
+		<property name="accountService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="documentService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listChangeLogAction" class="com.gcrm.action.crm.ListChangeLogAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+	</bean>
+
+	<bean id="listContactAction" class="com.gcrm.action.crm.ListContactAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="leadSourceService" ref="optionService" />
+		<property name="salutationService" ref="optionService" />
+		<property name="contact_defaultService" ref="optionService" />
+		<property name="religiousService" ref="optionService" />
+		<property name="userService" ref="baseService" />
+		<property name="campaignService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="targetListService" ref="baseService" />
+		<property name="callService" ref="baseService" />
+		<property name="meetingService" ref="baseService" />
+		<property name="visitService" ref="baseService" />
+		<property name="documentService" ref="baseService" />
+		<property name="caseService" ref="baseService" />
+	</bean>
+
+	<bean id="editContactAction" class="com.gcrm.action.crm.EditContactAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="recordService" ref="baseService" />
+		<property name="leadSourceService" ref="optionService" />
+		<property name="salutationService" ref="optionService" />
+		<property name="contact_defaultService" ref="optionService" />
+		<property name="religiousService" ref="optionService" />
+		<property name="userService" ref="baseService" />
+		<property name="campaignService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="targetListService" ref="baseService" />
+		<property name="callService" ref="baseService" />
+		<property name="meetingService" ref="baseService" />
+		<property name="visitService" ref="baseService" />
+		<property name="documentService" ref="baseService" />
+		<property name="caseService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listDocumentAction" class="com.gcrm.action.crm.ListDocumentAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="documentStatusService" ref="baseService" />
+		<property name="documentCategoryService" ref="baseService" />
+		<property name="documentSubCategoryService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="caseService" ref="baseService" />
+	</bean>
+
+	<bean id="editDocumentAction" class="com.gcrm.action.crm.EditDocumentAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="documentStatusService" ref="optionService" />
+		<property name="documentCategoryService" ref="optionService" />
+		<property name="documentSubCategoryService" ref="optionService" />
+		<property name="userService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="caseService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listLeadAction" class="com.gcrm.action.crm.ListLeadAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="leadStatusService" ref="baseService" />
+		<property name="leadSourceService" ref="baseService" />
+		<property name="salutationService" ref="baseService" />
+		<property name="campaignService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="targetListService" ref="baseService" />
+		<property name="callService" ref="baseService" />
+		<property name="visitService" ref="baseService" />
+	</bean>
+
+	<bean id="editLeadAction" class="com.gcrm.action.crm.EditLeadAction"
+		scope="prototype">
+		<property name="baseService" ref="leadService" />
+		<property name="accountService" ref="baseService" />
+		<property name="leadStatusService" ref="optionService" />
+		<property name="leadSourceService" ref="optionService" />
+		<property name="salutationService" ref="optionService" />
+		<property name="campaignService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="targetListService" ref="baseService" />
+		<property name="callService" ref="baseService" />
+		<property name="visitService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listMeetingAction" class="com.gcrm.action.crm.ListMeetingAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="meetingStatusService" ref="baseService" />
+		<property name="reminderOptionService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+	</bean>
+
+	<bean id="editMeetingAction" class="com.gcrm.action.crm.EditMeetingAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="meetingStatusService" ref="optionService" />
+		<property name="reminderOptionService" ref="optionService" />
+		<property name="userService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="caseService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="leadService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="targetService" ref="baseService" />
+		<property name="taskService" ref="baseService" />
+		<property name="mailService" ref="mailService" />
+		<property name="emailTemplateService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+
+	<bean id="listVisitAction" class="com.gcrm.action.crm.ListVisitAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="visitStatusService" ref="baseService" />
+		<property name="reminderOptionService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+	</bean>
+
+	<bean id="editVisitAction" class="com.gcrm.action.crm.EditVisitAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="visitStatusService" ref="optionService" />
+		<property name="reminderOptionService" ref="optionService" />
+		<property name="userService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="caseService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="leadService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="targetService" ref="baseService" />
+		<property name="taskService" ref="baseService" />
+		<property name="mailService" ref="mailService" />
+		<property name="emailTemplateService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listOpportunityAction" class="com.gcrm.action.crm.ListOpportunityAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="currencyService" ref="baseService" />
+		<property name="opportunityTypeService" ref="baseService" />
+		<property name="salesStageService" ref="baseService" />
+		<property name="leadSourceService" ref="baseService" />
+		<property name="campaignService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="documentService" ref="baseService" />
+	</bean>
+
+	<bean id="editOpportunityAction" class="com.gcrm.action.crm.EditOpportunityAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="currencyService" ref="baseService" />
+		<property name="opportunityTypeService" ref="optionService" />
+		<property name="salesStageService" ref="optionService" />
+		<property name="leadSourceService" ref="optionService" />
+		<property name="campaignService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="documentService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listTargetAction" class="com.gcrm.action.crm.ListTargetAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="salutationService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="targetListService" ref="baseService" />
+	</bean>
+
+	<bean id="editTargetAction" class="com.gcrm.action.crm.EditTargetAction"
+		scope="prototype">
+		<property name="baseService" ref="targetService" />
+		<property name="accountService" ref="baseService" />
+		<property name="salutationService" ref="optionService" />
+		<property name="leadService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="targetListService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listTargetListAction" class="com.gcrm.action.crm.ListTargetListAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="campaignService" ref="baseService" />
+	</bean>
+
+	<bean id="editTargetListAction" class="com.gcrm.action.crm.EditTargetListAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="campaignService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listTaskAction" class="com.gcrm.action.crm.ListTaskAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="taskStatusService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="taskPriorityService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+	</bean>
+
+	<bean id="editTaskAction" class="com.gcrm.action.crm.EditTaskAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="taskStatusService" ref="optionService" />
+		<property name="contactService" ref="baseService" />
+		<property name="taskPriorityService" ref="optionService" />
+		<property name="userService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+		<property name="caseService" ref="baseService" />
+		<property name="leadService" ref="baseService" />
+		<property name="opportunityService" ref="baseService" />
+		<property name="targetService" ref="baseService" />
+		<property name="taskService" ref="baseService" />
+		<property name="changeLogService" ref="baseService" />
+		<property name="taskExecutor" ref="taskExecutor" />
+	</bean>
+
+	<bean id="listUserAction" class="com.gcrm.action.system.ListUserAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="userStatusService" ref="baseService" />
+		<property name="targetListService" ref="baseService" />
+		<property name="callService" ref="baseService" />
+		<property name="meetingService" ref="baseService" />
+		<property name="visitService" ref="baseService" />
+	</bean>
+
+	<bean id="editUserAction" class="com.gcrm.action.system.EditUserAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="userStatusService" ref="optionService" />
+		<property name="roleService" ref="baseService" />
+	</bean>
+
+	<bean id="listEmailTemplateAction" class="com.gcrm.action.system.ListEmailTemplateAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="editEmailTemplateAction" class="com.gcrm.action.system.EditEmailTemplateAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="listRoleAction" class="com.gcrm.action.system.ListRoleAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+	</bean>
+
+	<bean id="editRoleAction" class="com.gcrm.action.system.EditRoleAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+	</bean>
+
+	<bean id="emailSettingAction" class="com.gcrm.action.system.EmailSettingAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="mailService" ref="mailService" />
+	</bean>
+
+	<bean id="accountLevelAction" class="com.gcrm.action.system.AccountLevelAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="accountNatureAction" class="com.gcrm.action.system.AccountNatureAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="accountTypeAction" class="com.gcrm.action.system.AccountTypeAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="annualRevenueAction" class="com.gcrm.action.system.AnnualRevenueAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="callStatusAction" class="com.gcrm.action.system.CallStatusAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="callDirectionAction" class="com.gcrm.action.system.CallDirectionAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="campaignStatusAction" class="com.gcrm.action.system.CampaignStatusAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="campaignTypeAction" class="com.gcrm.action.system.CampaignTypeAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="capitalAction" class="com.gcrm.action.system.CapitalAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="caseOriginAction" class="com.gcrm.action.system.CaseOriginAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="casePriorityAction" class="com.gcrm.action.system.CasePriorityAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="caseReasonAction" class="com.gcrm.action.system.CaseReasonAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="caseStatusAction" class="com.gcrm.action.system.CaseStatusAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="caseTypeAction" class="com.gcrm.action.system.CaseTypeAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="companySizeAction" class="com.gcrm.action.system.CompanySizeAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="currencyAction" class="com.gcrm.action.system.CurrencyAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="documentCategoryAction" class="com.gcrm.action.system.DocumentCategoryAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="documentStatusAction" class="com.gcrm.action.system.DocumentStatusAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="documentSubCategoryAction" class="com.gcrm.action.system.DocumentSubCategoryAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="documentTypeAction" class="com.gcrm.action.system.DocumentTypeAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="industryAction" class="com.gcrm.action.system.IndustryAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="leadSourceAction" class="com.gcrm.action.system.LeadSourceAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="leadStatusAction" class="com.gcrm.action.system.LeadStatusAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="meetingStatusAction" class="com.gcrm.action.system.MeetingStatusAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="visitStatusAction" class="com.gcrm.action.system.VisitStatusAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="opportunityTypeAction" class="com.gcrm.action.system.OpportunityTypeAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="reminderOptionAction" class="com.gcrm.action.system.ReminderOptionAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="religiousAction" class="com.gcrm.action.system.ReligiousAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="salesStageAction" class="com.gcrm.action.system.SalesStageAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="salutationAction" class="com.gcrm.action.system.SalutationAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="contact_DefaultAction" class="com.gcrm.action.system.Contact_DefaultAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="taskPriorityAction" class="com.gcrm.action.system.TaskPriorityAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="taskStatusAction" class="com.gcrm.action.system.TaskStatusAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="userStatusAction" class="com.gcrm.action.system.UserStatusAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+	</bean>
+
+	<bean id="forgetPasswordAction" class="com.gcrm.action.system.ForgetPasswordAction"
+		scope="prototype">
+		<property name="baseService" ref="userService" />
+	</bean>
+
+	<bean id="changePasswordAction" class="com.gcrm.action.system.ChangePasswordAction"
+		scope="prototype">
+		<property name="baseService" ref="userService" />
+	</bean>
+
+	<bean id="calendarAction" class="com.gcrm.action.crm.CalendarAction"
+		scope="prototype">
+		<property name="callService" ref="baseService" />
+		<property name="meetingService" ref="baseService" />
+		<property name="visitService" ref="baseService" />
+		<property name="taskService" ref="baseService" />
+	</bean>
+	<bean id="listContractAction" class="com.gcrm.action.crm.ListContractAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+	</bean>
+
+	<bean id="editContractAction" class="com.gcrm.action.crm.EditContractAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="recordService" ref="baseService" />
+		<property name="attachmentService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+	</bean>
+
+	<bean id="editRecordAction" class="com.gcrm.action.crm.EditRecordAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="contactService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+	</bean>
+	<bean id="listRecordAction" class="com.gcrm.action.crm.ListRecordAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="simpleAccountService" ref="baseService" />
+		<property name="userService" ref="baseService" />
+	</bean>
+	<bean id="areaCodeAction" class="com.gcrm.action.crm.AreaCodeAction"
+		scope="prototype">
+		<property name="areaCodeService" ref="baseService" />
+	</bean>
+
+	<bean id="dailyRecordAction" class="com.gcrm.action.crm.DailyRecordAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="recordService" ref="baseService" />
+		<property name="accountService" ref="baseService" />
+	</bean>
+
+	<!-- mongodb -->
+	
+	<!-- dao  初始化 开始-->
+	<bean id="mallDaoImpl" class="com.mallcms.dao.impl.MallDaoImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+	<bean id="advertisementsDaoImpl" class="com.mallcms.dao.impl.AdvertisementsDaoImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+	<bean id="adzonesDaoImpl" class="com.mallcms.dao.impl.AdzonesDaoImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+	<bean id="shopsDaoImpl" class="com.mallcms.dao.impl.ShopsDaoImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+	<bean id="brandsDaoImpl" class="com.mallcms.dao.impl.BrandsDaoImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+	<bean id="categoriesDaoImpl" class="com.mallcms.dao.impl.CategoriesDaoImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+	<bean id="photoDaoImpl" class="com.mallcms.dao.impl.PhotoDaoImpl">
+		<property name="mongoTemplate" ref="mongoTemplate"></property>
+	</bean>
+	<!-- dao  初始化Cms结束-->
+
+	<!-- service 初始化服务开始-->
+	<bean id="mallServiceImpl" class="com.mallcms.service.impl.MallServiceImpl">
+		<property name="mallDaoImpl" ref="mallDaoImpl"></property>
+	</bean>
+	<bean id="advertisementsServiceImpl" class="com.mallcms.service.impl.AdvertisementsServiceImpl">
+		<property name="advertisementsDaoImpl" ref="advertisementsDaoImpl"></property>
+	</bean>
+	<bean id="adzonesServiceImpl" class="com.mallcms.service.impl.AdzonesServiceImpl">
+		<property name="adzonesDaoImpl" ref="adzonesDaoImpl"></property>
+	</bean>
+	<bean id="shopsServiceImpl" class="com.mallcms.service.impl.ShopsServiceImpl">
+		<property name="shopsDaoImpl" ref="shopsDaoImpl"></property>
+	</bean>
+	<bean id="brandsServiceImpl" class="com.mallcms.service.impl.BrandsServiceImpl">
+		<property name="brandsDaoImpl" ref="brandsDaoImpl"></property>
+	</bean>
+	<bean id="categoriesServiceImpl" class="com.mallcms.service.impl.CategoriesServiceImpl">
+		<property name="categoriesDaoImpl" ref="categoriesDaoImpl"></property>
+	</bean>
+	<bean id="photosServiceImpl" class="com.mallcms.service.impl.PhotosServiceImpl">
+		<property name="photoDaoImpl" ref="photoDaoImpl"></property>
+	</bean>
+	<bean id="cmsInitInfoServiceImpl" class="com.mallcms.service.impl.CmsInitInfoServiceImpl">
+		<property name="categoriesServiceImpl" ref="categoriesServiceImpl"></property>
+		<property name="brandsServiceImpl" ref="brandsServiceImpl"></property>
+		<property name="shopsServiceImpl" ref="shopsServiceImpl"></property>
+		<property name="adzonesServiceImpl" ref="adzonesServiceImpl"></property>
+		<property name="advertisementsServiceImpl" ref="advertisementsServiceImpl"></property>
+		<property name="mallServiceImpl" ref="mallServiceImpl"></property>
+		<property name="photosServiceImpl" ref="photosServiceImpl"></property>
+	</bean> 
+	<!-- service 初始化服务结束-->
+	
+	<!-- action -->
+	<bean id="cmsInitInfoAction" class="com.mallcms.action.CmsInitInfoAction"
+		scope="prototype">
+		<property name="cmsInitInfoServiceImpl" ref="cmsInitInfoServiceImpl"></property>
+	</bean>
+	 <bean id="cmsSynchAction" class="com.mallcms.action.CmsSynchAction" scope="prototype">
+	 	<property name="advertService" ref="baseService"></property>
+	 	<property name="shopsService" ref="baseService"></property>
+	 	<property name="cmsTaskService" ref="baseService"></property>
+	 	<property name="crmJobService" ref="baseService"></property>
+	 	<property name="photosService" ref="baseService"></property>
+	 	<property name="brandsService" ref="baseService"></property>
+	 	<property name="mallConfigService" ref="baseService"></property>
+	 	<property name="mongoAdvertService" ref="advertisementsServiceImpl"></property>
+	 	<property name="mongoShopsService" ref="shopsServiceImpl"></property>
+	 	<property name="mongoPhotoService" ref="photosServiceImpl"></property>
+	 	<property name="mongoBrandService" ref="brandsServiceImpl"></property>
+	 </bean>
+	 <bean id="cmsConfigAction" class="com.mallcms.action.CmsConfigAction" scope="prototype">
+	 	 <property name="mallConfigService" ref="baseService"></property> 
+	 </bean>
+	 <bean id="listCmsTaskAction" class="com.mallcms.action.ListCmsTaskAction"
+		scope="prototype">
+		<property name="baseService" ref="baseService" />
+		<property name="ShopsbaseService" ref="baseService" />
+		<property name="adbaseService" ref="baseService" />
+		<property name="photobaseService" ref="baseService" />
+		<property name="BrandbaseService" ref="baseService" />
+		<property name="mallConfigService" ref="baseService" />
+		<property name="shopService" ref="shopsServiceImpl" />
+		<property name="photoService" ref="photosServiceImpl" />
+		<property name="advertisementsService" ref="advertisementsServiceImpl" />
+		<property name="brandsService" ref="brandsServiceImpl" />
+	</bean>
+	
+	<bean id="executorsJob" class="com.mallcms.quartz.ExecutorsJob" init-method="init">
+		<property name="baseService" ref="baseService" />
+		<property name="photoService" ref="baseService" />
+		<property name="mallConfigService" ref="baseService" />
+	</bean>
+</beans>

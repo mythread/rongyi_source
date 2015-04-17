@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>商家平台</title>
+		#parse("widget/common/meta.vm")
+		<link href="/static/css/platform.css" rel="stylesheet" type="text/css">
+		<script src="/static/js/platform.js"></script>
+	</head>
+	<body>
+		#parse("widget/common/header.vm")
+        <div id="content">
+			
+			<div id="top-img">
+                <div id="top-none"></div>
+				
+                <div id="top-img-content">
+    				<div id="login">
+                        <div class="login-title">商场信息优惠发布系统</div>
+    					<div class="login-text">登录</div>
+    					<div class="login-input login-username">
+                            <div class="login-input-content">
+    							<input type="text" id="input-username" placeholder="请输入您的账号" />
+    						</div>
+    					</div>
+    					<div class="login-input login-password">
+    						<div class="login-input-content">
+    							<input type="password" id="input-password" placeholder="请输入您的密码" />
+    						</div>
+    					</div>
+                        <div class="login-bottom">
+                            <div class="login-bottom-left">记住账号</div>
+                            <div class="login-bottom-right"><a href="javascript:void(0)">忘记密码？</a></div>
+    					</div>
+                        <a href="javascript:void(0)" class="login-btn">登 录</a>
+    				</div>
+                    <div id="leave-msg">
+                        <div id="leave-msg-close"></div>
+                        <div id="qq-box"><a href="http://wpa.qq.com/msgrd?v=3&uin=1626365605&site=qq&menu=yes" target="_blank">给我留言</a></div>
+						<div class="leave-msg-text">企业QQ在线</div>
+						<div class="leave-msg-white-text">
+							任何有关平台问题都可随时咨询
+						</div>
+						
+						#**<div class="leave-msg-white-text">都可随时咨询</div>*#
+					</div>
+				</div>
+			</div>
+			
+			<div class="content-center">
+    			
+                <div class="top-text">在这里，您可以 ...</div>
+				
+                <div class="text-introduce">
+                    <div class="text-left">
+                        <div class="main-text main-text-left">管理您的品牌信息</div>
+                        <div class="text-normal text-color">商场信息管理系统提供了丰富的品牌商户信息发布功能：</div>
+						
+						<div class="text-block text-block-one text-normal">商户品牌LOGO（容易网制作），商户名</div>
+						<div class="text-block text-block-two text-normal">商户信息：楼层、铺位号、分类、营业时间、评分、网址、二维码、简介</div>
+						<div class="text-block text-block-three text-normal">4张实地拍摄商户实景图轮播</div>
+						<div class="text-block text-block-four text-normal">优惠信息及优惠劵打印（无优惠信息此模块能自动隐藏）</div>
+						<div class="text-block text-block-five text-normal">商场室内地图显示商户位置</div>
+					</div>
+					<div class="text-right">
+						<div class="main-text main-text-right">管理您的商场活动</div>
+						
+						<div class="text-block text-block-one text-normal">
+                            <div class="text-color">抽奖活动：</div>
+							<div>应用互联网技术，实现多种不同的屏上抽奖模式，满足任意形式的</div>
+						</div>
+						<div class="text-block text-block-two text-normal">
+                            <div class="text-color">自拍活动：</div>
+							<div>此外，可实现复杂的娱乐功能，如拍照、下载照片、分享照片等</div>
+						</div>
+						<div class="text-block text-block-three text-normal">
+                            <div class="text-color">电子画板：</div>
+							<div>可实现线上电子画板功能，在此基础上可开发例如：电子签到、春联、贺卡等一系列互动应用</div>
+						</div>
+					</div>
+				</div>
+				
+            </div>
+			
+		</div>
+		#parse("widget/common/footer.vm")
+	</body>
+</html>

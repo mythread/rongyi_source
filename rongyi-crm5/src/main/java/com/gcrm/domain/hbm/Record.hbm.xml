@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="true" package="com.gcrm.domain">
+  <class dynamic-insert="true" dynamic-update="true"
+    name="com.gcrm.domain.Record" table="record">
+    <id column="id" name="id" type="java.lang.Integer">
+      <generator class="native" />
+    </id>
+    <many-to-one name="owner" class="User" column="owner" />
+    <many-to-one name="created_by" class="User" column="created_by" />
+    <many-to-one name="updated_by" class="User" column="updated_by" />
+    <property name="created_on" column="created_on" type="java.util.Date" />
+    <property name="updated_on" column="updated_on" type="java.util.Date" />
+    <property name="type"      column="type" type="string" />
+     <property name="tableName"      column="tableName" type="string" />
+    <property name="outerId"   column="outerId" type="java.lang.Integer" />
+    <property name="visitType"      column="visitType" type="string" />
+    <property name="visitNote"      column="visitNote" type="string" />
+    <property name="accountIntent"      column="accountIntent" type="java.lang.Integer" />
+     <property name="accountVisit"      column="accountVisit" type="java.lang.Integer" />
+     <property name="oldAccountIntent"      column="oldAccountIntent" type="java.lang.Integer" />
+     <property name="oldAccountVisit"      column="oldAccountVisit" type="java.lang.Integer" />
+     <property name="isRemind"      column="isRemind" type="java.lang.Integer" />
+     <property name="assigned_date"      column="assigned_date" type="java.util.Date" />
+     <property name="memo"      column="memo"     type="string" />
+     <property name="contactId"      column="contactId"     type="java.lang.Integer" />
+     
+   </class>
+   
+</hibernate-mapping>

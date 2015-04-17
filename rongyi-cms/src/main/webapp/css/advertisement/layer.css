@@ -1,0 +1,117 @@
+.layer-main {
+	width: 680px;
+	height: 340px;
+	border: 1px solid white;
+	margin: 20px;
+}
+
+.layer-photo {
+	width: 200px;
+	height: 300px;
+	float: left;
+	margin: 20px;
+}
+
+.layer-photo img {
+	width: 200px;
+	height: 300px;
+}
+
+.layer-setting-items {
+	overflow-y: scroll;
+	height: 300px;
+}
+.layer-settings {
+	margin: 20px;
+}
+
+.layer-setting-line {
+	width: 370px;
+	border: 1px solid #C1CFDA;
+	margin-bottom: 10px;
+}
+
+.layer-setting-title{
+	width: 120px;
+	float: left;
+	margin-right: 30px;
+	font-size: 16px;
+	margin-left: 20px;
+	height: 20px;
+	line-height: 20px;
+	margin-top: 6px;
+	border-right: 1px solid #C1CFDA;
+}
+
+.layer-setting-input {
+	height: 32px;
+	line-height: 32px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.layer-setting-input-width {
+	width: 170px;
+	font-size: 14px;
+	border: 0px;
+	outline: none;
+	background: white;
+}
+
+.layer-setting-check {
+	border: 1px solid #C1CFDA;
+	padding: 15px;
+	margin-bottom: 10px;
+	width: 340px;
+}
+
+.display-none {
+	display: none;
+}
+
+#layer-buttons a {
+	float: right;
+	margin-right: 20px;
+}
+
+#layer-checkboxs {
+	height: 20px;
+}
+
+#layer-checkboxs label {
+	float: right;
+	margin-right: 20px;
+	margin-top: 10px;
+}
+
+
+.navigation {
+	height: 35px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+.navigation ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.navigation ul li {
+	float: left;
+}
+
+.navigation ul li a {
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 16px;
+}
+
+.navigation ul li a.selected {
+	background: #F97E76;
+	color: white;
+}

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rongyi.mina.mapper.ShopsMapper" >
+  <resultMap id="shopResult" type="com.rongyi.mina.bean.Shops" >
+    <id    property="id"                 column="id"              jdbcType="INTEGER" />
+    <result property="address"           column="address"         jdbcType="VARCHAR" />
+    <result property="averageConsumption"    column="average_consumption"  jdbcType="VARCHAR" />
+    <result property="brandId"           column="brand_id"         jdbcType="VARCHAR" />
+    <result property="commentCount"             column="comment_count"           jdbcType="INTEGER" />
+    <result property="coordinate"       column="coordinate"     jdbcType="VARCHAR" />
+    <result property="description"             column="description"           jdbcType="VARCHAR" />
+    <result property="doorCoordinate"              column="door_coordinate"            jdbcType="VARCHAR" />
+    <result property="location"              column="location"            jdbcType="VARCHAR" />
+    <result property="name"          column="name"        jdbcType="VARCHAR" />
+    <result property="oldCode"              column="old_code"            jdbcType="INTEGER" />
+    <result property="oldId"         column="old_id"       jdbcType="INTEGER" />
+    <result property="rank"         column="rank"      jdbcType="INTEGER" />
+    <result property="shopNumber"           column="shop_number"        jdbcType="VARCHAR" />
+    <result property="shopType"             column="shop_type"          jdbcType="INTEGER" />
+    <result property="slug"        column="slug"     jdbcType="VARCHAR" />
+    <result property="subtitle"       column="subtitle"    jdbcType="VARCHAR" />
+     <result property="tags"         column="tags"       jdbcType="VARCHAR" />
+     <result property="telephone"              column="telephone"             jdbcType="VARCHAR" />
+     <result property="terminalPosition"       column="terminal_position"     jdbcType="VARCHAR" />
+     <result property="terminalShop"           column="terminal_shop"         jdbcType="VARCHAR" />
+     <result property="updatedAt"           column="updated_at"         jdbcType="TIMESTAMP" />
+     <result property="zoneId"           column="zone_id"         jdbcType="VARCHAR" />
+     <result property="onStatus"           column="on_status"         jdbcType="TINYINT" />
+     <result property="synchStatus"           column="synch_status"         jdbcType="INTEGER" />
+     <result property="synchMsg"           column="synch_msg"         jdbcType="VARCHAR" />
+     <result property="pid"           column="pid"         jdbcType="VARCHAR" />
+     <result property="recordType"           column="record_type"         jdbcType="INTEGER" />
+     <result property="taskId"           column="task_id"         jdbcType="INTEGER" />
+     <result property="cmsOuterId"       column="cms_outerId"            jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <insert id="insert" parameterType="com.rongyi.mina.bean.Shops"  useGeneratedKeys="true"  keyProperty="id">
+    insert into shops (address, average_consumption, 
+      brand_id, comment_count, coordinate, 
+      description, door_coordinate, location, 
+      name, old_code, old_id, 
+      rank, shop_number, shop_type, 
+      slug, subtitle, tags, 
+      telephone, terminal_position, terminal_shop, 
+      updated_at, zone_id, on_status, 
+      synch_status, synch_msg, pid, 
+      record_type,open_time,mongo_id,recommend,mongo_brand_id,task_id,cms_outerId)
+    values ( #{address,jdbcType=VARCHAR}, #{averageConsumption,jdbcType=VARCHAR}, 
+      #{brandId,jdbcType=VARCHAR}, #{commentCount,jdbcType=INTEGER}, #{coordinate,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{doorCoordinate,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{oldCode,jdbcType=INTEGER}, #{oldId,jdbcType=INTEGER}, 
+      #{rank,jdbcType=INTEGER}, #{shopNumber,jdbcType=VARCHAR}, #{shopType,jdbcType=INTEGER}, 
+      #{slug,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, #{tags,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{terminalPosition,jdbcType=VARCHAR}, #{terminalShop,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{zoneId,jdbcType=VARCHAR}, #{onStatus,jdbcType=TINYINT}, 
+      #{synchStatus,jdbcType=INTEGER}, #{synchMsg,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{recordType,jdbcType=INTEGER},#{openTime,jdbcType=VARCHAR}, #{mongoId,jdbcType=VARCHAR},
+		#{recommend,jdbcType=INTEGER},
+		#{mongoBrandId,jdbcType=VARCHAR},#{taskId,jdbcType=INTEGER}, #{cmsOuterId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rongyi.mina.bean.Shops">
+		update shops
+		<set>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="averageConsumption != null">
+				average_consumption = #{averageConsumption,jdbcType=VARCHAR},
+			</if>
+			<if test="brandId != null">
+				brand_id = #{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="commentCount != null">
+				comment_count = #{commentCount,jdbcType=INTEGER},
+			</if>
+			<if test="coordinate != null">
+				coordinate = #{coordinate,jdbcType=VARCHAR},
+			</if>
+			<if test="doorCoordinate != null">
+				door_coordinate = #{doorCoordinate,jdbcType=VARCHAR},
+			</if>
+			<if test="location != null">
+				location = #{location,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="oldCode != null">
+				old_code = #{oldCode,jdbcType=INTEGER},
+			</if>
+			<if test="oldId != null">
+				old_id = #{oldId,jdbcType=INTEGER},
+			</if>
+			<if test="rank != null">
+				rank = #{rank,jdbcType=INTEGER},
+			</if>
+			<if test="shopNumber != null">
+				shop_number = #{shopNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="shopType != null">
+				shop_type = #{shopType,jdbcType=INTEGER},
+			</if>
+			<if test="slug != null">
+				slug = #{slug,jdbcType=VARCHAR},
+			</if>
+			<if test="subtitle != null">
+				subtitle = #{subtitle,jdbcType=VARCHAR},
+			</if>
+			<if test="tags != null">
+				tags = #{tags,jdbcType=VARCHAR},
+			</if>
+			<if test="telephone != null">
+				telephone = #{telephone,jdbcType=VARCHAR},
+			</if>
+			<if test="terminalPosition != null">
+				terminal_position = #{terminalPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="terminalShop != null">
+				terminal_shop = #{terminalShop,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedAt != null">
+				updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="zoneId != null">
+				zone_id = #{zoneId,jdbcType=VARCHAR},
+			</if>
+			<if test="onStatus != null">
+				on_status = #{onStatus,jdbcType=TINYINT},
+			</if>
+			<if test="synchStatus != null">
+				synch_status = #{synchStatus,jdbcType=INTEGER},
+			</if>
+			<if test="synchMsg != null">
+				synch_msg = #{synchMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="pid != null">
+				pid = #{pid,jdbcType=VARCHAR},
+			</if>
+			<if test="recordType != null">
+				record_type = #{recordType,jdbcType=INTEGER},
+			</if>
+			<if test="openTime != null">
+				open_time = #{openTime,jdbcType=VARCHAR},
+			</if>
+			<if test="mongoId != null">
+				mongo_id = #{mongoId,jdbcType=VARCHAR},
+			</if>
+			<if test="recommend != null">
+				recommend = #{recommend,jdbcType=INTEGER},
+			</if>
+			<if test="mongoBrandId != null">
+				mongo_brand_id = #{mongoBrandId,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="taskId != null" >
+		        task_id = #{taskId,jdbcType=INTEGER},
+		    </if>
+		    <if test="cmsOuterId != null" >
+		        cms_outerId = #{cmsOuterId,jdbcType=VARCHAR},
+		    </if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+  <select id="selectByParam" resultMap="shopResult" parameterType="java.util.Map" >
+    select a.* 
+    from shops a, cms_task b 
+    where a.task_id=b.id and b.type=0 and b.task_status=0 and b.reviewStatus=1 and a.cms_outerId=#{cmsOuterId,jdbcType=VARCHAR} and b.mall_id=#{mallId,jdbcType=VARCHAR}
+  </select>
+  </mapper>
